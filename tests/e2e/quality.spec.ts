@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
+import { readFile } from 'node:fs/promises';
 
 const routes = [
   ['/', 'Show Your Debugging — Practice before asking'],
@@ -56,4 +57,24 @@ test('every internal landing link resolves', async ({ page, request }) => {
     const response = await request.get(url.pathname);
     expect(response.status(), `${url.pathname} should resolve`).toBe(200);
   }
+});
+
+test('release output keeps the extension package and immutable asset policy', async ({ request }) => {
+  const packageResponse = await request.get('/downloads/show-your-debugging-chrome.zip');
+  expect(packageResponse.status()).toBe(200);
+  expect((await packageResponse.body()).subarray(0, 2).toString()).toBe('PK');
+
+  const config = JSON.parse(await readFile('site/public/staticwebapp.config.json', 'utf8')) as {
+    routes: Array<{ route: string; headers?: Record<string, string> }>;
+  };
+  const assets = config.routes.find((route) => route.route === '/assets/*');
+  expect(assets?.headers?.['Cache-Control']).toBe('public, max-age=31536000, immutable');
+});
+
+test('service worker does not make the extension download a precache requirement', async () => {
+  const worker = await readFile('site/public/sw.js', 'utf8');
+  expect(worker).toContain('Promise.allSettled');
+  expect(worker).toContain("path.startsWith('/assets/')");
+  expect(worker).not.toContain('/downloads/');
+  expect(worker).not.toContain('cache.addAll');
 });

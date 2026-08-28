@@ -8,6 +8,7 @@ node_modules/
 dist/
 .output/
 .wxt/
+site/public/downloads/
 playwright-report/
 test-results/
 .lighthouseci/

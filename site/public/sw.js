@@ -1,16 +1,28 @@
-const CACHE_NAME = 'show-your-debugging-v1';
+const CACHE_NAME = 'show-your-debugging-v2';
 const SHELL = ['/', '/demo', '/privacy', '/terms', '/favicon.svg', '/apple-touch-icon.png', '/assets/debug-trail-hero-640.webp', '/assets/debug-trail-hero.webp'];
+
+async function precache(cache, paths) {
+  await Promise.allSettled(paths.map(async (path) => {
+    const response = await fetch(path, { cache: 'reload' });
+    if (response.ok) await cache.put(path, response);
+  }));
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
-    await cache.addAll(SHELL);
-    const page = await fetch('/');
-    const html = await page.text();
-    const assetPaths = [...html.matchAll(/(?:src|href)="([^"]+)"/g)]
-      .map((match) => match[1])
-      .filter((path) => path.startsWith('/') && !path.startsWith('//'));
-    await cache.addAll([...new Set(assetPaths)]);
+    await precache(cache, SHELL);
+    try {
+      const page = await fetch('/', { cache: 'reload' });
+      const html = await page.text();
+      const assetPaths = [...html.matchAll(/(?:src|href)="([^"]+)"/g)]
+        .map((match) => match[1])
+        .filter((path) => path.startsWith('/assets/') && !path.startsWith('//'));
+      await precache(cache, [...new Set(assetPaths)]);
+    } catch {
+      // The core shell is already cached above. Optional discovery must not
+      // prevent activation when a downloadable artifact is unavailable.
+    }
     await self.skipWaiting();
   })());
 });

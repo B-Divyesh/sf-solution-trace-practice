@@ -10,15 +10,20 @@ function run(command, args) {
 }
 
 await rm(resolve(root, 'dist'), { recursive: true, force: true });
-run('npm', ['run', 'build:site']);
 run('npx', ['wxt', 'zip']);
 
 const outputFiles = await readdir(resolve(root, '.output'), { recursive: true });
 const zipName = outputFiles.find((file) => file.endsWith('.zip'));
 if (!zipName) throw new Error('WXT did not produce an extension zip.');
 
-await mkdir(resolve(root, 'dist/site/downloads'), { recursive: true });
-await cp(resolve(root, '.output', zipName), resolve(root, 'dist/site/downloads/show-your-debugging-chrome.zip'));
+// Stage the package in Vite's public directory before building the site. This
+// means both supported static build commands produce the download rather than
+// relying on a post-build copy that a deployment runner can accidentally omit.
+const publicDownloads = resolve(root, 'site/public/downloads');
+await mkdir(publicDownloads, { recursive: true });
+await cp(resolve(root, '.output', zipName), resolve(publicDownloads, 'show-your-debugging-chrome.zip'));
+
+run('npm', ['run', 'build:site:assets']);
 await cp(resolve(root, '.output/chrome-mv3'), resolve(root, 'dist/extension'), { recursive: true });
 
 console.log('Built site: dist/site');
