@@ -75,6 +75,15 @@ final local build.
   0 ms.
 - Asset budget remains within policy: initial JS 17.44 KB raw / 6.04 KB gzip,
   CSS 11.83 KB raw / 3.53 KB gzip, and 640px hero 27.04 KB WebP.
+- Production deployment completed through the configured Static Web App on
+  2026-08-28 UTC. At `https://solution-trace-practice.sociobot.in`, the ZIP
+  returns HTTP 200, `application/zip`, a `PK` signature, and 41,466 bytes;
+  `/assets/index-CcOTNU6z.js` returns
+  `Cache-Control: public, max-age=31536000, immutable`.
+- Fresh live Chromium verification confirmed the v2 service worker controls
+  `/demo`, an offline reload renders the demo and its offline status, and the
+  landing and demo have no console errors. `verify-url.sh` also passed on both
+  live routes.
 
 ## Privacy and boundaries
 
@@ -90,5 +99,3 @@ code, grade learners, inspect editor files, or disable coding assistants.
 - Learners paste test output manually; editor and terminal integrations remain
   intentionally outside the local-first v1 scope.
 - Firefox packaging and educator batch export are not included.
-- Static deployment verification will be appended after the pushed build has
-  propagated to `https://solution-trace-practice.sociobot.in`.
