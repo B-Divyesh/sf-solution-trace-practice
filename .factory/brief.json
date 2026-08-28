@@ -1,0 +1,13 @@
+{
+  "slug": "solution-trace-practice",
+  "title": "Show Your Debugging",
+  "territory": "utilities",
+  "user": "Beginning developers using AI coding tools who need a lightweight practice constraint that preserves independent diagnosis and debugging skill.",
+  "smallest_useful_product": "VS Code extension that asks for a one-line hypothesis before reveal, captures test output and the learner's chosen fix, then produces a local debugging receipt for review.",
+  "success_measure": "Pilot learners independently repair 20% more repeated bug patterns after four weeks than a baseline set with no trace review.",
+  "artifact_class": "browser-extension",
+  "monetization": "free",
+  "constraints": "Local-only source/test capture by default; never transmit proprietary code; clearly describe that receipts evidence process, not competence.",
+  "confidence": 4,
+  "state": "RESEARCHED"
+}
