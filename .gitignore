@@ -4,3 +4,10 @@ dist/
 *.log
 graphify-out/
 .DS_Store
+node_modules/
+dist/
+.output/
+playwright-report/
+test-results/
+.lighthouseci/
+*.log

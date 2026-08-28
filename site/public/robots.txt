@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://solution-trace-practice.sociobot.in/sitemap.xml

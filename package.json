@@ -1,0 +1,30 @@
+{
+  "name": "show-your-debugging",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Practice independent debugging by recording a hypothesis, test, fix, and lesson.",
+  "scripts": {
+    "dev": "wxt",
+    "dev:site": "vite --config vite.config.ts",
+    "build:site": "vite build --config vite.config.ts",
+    "build:extension": "wxt build",
+    "build": "node scripts/build.mjs",
+    "test:unit": "vitest run --config vitest.config.ts",
+    "test:e2e": "playwright test",
+    "test": "npm run test:unit && npm run build && npm run test:e2e",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "@playwright/test": "1.58.2",
+    "@types/chrome": "0.0.326",
+    "typescript": "5.9.2",
+    "vite": "7.1.3",
+    "vitest": "3.2.4",
+    "wxt": "0.20.11"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

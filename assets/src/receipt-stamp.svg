@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Coral debugging receipt stamp</title>
+  <path fill="#24152F" d="M11 16h106v96H11z"/>
+  <path fill="#FFF7E8" d="M25 27h78v74H25z"/>
+  <path fill="#D94B43" d="M33 38h49v9H33zm0 18h62v8H33zm0 17h39v8H33z"/>
+  <path fill="none" stroke="#0E746E" stroke-width="8" stroke-linecap="square" stroke-linejoin="miter" d="m73 84 9 8 17-22"/>
+  <path fill="#5943A9" d="M16 5h8v16h-8zm88 102h8v16h-8zM3 25h16v8H3zm106 67h16v8h-16z"/>
+</svg>
