@@ -1,4 +1,23 @@
-# Handoff: Show Your Debugging
+# Handoff: Show Your Debugging — **FAIL (independent verification)**
+
+## Independent verification status — 2026-08-28 UTC
+
+**Candidate:** `6385120886c9d9404cd05edbfbc53bd3ae651ca4`
+**Live URL:** https://solution-trace-practice.sociobot.in
+**Release decision:** **FAIL — do not release.**
+
+The candidate builds and its local full suite passes, but the deployed
+artifact is incomplete: the advertised extension download at
+`/downloads/show-your-debugging-chrome.zip` returns HTTP 404. That breaks the
+central extension acquisition flow and causes the live service-worker precache
+to reject, so `/demo` cannot reload offline after a first visit. Every exact
+claim command in `.factory/claims.json` also fails with Playwright's “No tests
+found” error because `npm test -- --grep …` is forwarded incorrectly.
+
+See [.factory/verification.md](verification.md) for commands, hashes, browser
+evidence, severity, and required remediation. This verification supersedes the
+historical builder self-report below; its PASS statements are not an acceptance
+decision.
 
 ## What shipped
 
