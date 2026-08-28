@@ -9,6 +9,7 @@ dist/
 .output/
 .wxt/
 site/public/downloads/
+.factory/evidence-repair/
 playwright-report/
 test-results/
 .lighthouseci/
