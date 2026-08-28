@@ -1,5 +1,5 @@
 const CACHE_NAME = 'show-your-debugging-v1';
-const SHELL = ['/', '/demo', '/privacy', '/terms', '/favicon.svg', '/apple-touch-icon.png', '/assets/debug-trail-hero.webp'];
+const SHELL = ['/', '/demo', '/privacy', '/terms', '/favicon.svg', '/apple-touch-icon.png', '/assets/debug-trail-hero-640.webp', '/assets/debug-trail-hero.webp'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {

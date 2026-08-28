@@ -1,6 +1,7 @@
 {
   "slug": "solution-trace-practice",
   "title": "Show Your Debugging",
+  "summary": "Practice a hypothesis, test, fix, and lesson before asking a coding assistant for the answer.",
   "territory": "utilities",
   "user": "Beginning developers using AI coding tools who need a lightweight practice constraint that preserves independent diagnosis and debugging skill.",
   "smallest_useful_product": "VS Code extension that asks for a one-line hypothesis before reveal, captures test output and the learner's chosen fix, then produces a local debugging receipt for review.",

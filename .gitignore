@@ -7,6 +7,7 @@ graphify-out/
 node_modules/
 dist/
 .output/
+.wxt/
 playwright-report/
 test-results/
 .lighthouseci/

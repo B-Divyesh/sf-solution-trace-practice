@@ -59,7 +59,7 @@ function landingMarkup(): string {
         </ul>
       </div>
       <figure class="hero-art">
-        <img src="/assets/debug-trail-hero.webp" width="1200" height="800" alt="A paper hypothesis, terminal, test strip, and code fix joined by a coral thread." fetchpriority="high" decoding="async" />
+        <img src="/assets/debug-trail-hero.webp" srcset="/assets/debug-trail-hero-640.webp 640w, /assets/debug-trail-hero.webp 1200w" sizes="(max-width: 850px) 92vw, 52vw" width="1200" height="800" alt="A paper hypothesis, terminal, test strip, and code fix joined by a coral thread." fetchpriority="high" decoding="async" />
         <figcaption>Follow the evidence from guess to fix.</figcaption>
       </figure>
     </section>

@@ -18,6 +18,7 @@
 html { scroll-behavior: smooth; background: var(--paper); }
 body { margin: 0; min-width: 320px; color: var(--ink); background-color: var(--paper); background-image: radial-gradient(#c8b99d55 .7px, transparent .7px); background-size: 9px 9px; }
 body, button, input, textarea { font-family: "Trebuchet MS", "Segoe UI", sans-serif; }
+#main { min-height: calc(100vh - 72px); }
 button, input, textarea { font-size: 1rem; }
 img { display: block; max-width: 100%; }
 a { color: var(--violet-dark); text-underline-offset: .22em; text-decoration-thickness: .1em; }
