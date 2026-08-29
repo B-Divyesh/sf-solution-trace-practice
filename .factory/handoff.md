@@ -1,43 +1,24 @@
-# Handoff: polish round 1 — Show Your Debugging
+# Handoff: adversarial review 2 — Show Your Debugging
 
 ## Outcome
 
-Polish round 1 is complete. Repair commits `c725409` and `e43f775` were pushed and deployed to <https://solution-trace-practice.sociobot.in>. All five findings in `.factory/review-1.md` and every earlier verification finding now pass locally and on the live site.
+This review is complete and recorded in `.factory/review-2.md`. No product code was modified. The live product and clean local clone passed the functional, demo-isolation, claim, accessibility, routing, and build checks. The review verdict is **FAIL** because two plain-language copy findings remain: an unsupported answer-reveal instruction on the landing page and opaque Chrome implementation jargon in the README.
 
-## What changed
+## Review evidence
 
-- Moved the phone artwork below the first-screen copy so privacy, offline, and free facts fit within 390 × 844.
-- Made `/?demo=1` the supported one-click sample entry, with isolated `demo:` storage, a persistent banner, Reset demo, Start for real, and cleanup on exit.
-- Expanded `.factory/claims.json` to 12 observable claims and added the missing sample, reset, packaged receipt, and delete-all tests.
-- Replaced slogan headings and inconsistent “lesson” language with descriptive copy and the single term “clue.”
-- Added complete per-route Open Graph/Twitter updates and pre-JavaScript metadata for `/demo`, `/privacy`, and `/terms`.
-- Rebuilt standalone `404.html` with the shared header, skip link, footer, metadata, icons, attribution, build id, and product-specific risograph treatment.
-- Preserved the WXT MV3 extension, static deployment, local-only behavior, original collage, and existing visual tokens.
+- Fresh live mobile (390 × 844) and desktop (1440 × 950) visits made the purpose, audience, and first action clear. The three factual lines fit within the mobile first screen.
+- The one-click demo used only `demo:draft` and `demo:receipts`; Reset restored the shipped cart-loop sample; leaving or choosing Start for real cleared both keys.
+- Live request logs during the complete demo contained only the product origin. Live route and Axe checks had no console errors or serious/critical violations.
+- All 12 exact claim commands passed independently in `/tmp/solution-trace-review-2-7W6uI8`; `npm run typecheck`, `npm test` (2 Vitest + 27 Playwright), and `npm run build` passed there too.
+- All review-1 and earlier verification findings were confirmed fixed on the current live site and in code.
 
 The full finding-to-evidence map is in `.factory/polish-1.md`. The catalog description is in `.factory/catalog-description.txt`.
 
-## Verification
+## Required follow-up
 
-Clean clone used: `/tmp/solution-trace-polish-Vq8Pvj`.
-
-- `npm ci`: passed.
-- Every one of the 12 exact commands in `.factory/claims.json`: passed independently.
-- `npm run typecheck`: passed.
-- `npm test`: passed, 2 Vitest tests and 27 Chromium Playwright tests.
-- `npm run build`: passed; produced `dist/site`, `dist/extension`, and the 41,457-byte extension ZIP; `unzip -t` passed.
-- `npm audit --omit=dev --audit-level=high`: 0 production vulnerabilities.
-- Axe scans: zero serious/critical findings on landing, query demo, `/demo`, Privacy, Terms, standalone 404, and SPA not-found.
-- 390 × 844: facts end at 619.19px; zero horizontal overflow and zero targets below 44 × 44 across the route matrix.
-- Privacy: full demo flow made same-origin requests only and stored only `demo:draft` and `demo:receipts`.
-- Offline: a fresh service worker controlled `/?demo=1`; a network-disabled reload rendered the demo and offline status.
-- Route behavior: Demo navigation and browser Back both focused the destination H1 in a cold live keyboard check.
-- Local Lighthouse: 100 Performance, 100 Accessibility, 100 Best Practices, 100 SEO; LCP 1.8s, CLS 0.002, TBT 0ms.
-- Live Lighthouse: 100 Performance, 100 Accessibility, 100 Best Practices, 100 SEO; LCP 1.5s, CLS 0.002, TBT 0ms.
-- Budgets: 18,043-byte JS, 12,404-byte CSS, and 27,036-byte mobile hero.
-- `/opt/fleet/lib/verify-url.sh https://solution-trace-practice.sociobot.in/?demo=1 .factory/evidence/live`: passed with no console errors.
-- Live package: 200, valid `PK` ZIP, 41,457 bytes.
-- Live hashed assets: `Cache-Control: public, max-age=31536000, immutable`.
-- Deployment fidelity: index, standalone 404, hashed JS, and hashed CSS matched local SHA-256 values byte for byte.
+1. Replace the landing sentence **“Write a testable hypothesis before you reveal another answer.”** with **“Write a testable hypothesis before recording test output.”**
+2. Replace the README's opening Chrome implementation jargon with the plain-language replacements specified in F-2-2.
+3. Rerun the copy audit, every claim command, and `npm test`; then perform another cold live first-read review.
 
 ## Run locally
 
@@ -50,14 +31,6 @@ npm run build
 
 Open `http://127.0.0.1:4173/?demo=1` under `npx vite preview --config vite.config.ts` for the isolated sample.
 
-## Deployment
-
-- Static root: `dist/site`
-- Work order: `solution-trace-practice-polish-1`
-- Azure deployment ID: `2af590bd-d9d5-45f5-8b92-a2b4f4bec86e`
-- Live URL: <https://solution-trace-practice.sociobot.in>
-- Live demo: <https://solution-trace-practice.sociobot.in/?demo=1>
-
 ## Known gaps and next steps
 
-None. No review finding, test failure, accessibility issue, privacy leak, offline defect, metadata mismatch, or deployment mismatch remains.
+See F-2-1 and F-2-2 in `.factory/review-2.md`. No functional, privacy, routing, accessibility, offline, or claim-test defect was found in this round.
