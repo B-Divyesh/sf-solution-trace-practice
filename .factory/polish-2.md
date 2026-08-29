@@ -39,5 +39,6 @@
 - Live cold route matrix passed for `/`, `/?demo=1`, `/demo`, `/privacy`, `/terms`, `/404.html`, and `/missing-page`: one H1 and one main, `lang=en`, route title and Open Graph title, no console errors, no mobile overflow, and no axe serious/critical findings.
 - The live first screen puts all facts in the 390 × 844 viewport. The live CTA enters the isolated sample, and Reset demo restores “The loop reads one item past the end of the cart.”
 - Factory URL verifier passed: [report](evidence/polish-2/verify.json), [desktop capture](evidence/polish-2/screenshot-desktop.png), and [mobile capture](evidence/polish-2/screenshot-mobile.png).
+- Live mobile Lighthouse scored 100 for Performance, Accessibility, Best Practices, and SEO; FCP was 0.8 s, LCP 1.5 s, CLS 0.002, and TBT 0 ms. The full report is [lighthouse-live.json](evidence/polish-2/lighthouse-live.json).
 
 No stubs, TODOs, or known acceptance gaps remain.

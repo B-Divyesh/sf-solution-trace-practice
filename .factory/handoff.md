@@ -13,6 +13,7 @@ The original artifact remains a Chrome MV3 extension with a static landing site 
 - Deployed through the configured static work order to Azure Static Web Apps deployment `72a50108-4ea4-4307-a958-7839a8e8ed93`.
 - Cold live verification passed across `/`, `/?demo=1`, `/demo`, `/privacy`, `/terms`, `/404.html`, and `/missing-page`: expected titles and social metadata, one H1/main, `lang=en`, no console errors, no 390px overflow, and no axe serious/critical violations. Live first-screen fact bottoms were 570, 594.59, and 619.19px in an 844px viewport.
 - `/opt/fleet/lib/verify-url.sh` passed; evidence is in [.factory/evidence/polish-2](evidence/polish-2), including [verification JSON](evidence/polish-2/verify.json), [desktop screenshot](evidence/polish-2/screenshot-desktop.png), [mobile screenshot](evidence/polish-2/screenshot-mobile.png), and the [cold mobile landing](evidence/polish-2/live-landing-mobile.png).
+- Live mobile Lighthouse: Performance 100, Accessibility 100, Best Practices 100, SEO 100; FCP 0.8 s, LCP 1.5 s, CLS 0.002, and TBT 0 ms. The current report is [lighthouse-live.json](evidence/polish-2/lighthouse-live.json).
 
 The complete finding-to-change-to-evidence map is in [polish-2.md](polish-2.md).
 
