@@ -93,7 +93,7 @@ function landingMarkup(): string {
         <p class="kicker">Three practice steps</p>
         <h2 id="how-title">How the practice works</h2>
         <ol class="step-list">
-          <li><span>1</span><div><h3>Name one cause</h3><p>Write a testable hypothesis before you reveal another answer.</p></div></li>
+          <li><span>1</span><div><h3>Name one cause</h3><p>Write a testable hypothesis before recording test output.</p></div></li>
           <li><span>2</span><div><h3>Run one check</h3><p>Paste only the output that helped you judge the hypothesis.</p></div></li>
           <li><span>3</span><div><h3>Record your repair</h3><p>Save the fix and one clue you can use on the next bug.</p></div></li>
         </ol>

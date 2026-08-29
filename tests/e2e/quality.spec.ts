@@ -75,6 +75,21 @@ test('the three product facts are visible in the first 390px screen', async ({ p
   }
 });
 
+test('the practice steps describe the next product action without promising an answer reveal', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByText('Write a testable hypothesis before recording test output.')).toBeVisible();
+  await expect(page.getByText('Write a testable hypothesis before you reveal another answer.')).toHaveCount(0);
+});
+
+test('the README leads with plain privacy outcomes', async () => {
+  const readme = await readFile('README.md', 'utf8');
+  expect(readme).toContain('Show Your Debugging is a free Chrome extension for beginning developers.');
+  expect(readme).toContain('Receipts stay in this browser. The extension cannot read your tabs, editor files, or clipboard.');
+  expect(readme).not.toContain('Chrome MV3 extension');
+  expect(readme).not.toContain('chrome.storage.local');
+  expect(readme).not.toContain('host access');
+});
+
 test('every rendered 390px touch target is at least 44 by 44 CSS pixels', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
 

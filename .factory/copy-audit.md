@@ -1,6 +1,6 @@
 # Copy audit
 
-Audited 2026-08-29 after polish round 1. Counts treat hyphenated terms as one word. No line exceeds 22 words or uses a banned marketing word.
+Audited 2026-08-29 after polish round 2. Counts treat hyphenated terms as one word. No line exceeds 22 words or uses a banned marketing word.
 
 ## Landing page
 
@@ -36,7 +36,7 @@ Audited 2026-08-29 after polish round 1. Counts treat hyphenated terms as one wo
 | Three practice steps | 3 | Pass |
 | How the practice works | 4 | Pass |
 | Name one cause | 3 | Pass |
-| Write a testable hypothesis before you reveal another answer. | 9 | Pass |
+| Write a testable hypothesis before recording test output. | 8 | Pass; `hypothesis-first` claim |
 | Run one check | 3 | Pass |
 | Paste only the output that helped you judge the hypothesis. | 10 | Pass |
 | Record your repair | 3 | Pass |
@@ -62,6 +62,8 @@ The first screen reads in one breath: practice the bug before asking, then open 
 - Replaced the broad grading, account, surveillance, and implicit-capture boundary list with the narrower tested claims.
 - Replaced every visitor-facing use of “lesson” with “clue,” including metadata and Markdown export.
 - Replaced mood and metaphor headings with descriptive section names on landing, receipt, legal, and 404 screens.
+- Replaced the nonexistent answer-reveal instruction with the actual next step: recording test output.
+- Replaced Chrome implementation jargon in the README introduction with the plain privacy result. Technical MV3 details remain implicit in the installation workflow only.
 
 ## Terminology table
 

@@ -2,9 +2,9 @@
 
 Practice a hypothesis, test, fix, and clue before asking a coding assistant for the answer.
 
-Show Your Debugging is a free Chrome MV3 extension for beginning developers. It asks for one testable hypothesis, captures test output you paste, records your chosen fix, and saves a reviewable debugging receipt.
+Show Your Debugging is a free Chrome extension for beginning developers. It asks for one testable hypothesis, captures test output you paste, records your chosen fix, and saves a reviewable debugging receipt.
 
-Receipts stay in `chrome.storage.local`. The extension requests no tab, file, clipboard, or host access. A receipt records process. It does not prove competence.
+Receipts stay in this browser. The extension cannot read your tabs, editor files, or clipboard. A receipt records process. It does not prove competence.
 
 Live site: <https://solution-trace-practice.sociobot.in>
 

@@ -1,1 +1,1 @@
-Practice a hypothesis, test, fix, and clue before asking a coding assistant.
+Practice debugging with a hypothesis, test output, fix, and clue before asking for help.
