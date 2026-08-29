@@ -16,7 +16,7 @@ export default defineConfig({
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } }
   ],
   webServer: {
-    command: 'npx vite preview --config vite.config.ts --host 127.0.0.1 --port 4173',
+    command: 'node scripts/static-site-server.mjs dist/site',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: false,
     timeout: 30_000

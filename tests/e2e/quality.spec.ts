@@ -8,8 +8,7 @@ const routes = [
   { route: '/demo', title: 'Demo — Show Your Debugging', description: 'Try a sample debugging receipt stored only in a separate browser demo space.', canonical: '/demo' },
   { route: '/privacy', title: 'Privacy — Show Your Debugging', description: 'How Show Your Debugging stores receipts locally and keeps them under your control.', canonical: '/privacy' },
   { route: '/terms', title: 'Terms — Show Your Debugging', description: 'Terms for using Show Your Debugging as a free debugging practice tool.', canonical: '/terms' },
-  { route: '/404.html', title: 'Page not found — Show Your Debugging', description: 'This page does not exist. Return to Show Your Debugging.', canonical: '/404' },
-  { route: '/missing-page', title: 'Page not found — Show Your Debugging', description: 'This page does not exist. Return to Show Your Debugging.', canonical: '/404' }
+  { route: '/404.html', title: 'Page not found — Show Your Debugging', description: 'This page does not exist. Return to Show Your Debugging.', canonical: '/404' }
 ] as const;
 
 for (const { route, title, description, canonical } of routes) {
@@ -17,7 +16,8 @@ for (const { route, title, description, canonical } of routes) {
     const errors: string[] = [];
     page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
     page.on('pageerror', (error) => errors.push(error.message));
-    await page.goto(route);
+    const response = await page.goto(route);
+    expect(response?.status(), `${route} should return its supported-route status`).toBe(200);
     await expect(page).toHaveTitle(title);
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.locator('main')).toHaveCount(1);
@@ -38,6 +38,28 @@ for (const { route, title, description, canonical } of routes) {
     expect(errors).toEqual([]);
   });
 }
+
+test('the deployed static route contract returns a styled HTTP 404 for an unknown address', async ({ browser, request }) => {
+  const unknownPath = `/missing-route-${Date.now()}`;
+  const raw = await request.get(unknownPath);
+  expect(raw.status()).toBe(404);
+  const rawHtml = await raw.text();
+  expect(rawHtml).toContain('<title>Page not found — Show Your Debugging</title>');
+  expect(rawHtml).toContain('This page does not exist');
+
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  try {
+    const page = await context.newPage();
+    const response = await page.goto(unknownPath);
+    expect(response?.status()).toBe(404);
+    await expect(page).toHaveTitle('Page not found — Show Your Debugging');
+    await expect(page.locator('main')).toHaveCount(1);
+    await expect(page.getByRole('heading', { level: 1, name: 'This page does not exist' })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Return home' })).toHaveAttribute('href', '/');
+  } finally {
+    await context.close();
+  }
+});
 
 test('demo controls are in main and have no Axe region violation', async ({ page }) => {
   await page.goto('/?demo=1');
@@ -230,12 +252,17 @@ test('release output keeps the extension package and immutable asset policy', as
   }
 
   const config = JSON.parse(await readFile('site/public/staticwebapp.config.json', 'utf8')) as {
+    navigationFallback?: unknown;
     routes: Array<{ route: string; headers?: Record<string, string> }>;
     responseOverrides?: Record<string, { rewrite?: string }>;
   };
   const assets = config.routes.find((route) => route.route === '/assets/*');
   expect(assets?.headers?.['Cache-Control']).toBe('public, max-age=31536000, immutable');
+  expect(config.navigationFallback).toBeUndefined();
   expect(config.responseOverrides?.['404']?.rewrite).toBe('/404.html');
+  for (const routeDocument of ['dist/site/demo/index.html', 'dist/site/privacy/index.html', 'dist/site/terms/index.html']) {
+    await expect(readFile(routeDocument, 'utf8')).resolves.toContain('<!doctype html>');
+  }
 });
 
 test('service worker does not make the extension download a precache requirement', async () => {

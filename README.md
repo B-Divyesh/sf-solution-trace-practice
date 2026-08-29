@@ -70,7 +70,7 @@ It creates:
 - `dist/vscode-extension/` for VS Code extension development
 - `dist/extension/` for Chrome unpacked installation
 
-Deploy `dist/site/` as the static root. The included `staticwebapp.config.json` supplies route fallback, the styled 404 page, CSP, and security headers.
+Deploy `dist/site/` as the static root. The included `staticwebapp.config.json` serves supported routes, a styled 404 response, CSP, and security headers.
 
 ## Product boundaries
 
