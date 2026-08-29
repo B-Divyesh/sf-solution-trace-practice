@@ -1,0 +1,23 @@
+Clean checkout: /tmp/solution-trace-polish-4-clean-3z5l3V
+Candidate commit: 3fceeab6ec21a34c9637d258821c2fc1d40c827f
+Run date: 2026-08-29 UTC
+
+PASS npm ci
+PASS all 16 exact `test` commands from .factory/claims.json, run separately
+PASS npm run typecheck
+PASS npm test (2 Vitest tests; 35 Playwright tests)
+PASS npm run build
+PASS npm audit --omit=dev --audit-level=high (0 production vulnerabilities)
+PASS unzip -t dist/site/downloads/show-your-debugging-vscode.vsix
+PASS unzip -t dist/site/downloads/show-your-debugging-chrome.zip
+
+VSIX SHA-256: b226a8ebf33be3c97bfe11f35d66d708f44226e7cefaa2a48e849158a2d5ee6e
+Chrome ZIP SHA-256: 9e31c14564cb4062a90a9d3e89e88fcb74245108d08e91ee7d14c3ee6026628c
+Initial JavaScript: 18,764 bytes raw; 6,326 bytes gzip
+Initial CSS: 12,686 bytes raw; 3,650 bytes gzip
+
+Local URL: http://127.0.0.1:4173
+PASS /opt/fleet/lib/verify-url.sh (title, lang, one h1, main, alt, labels, console)
+PASS Playwright Axe checks for /, /?demo=1, /demo, /privacy, /terms, /404.html, and /missing-page
+PASS Lighthouse 12.8.2: performance 100, accessibility 100, best practices 100, SEO 100
+Lighthouse metrics: LCP 1.8 s; CLS 0.002; total blocking time 10 ms
