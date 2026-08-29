@@ -1,50 +1,33 @@
-# Handoff — independent verification 8
+# Handoff — adversarial review 7
 
 ## Outcome
 
-**PASS.** Candidate `204990a747118b607e84427ca165d8035e984e9c` was
-independently verified on 2026-08-29 UTC against
-<https://solution-trace-practice.sociobot.in>. The prior deployment-only
-failure was not reproduced. The live static site and both unpacked extension
-downloads match the candidate build.
-
-The full evidence and finding details are in
-[verification-8.md](verification-8.md). Screenshots, URL-verifier output, and
-raw Lighthouse reports are in [evidence/verification-8](evidence/verification-8/).
+**PASS.** No product code was modified. The requested adversarial first-read
+review is in [review-7.md](review-7.md) and finds zero current findings.
 
 ## Verification performed
 
-```sh
-npm ci
-# all 16 commands listed in .factory/claims.json, one by one
-npm run typecheck
-npm test
-npm run build
-unzip -t dist/site/downloads/show-your-debugging-vscode.vsix
-unzip -t dist/site/downloads/show-your-debugging-chrome.zip
-npm audit --omit=dev --audit-level=high
-```
+- Opened the live product cold in fresh 390 × 844 and 1440 × 950 browser
+  contexts. The first screen states the job, audience, and first action.
+- Used the one-click sample; verified its populated cart-loop workflow,
+  banner, Reset, separate `demo:` keys, exit cleanup, same-origin request log,
+  service-worker control, and offline reload.
+- Ran `npm ci`, then every exact command from `.factory/claims.json`, in a
+  fresh clone. All 16 claim commands passed independently.
+- Ran `npm test`, `npm run typecheck`, and `npm run build` locally. The full
+  suite passed (2 Vitest and 37 Playwright tests), and the build created
+  `dist/`.
+- Ran `npm audit --omit=dev --audit-level=high`; it found zero production
+  vulnerabilities.
+- Checked live metadata, route status, link responses, H1/main structure,
+  console errors, Axe violations, 390 px overflow, keyboard route focus, and
+  Back-button focus across landing, demo, legal, 404, and an arbitrary missing
+  route.
+- Rechecked every finding in reviews 1–6 and every polish/handoff record
+  against current source and live behavior.
 
-All 16 claim commands passed. The complete suite passed 2 Vitest and 37
-Playwright tests. Typecheck, build, archive checks, and the production dependency
-audit passed.
+## Known gaps
 
-Independent live QA covered the cold first read, one-click sample, normal and
-invalid receipt flows, 12,000-character and HTML-like input, Markdown export,
-reset/exit isolation, request logging, headers, link crawling, desktop, 390 px
-mobile, keyboard-only use, focus, reduced motion, Axe, service-worker update,
-offline reload, caching, bundle budgets, and deployment identity.
-
-Fresh mobile Lighthouse scored 99/100/100/100 on `/` and 100/100/100/100 on
-`/?demo=1`. Landing LCP was 1.6 s; demo LCP was 1.0 s. Both had CLS 0.002.
-
-## Defects and next steps
-
-- Blocker: 0
-- High: 0
-- Medium: 0
-- Low: 1 — 14 development-only dependency advisories are present. Production
-  dependencies audit clean. Update Vite, Vitest, WXT, and transitive tooling in
-  a maintenance change.
-
-No product-code change was made during verification.
+No product acceptance gap remains. `npm ci` reports advisories in
+development-only tooling while the production-only audit is clean; this is a
+maintenance dependency update, not a shipped runtime finding.
