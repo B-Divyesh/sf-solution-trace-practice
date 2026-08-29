@@ -131,7 +131,7 @@ pre { max-width: 100%; margin: 0; padding: 12px; overflow: auto; color: var(--pa
 .not-found { min-height: 640px; padding-block: 110px; }
 .not-found h1 { max-width: 15ch; }
 .not-found > p:not(.kicker) { margin: 24px 0; }
-.error-stamp { float: right; margin: 0 8vw 24px 24px; color: var(--coral-dark); font: 900 clamp(7rem, 20vw, 14rem)/.8 "Arial Black", sans-serif; opacity: .16; transform: rotate(7deg); }
+.error-stamp { float: right; margin: 0 8vw 24px 24px; color: var(--coral-dark); font: 900 clamp(7rem, 20vw, 14rem)/.8 "Arial Black", sans-serif; opacity: .6; transform: rotate(7deg); }
 
 .site-footer { display: grid; grid-template-columns: 1fr auto; gap: 20px 48px; padding: 48px max(24px, calc((100vw - 1180px) / 2)); color: var(--paper); background: var(--ink); }
 .site-footer p { margin: 8px 0 0; color: #ded2e4; font-size: .88rem; }

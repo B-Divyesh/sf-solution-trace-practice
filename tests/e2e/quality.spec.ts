@@ -6,7 +6,9 @@ const routes = [
   ['/', 'Show Your Debugging — Practice before asking'],
   ['/demo', 'Demo — Show Your Debugging'],
   ['/privacy', 'Privacy — Show Your Debugging'],
-  ['/terms', 'Terms — Show Your Debugging']
+  ['/terms', 'Terms — Show Your Debugging'],
+  ['/404.html', 'Page not found — Show Your Debugging'],
+  ['/missing-page', 'Page not found — Show Your Debugging']
 ] as const;
 
 for (const [route, title] of routes) {
