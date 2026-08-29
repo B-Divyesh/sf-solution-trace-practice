@@ -1,0 +1,13 @@
+Archive:  dist/site/downloads/show-your-debugging-chrome.zip
+    testing: background.js            OK
+    testing: icon-128.png             OK
+    testing: icon-16.png              OK
+    testing: icon-32.png              OK
+    testing: icon-48.png              OK
+    testing: manifest.json            OK
+    testing: popup.html               OK
+    testing: assets/                  OK
+    testing: assets/popup-UQ--BxmO.css   OK
+    testing: chunks/                  OK
+    testing: chunks/popup-hkoISWWd.js   OK
+No errors detected in compressed data of dist/site/downloads/show-your-debugging-chrome.zip.

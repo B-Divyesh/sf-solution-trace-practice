@@ -1,0 +1,542 @@
+{
+  "checkedAt": "2026-08-29T15:48:12.719Z",
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "structure": {
+        "title": "Show Your Debugging — Record debugging practice",
+        "lang": "en",
+        "h1": [
+          "Practice the bug before asking for help"
+        ],
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": 0
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": [],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/",
+          "type": "document"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-BgxhmPWV.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-CMrndexH.css",
+          "type": "stylesheet"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/debug-trail-hero.webp",
+          "type": "image"
+        }
+      ],
+      "axeViolations": [],
+      "seriousCritical": []
+    },
+    {
+      "route": "/?demo=1",
+      "status": 200,
+      "structure": {
+        "title": "Demo — Show Your Debugging",
+        "lang": "en",
+        "h1": [
+          "Make a debugging receipt from this bug"
+        ],
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": 0
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": [],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/?demo=1",
+          "type": "document"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-BgxhmPWV.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-CMrndexH.css",
+          "type": "stylesheet"
+        }
+      ],
+      "axeViolations": [],
+      "seriousCritical": []
+    },
+    {
+      "route": "/demo",
+      "status": 200,
+      "structure": {
+        "title": "Demo — Show Your Debugging",
+        "lang": "en",
+        "h1": [
+          "Make a debugging receipt from this bug"
+        ],
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": 0
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": [],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/demo",
+          "type": "document"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-BgxhmPWV.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-CMrndexH.css",
+          "type": "stylesheet"
+        }
+      ],
+      "axeViolations": [],
+      "seriousCritical": []
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "structure": {
+        "title": "Privacy — Show Your Debugging",
+        "lang": "en",
+        "h1": [
+          "Your debugging notes stay on your device"
+        ],
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": 0
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": [],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/privacy",
+          "type": "document"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-BgxhmPWV.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-CMrndexH.css",
+          "type": "stylesheet"
+        }
+      ],
+      "axeViolations": [],
+      "seriousCritical": []
+    },
+    {
+      "route": "/terms",
+      "status": 200,
+      "structure": {
+        "title": "Terms — Show Your Debugging",
+        "lang": "en",
+        "h1": [
+          "Use the practice for your own debugging"
+        ],
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": 0
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": [],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/terms",
+          "type": "document"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-BgxhmPWV.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-CMrndexH.css",
+          "type": "stylesheet"
+        }
+      ],
+      "axeViolations": [],
+      "seriousCritical": []
+    },
+    {
+      "route": "/404.html",
+      "status": 200,
+      "structure": {
+        "title": "Page not found — Show Your Debugging",
+        "lang": "en",
+        "h1": [
+          "This page does not exist"
+        ],
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": 0
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": [],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/404.html",
+          "type": "document"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/404.css",
+          "type": "stylesheet"
+        }
+      ],
+      "axeViolations": [],
+      "seriousCritical": []
+    },
+    {
+      "route": "/missing-page",
+      "status": 200,
+      "structure": {
+        "title": "Page not found — Show Your Debugging",
+        "lang": "en",
+        "h1": [
+          "This page does not exist"
+        ],
+        "main": 1,
+        "missingAlt": 0,
+        "overflow": 0
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": [],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/missing-page",
+          "type": "document"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-BgxhmPWV.js",
+          "type": "script"
+        },
+        {
+          "method": "GET",
+          "url": "https://solution-trace-practice.sociobot.in/assets/index-CMrndexH.css",
+          "type": "stylesheet"
+        }
+      ],
+      "axeViolations": [],
+      "seriousCritical": []
+    }
+  ],
+  "flow": {
+    "firstRead": {
+      "h1": "Practice the bug before asking for help",
+      "lead": "For beginning developers in VS Code who want to test their own ideas before asking a coding assistant.",
+      "cta": "Try it with sample data",
+      "next": "A filled cart-loop hypothesis opens. Nothing is saved to your receipts.",
+      "ctaTop": 630.4375,
+      "viewport": 900
+    },
+    "opened": {
+      "url": "https://solution-trace-practice.sociobot.in/?demo=1",
+      "banner": "Demo — sample data, nothing is saved to your receipts\nReset demo\nStart for real",
+      "hypothesis": "The loop reads one item past the end of the cart.",
+      "history": "The profile request runs before the session finishes loading.\nAug 21, 2026"
+    },
+    "invalidHypothesis": {
+      "valid": false,
+      "message": "Please fill out this field.",
+      "focused": true
+    },
+    "invalidTest": {
+      "valid": false,
+      "message": "Please fill out this field.",
+      "focused": true
+    },
+    "invalidFix": {
+      "valid": false,
+      "message": "Please fill out this field.",
+      "focused": true
+    },
+    "hypothesis": "The parser treats <cart-item> as data & skips the final café entry.",
+    "testOutput": "FAIL cart.test.ts\nExpected: 3\nReceived: undefined\n🙂",
+    "fix": "Stop before items.length; keep the < symbol.",
+    "lesson": "Check bounds & Unicode data before blaming the API.",
+    "receiptText": "HYPOTHESIS\n\nThe parser treats <cart-item> as data & skips the final café entry.\n\nTEST OUTPUT\nFAIL cart.test.ts\nExpected: 3\nReceived: undefined\n🙂\nFIX I CHOSE\n\nStop before items.length; keep the < symbol.\n\nCLUE FOR NEXT TIME\n\nCheck bounds & Unicode data before blaming the API.",
+    "downloadName": "debugging-receipt-2026-08-29.md",
+    "markdown": "# Debugging receipt\n\nCreated Aug 29, 2026, 3:48 PM\n\n## Hypothesis\n\nThe parser treats <cart-item> as data & skips the final café entry.\n\n## Test output\n\n```text\nFAIL cart.test.ts\nExpected: 3\nReceived: undefined\n🙂\n```\n\n## Fix I chose\n\nStop before items.length; keep the < symbol.\n\n## Clue for next time\n\nCheck bounds & Unicode data before blaming the API.\n\n---\nThis receipt records a process. It does not prove competence.\n",
+    "storageBeforeReset": {
+      "demo:draft": "{\"hypothesis\":\"The parser treats <cart-item> as data & skips the final café entry.\",\"testOutput\":\"FAIL cart.test.ts\\nExpected: 3\\nReceived: undefined\\n🙂\",\"fix\":\"Stop before items.length; keep the < symbol.\",\"lesson\":\"Check bounds & Unicode data before blaming the API.\"}",
+      "demo:receipts": "[{\"id\":\"90c167ce-9e4a-4ed7-becc-2525013c1cd8\",\"createdAt\":\"2026-08-29T15:48:25.023Z\",\"hypothesis\":\"The parser treats <cart-item> as data & skips the final café entry.\",\"testOutput\":\"FAIL cart.test.ts\\nExpected: 3\\nReceived: undefined\\n🙂\",\"fix\":\"Stop before items.length; keep the < symbol.\",\"lesson\":\"Check bounds & Unicode data before blaming the API.\"},{\"id\":\"demo-earlier-receipt\",\"createdAt\":\"2026-08-21T14:30:00.000Z\",\"hypothesis\":\"The profile request runs before the session finishes loading.\",\"testOutput\":\"FAIL profile.test.ts\\nExpected 200, received 401\",\"fix\":\"Wait for the session state before requesting the profile.\",\"lesson\":\"A first-load-only 401 can point to request order.\"}]"
+    },
+    "reset": {
+      "hypothesis": "The loop reads one item past the end of the cart.",
+      "status": "Demo reset to the original sample.",
+      "keys": [
+        "demo:draft",
+        "demo:receipts"
+      ]
+    },
+    "afterExit": {
+      "url": "https://solution-trace-practice.sociobot.in/",
+      "keys": []
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "requests": [
+      {
+        "method": "GET",
+        "url": "https://solution-trace-practice.sociobot.in/",
+        "type": "document",
+        "postData": null
+      },
+      {
+        "method": "GET",
+        "url": "https://solution-trace-practice.sociobot.in/assets/index-BgxhmPWV.js",
+        "type": "script",
+        "postData": null
+      },
+      {
+        "method": "GET",
+        "url": "https://solution-trace-practice.sociobot.in/assets/index-CMrndexH.css",
+        "type": "stylesheet",
+        "postData": null
+      },
+      {
+        "method": "GET",
+        "url": "https://solution-trace-practice.sociobot.in/assets/debug-trail-hero.webp",
+        "type": "image",
+        "postData": null
+      },
+      {
+        "method": "GET",
+        "url": "https://solution-trace-practice.sociobot.in/assets/debug-trail-hero.webp",
+        "type": "image",
+        "postData": null
+      }
+    ],
+    "foreignRequests": [],
+    "contentPosts": []
+  },
+  "keyboard": {
+    "skip": {
+      "text": "Skip to main content",
+      "tag": "A",
+      "outline": "rgb(89, 67, 169) solid 3px",
+      "outlineColor": "rgb(89, 67, 169)",
+      "outlineWidth": "3px",
+      "box": {
+        "x": 12,
+        "y": 8,
+        "width": 178.03125,
+        "height": 44,
+        "top": 8,
+        "right": 190.03125,
+        "bottom": 52,
+        "left": 12
+      }
+    },
+    "routeFocus": {
+      "url": "https://solution-trace-practice.sociobot.in/?demo=1",
+      "active": "Make a debugging receipt from this bug",
+      "tag": "H1"
+    },
+    "ctrlEnterAdvanced": true,
+    "tabs": [
+      {
+        "tag": "TEXTAREA",
+        "text": "npm test -- cart-total\n\nFAIL cart-total.test.ts\nRangeError: Item 3 is undefined\n",
+        "id": "demo-test"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Edit hypothesis",
+        "id": "back-hypothesis"
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Record this test",
+        "id": ""
+      },
+      {
+        "tag": "BUTTON",
+        "text": "The profile request runs before the session finishes loading.Aug 21, 2026",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Show Your Debugging",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Privacy",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Terms",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Built by Param Factory (external site)",
+        "id": ""
+      },
+      {
+        "tag": "BODY",
+        "text": "Skip to main content\n    \n      ✓ Show Your Debugging\n      \n        Demo\n      ",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Skip to main content",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "✓ Show Your Debugging",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Demo",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "How it works",
+        "id": ""
+      },
+      {
+        "tag": "A",
+        "text": "Privacy",
+        "id": ""
+      }
+    ]
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollWidth": 390,
+    "overflow": 0,
+    "undersized": [],
+    "facts": []
+  },
+  "reducedMotion": {
+    "matches": true,
+    "styles": {
+      ".workbench": {
+        "animationDuration": "1e-05s",
+        "animationIterationCount": "1",
+        "transitionDuration": "1e-05s",
+        "scrollBehavior": "auto"
+      },
+      ".demo-receipt": null,
+      ".button": {
+        "animationDuration": "1e-05s",
+        "animationIterationCount": "1",
+        "transitionDuration": "1e-05s",
+        "scrollBehavior": "auto"
+      }
+    }
+  },
+  "offline": {
+    "before": {
+      "controller": "https://solution-trace-practice.sociobot.in/sw.js",
+      "cacheKeys": [
+        "show-your-debugging-v2"
+      ],
+      "update": "imports"
+    },
+    "updateResult": {
+      "installing": false,
+      "waiting": false,
+      "activeState": "activated",
+      "scope": "https://solution-trace-practice.sociobot.in/"
+    },
+    "cached": [
+      {
+        "key": "show-your-debugging-v2",
+        "urls": [
+          "https://solution-trace-practice.sociobot.in/",
+          "https://solution-trace-practice.sociobot.in/privacy",
+          "https://solution-trace-practice.sociobot.in/demo",
+          "https://solution-trace-practice.sociobot.in/terms",
+          "https://solution-trace-practice.sociobot.in/favicon.svg",
+          "https://solution-trace-practice.sociobot.in/assets/debug-trail-hero-640.webp",
+          "https://solution-trace-practice.sociobot.in/apple-touch-icon.png",
+          "https://solution-trace-practice.sociobot.in/assets/debug-trail-hero.webp",
+          "https://solution-trace-practice.sociobot.in/assets/index-CMrndexH.css",
+          "https://solution-trace-practice.sociobot.in/assets/index-BgxhmPWV.js"
+        ]
+      }
+    ],
+    "offline": {
+      "heading": "Make a debugging receipt from this bug",
+      "notice": "Offline — the demo and saved extension receipts still work.",
+      "controlled": true
+    },
+    "errors": []
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "url": "https://solution-trace-practice.sociobot.in/",
+      "type": "document",
+      "postData": null
+    },
+    {
+      "method": "GET",
+      "url": "https://solution-trace-practice.sociobot.in/assets/index-BgxhmPWV.js",
+      "type": "script",
+      "postData": null
+    },
+    {
+      "method": "GET",
+      "url": "https://solution-trace-practice.sociobot.in/assets/index-CMrndexH.css",
+      "type": "stylesheet",
+      "postData": null
+    },
+    {
+      "method": "GET",
+      "url": "https://solution-trace-practice.sociobot.in/assets/debug-trail-hero.webp",
+      "type": "image",
+      "postData": null
+    },
+    {
+      "method": "GET",
+      "url": "https://solution-trace-practice.sociobot.in/assets/debug-trail-hero.webp",
+      "type": "image",
+      "postData": null
+    }
+  ]
+}

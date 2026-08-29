@@ -1,0 +1,111 @@
+URL https://solution-trace-practice.sociobot.in/
+HTTP/2 200
+content-type: text/html
+date: Sat, 29 Aug 2026 15:49:00 GMT
+cache-control: public, must-revalidate, max-age=30
+etag: "38145475"
+last-modified: Sat, 29 Aug 2026 15:28:02 GMT
+content-length: 3301
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=()
+
+URL https://solution-trace-practice.sociobot.in/?demo=1
+HTTP/2 200
+content-type: text/html
+date: Sat, 29 Aug 2026 15:49:00 GMT
+cache-control: public, must-revalidate, max-age=30
+etag: "38145475"
+last-modified: Sat, 29 Aug 2026 15:28:02 GMT
+content-length: 3301
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=()
+
+URL https://solution-trace-practice.sociobot.in/privacy
+HTTP/2 200
+content-type: text/html
+date: Sat, 29 Aug 2026 15:49:01 GMT
+cache-control: public, must-revalidate, max-age=30
+etag: "38145475"
+last-modified: Sat, 29 Aug 2026 15:28:02 GMT
+content-length: 3219
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=()
+
+URL https://solution-trace-practice.sociobot.in/missing-page
+HTTP/2 200
+content-type: text/html
+date: Sat, 29 Aug 2026 15:49:00 GMT
+cache-control: public, must-revalidate, max-age=30
+etag: "38145475"
+last-modified: Sat, 29 Aug 2026 15:28:02 GMT
+content-length: 3301
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=()
+
+URL https://solution-trace-practice.sociobot.in/assets/index-BgxhmPWV.js
+HTTP/2 200
+content-type: text/javascript
+date: Sat, 29 Aug 2026 15:49:01 GMT
+cache-control: public, max-age=31536000, immutable
+etag: "38145475"
+last-modified: Sat, 29 Aug 2026 15:28:02 GMT
+content-length: 18807
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=()
+
+URL https://solution-trace-practice.sociobot.in/sw.js
+HTTP/2 200
+content-type: text/javascript
+date: Sat, 29 Aug 2026 15:49:00 GMT
+cache-control: no-cache
+etag: "38145475"
+last-modified: Sat, 29 Aug 2026 15:28:02 GMT
+content-length: 2130
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=()
+
+URL https://solution-trace-practice.sociobot.in/downloads/show-your-debugging-vscode.vsix
+HTTP/2 200
+content-type: application/octet-stream
+date: Sat, 29 Aug 2026 15:49:01 GMT
+cache-control: public, max-age=3600, must-revalidate
+etag: "38145475"
+last-modified: Sat, 29 Aug 2026 15:28:02 GMT
+content-length: 14416
+strict-transport-security: max-age=10886400; includeSubDomains; preload
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-xss-protection: 1; mode=block
+x-dns-prefetch-control: off
+content-security-policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+permissions-policy: camera=(), microphone=(), geolocation=(), payment=()

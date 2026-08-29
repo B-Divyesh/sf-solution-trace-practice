@@ -1,0 +1,62 @@
+[
+  {
+    "href": "https://solution-trace-practice.sociobot.in/#main",
+    "status": 200
+  },
+  {
+    "href": "https://solution-trace-practice.sociobot.in/",
+    "status": 200
+  },
+  {
+    "href": "https://solution-trace-practice.sociobot.in/?demo=1",
+    "status": 200
+  },
+  {
+    "href": "https://solution-trace-practice.sociobot.in/#how-it-works",
+    "status": 200
+  },
+  {
+    "href": "https://solution-trace-practice.sociobot.in/privacy",
+    "status": 200
+  },
+  {
+    "href": "https://solution-trace-practice.sociobot.in/downloads/show-your-debugging-vscode.vsix",
+    "status": 200
+  },
+  {
+    "href": "https://solution-trace-practice.sociobot.in/downloads/show-your-debugging-chrome.zip",
+    "status": 200
+  },
+  {
+    "href": "https://solution-trace-practice.sociobot.in/terms",
+    "status": 200
+  },
+  {
+    "href": "https://sociobot.in/",
+    "status": 200
+  },
+  {
+    "href": "https://solution-trace-practice.sociobot.in/?demo=1#main",
+    "status": 200
+  },
+  {
+    "href": "https://solution-trace-practice.sociobot.in/privacy#main",
+    "status": 200
+  },
+  {
+    "href": "mailto:privacy@sociobot.in",
+    "status": "mailto exempt"
+  },
+  {
+    "href": "https://solution-trace-practice.sociobot.in/terms#main",
+    "status": 200
+  },
+  {
+    "href": "mailto:hello@sociobot.in",
+    "status": "mailto exempt"
+  },
+  {
+    "href": "https://solution-trace-practice.sociobot.in/404.html#main",
+    "status": 200
+  }
+]

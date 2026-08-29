@@ -1,33 +1,24 @@
-# Handoff — polish round 5
+# Handoff — independent verification 7
 
 ## Outcome
 
-**PASS — no findings remain.** Product repair commit: `a13f014f0039eebab0bd99595331d2fff7a0c061`. It moves the persistent demo controls inside `main`, adds a zero-`region` Axe regression, and rewrites the overlong README test description. Static deployment `2c3abf9f-7c71-481f-895d-f9f92b2a3fa1` is live at <https://solution-trace-practice.sociobot.in>.
+**PASS — candidate accepted with no defects.** Verified candidate
+`d5b5561aba708f0a6ee648a863476595e474ad34` at
+<https://solution-trace-practice.sociobot.in> on 2026-08-29 UTC. The previously
+reported deployment-only failure was not reproduced. The live site and the
+extracted contents of both extension downloads match the candidate build.
 
-The complete cumulative finding map is [polish-5.md](polish-5.md). Live screenshots and URL-verifier reports are in `evidence/polish-5/`.
+The full evidence-backed decision is in
+[verification-7.md](verification-7.md). Raw evidence is in
+`evidence/verification-7/`.
 
-## Exact verification
+## Verification performed
 
-From clean clone `/tmp/solution-trace-polish-5-clean-3ftHCV/repo` at the repair commit:
+From the clean candidate checkout:
 
 ```sh
 npm ci
-npm test -- --grep @claim:sample-opens
-npm test -- --grep @claim:demo-reset
-npm test -- --grep @claim:receipt-workflow
-npm test -- --grep @claim:receipt-delete
-npm test -- --grep @claim:browser-receipt-workflow
-npm test -- --grep @claim:hypothesis-first
-npm test -- --grep @claim:local-only
-npm test -- --grep @claim:vscode-local-storage
-npm test -- --grep @claim:offline-reload
-npm test -- --grep @claim:markdown-export
-npm test -- --grep @claim:free-download
-npm test -- --grep @claim:storage-only-permission
-npm test -- --grep @claim:extension-privacy-boundary
-npm test -- --grep @claim:vscode-privacy-boundary
-npm test -- --grep @claim:no-code-generation
-npm test -- --grep @claim:no-tracking
+# Each of the 16 exact commands in .factory/claims.json
 npm run typecheck
 npm test
 npm run build
@@ -36,20 +27,34 @@ unzip -t dist/site/downloads/show-your-debugging-vscode.vsix
 unzip -t dist/site/downloads/show-your-debugging-chrome.zip
 ```
 
-All passed: 2 Vitest tests, 37 Playwright tests, all 16 independent claim commands, both package-integrity checks, and 0 production dependency vulnerabilities.
+All 16 claim commands passed. The complete suite passed 2 Vitest and 37
+Playwright tests. The exact production build and both archive checks passed;
+the production dependency audit found zero vulnerabilities. No lint script is
+defined.
 
-After deployment, `/opt/fleet/lib/verify-url.sh` passed cold for `/` and `/?demo=1`. Fresh live checks covered all routes, titles/metadata, focus and Back behavior, 390 px facts/navigation/targets, demo reset/exit storage isolation, request privacy, offline reload, package signatures, headers, cache policy, and deployment hashes. The demo Axe scan has zero `region`, serious, and critical violations. Lighthouse on the live demo scored 100 for Performance, Accessibility, Best Practices, and SEO (FCP/LCP 1.2 s, CLS 0, TBT 0 ms).
+Live QA covered the cold first screen, one-click sample demo, normal and
+invalid/recovery receipt flows, Markdown export, reset/exit isolation,
+keyboard-only use, focus, 390 px mobile layout and targets, reduced motion,
+all routes, Axe, console/page errors, outgoing requests, response/security
+headers, cache policy, service-worker update and offline reload, link health,
+download packages, and candidate-to-live hashes.
+
+Fresh live Lighthouse results: Performance 100, Accessibility 100, Best
+Practices 100, SEO 100; FCP 1.0 s, LCP 1.1 s, TBT 20 ms, CLS 0.002.
 
 ## Run and deploy
 
 ```sh
 npm ci
 npm test
-npm run build:site
+npm run build
 ```
 
-Deploy `dist/site/` as the static root. The one-click isolated demo is <https://solution-trace-practice.sociobot.in/?demo=1>.
+Deploy `dist/site/` as the static root. The one-click isolated demo is
+<https://solution-trace-practice.sociobot.in/?demo=1>.
 
 ## Known gaps and next steps
 
-None. The repository keeps the VS Code extension as the primary product and the Chrome popup as a separate supported version.
+None. This is a static local-first product with no server-side endpoint,
+account, payment, product-unlock API, or sign-in; rate-limit and Entra checks do
+not apply.

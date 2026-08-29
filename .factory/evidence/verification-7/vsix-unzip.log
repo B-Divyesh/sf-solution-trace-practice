@@ -1,0 +1,13 @@
+Archive:  dist/site/downloads/show-your-debugging-vscode.vsix
+    testing: extension.vsixmanifest   OK
+    testing: [Content_Types].xml      OK
+    testing: extension/package.nls.json   OK
+    testing: extension/package.json   OK
+    testing: extension/readme.md      OK
+    testing: extension/LICENSE.txt    OK
+    testing: extension/media/trace.svg   OK
+    testing: extension/media/style.css   OK
+    testing: extension/media/main.js   OK
+    testing: extension/dist/web-extension.js   OK
+    testing: extension/dist/extension.js   OK
+No errors detected in compressed data of dist/site/downloads/show-your-debugging-vscode.vsix.

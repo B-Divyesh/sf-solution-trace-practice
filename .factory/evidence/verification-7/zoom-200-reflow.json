@@ -1,0 +1,57 @@
+[
+  {
+    "route": "/",
+    "viewport": [
+      720,
+      900
+    ],
+    "scrollWidth": 720,
+    "overflow": 0,
+    "h1": "Practice the bug before asking for help",
+    "visibleControls": 13
+  },
+  {
+    "route": "/?demo=1",
+    "viewport": [
+      720,
+      900
+    ],
+    "scrollWidth": 720,
+    "overflow": 0,
+    "h1": "Make a debugging receipt from this bug",
+    "visibleControls": 14
+  },
+  {
+    "route": "/privacy",
+    "viewport": [
+      720,
+      900
+    ],
+    "scrollWidth": 720,
+    "overflow": 0,
+    "h1": "Your debugging notes stay on your device",
+    "visibleControls": 10
+  },
+  {
+    "route": "/terms",
+    "viewport": [
+      720,
+      900
+    ],
+    "scrollWidth": 720,
+    "overflow": 0,
+    "h1": "Use the practice for your own debugging",
+    "visibleControls": 10
+  },
+  {
+    "route": "/404.html",
+    "viewport": [
+      720,
+      900
+    ],
+    "scrollWidth": 720,
+    "overflow": 0,
+    "h1": "This page does not exist",
+    "visibleControls": 11
+  }
+]

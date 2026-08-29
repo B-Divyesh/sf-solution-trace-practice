@@ -1,0 +1,114 @@
+[
+  {
+    "id": "sample-opens",
+    "claim": "One click opens a filled cart-loop practice with sample history.",
+    "test": "npm test -- --grep @claim:sample-opens",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "demo-reset",
+    "claim": "Reset demo restores the shipped sample, and leaving the demo clears its keys.",
+    "test": "npm test -- --grep @claim:demo-reset",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "receipt-workflow",
+    "claim": "The VS Code extension records a hypothesis, test output, fix, and clue in a debugging receipt.",
+    "test": "npm test -- --grep @claim:receipt-workflow",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "receipt-delete",
+    "claim": "The VS Code extension can delete all saved receipts after a specific confirmation.",
+    "test": "npm test -- --grep @claim:receipt-delete",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "browser-receipt-workflow",
+    "claim": "The separate Chrome extension records the same four receipt fields in a browser popup.",
+    "test": "npm test -- --grep @claim:browser-receipt-workflow",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "hypothesis-first",
+    "claim": "The practice asks for a testable hypothesis before test output or a fix.",
+    "test": "npm test -- --grep @claim:hypothesis-first",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "local-only",
+    "claim": "Website demo entries stay in the separate demo browser namespace.",
+    "test": "npm test -- --grep @claim:local-only",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "vscode-local-storage",
+    "claim": "VS Code receipts use local extension storage and are not sent over the network.",
+    "test": "npm test -- --grep @claim:vscode-local-storage",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "offline-reload",
+    "claim": "The website demo works offline after the first visit.",
+    "test": "npm test -- --grep @claim:offline-reload",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "markdown-export",
+    "claim": "A completed receipt exports as Markdown.",
+    "test": "npm test -- --grep @claim:markdown-export",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "free-download",
+    "claim": "The VS Code and Chrome extensions are free to download.",
+    "test": "npm test -- --grep @claim:free-download",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "storage-only-permission",
+    "claim": "The Chrome extension requests browser storage only and has no tab or file access.",
+    "test": "npm test -- --grep @claim:storage-only-permission",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "extension-privacy-boundary",
+    "claim": "The Chrome extension has no tab, history, clipboard, or host permission and sends no receipt content over the network.",
+    "test": "npm test -- --grep @claim:extension-privacy-boundary",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "vscode-privacy-boundary",
+    "claim": "The VS Code extension does not read workspace files, open editors, or clipboard contents.",
+    "test": "npm test -- --grep @claim:vscode-privacy-boundary",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "no-code-generation",
+    "claim": "Neither extension generates code or answers.",
+    "test": "npm test -- --grep @claim:no-code-generation",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "id": "no-tracking",
+    "claim": "The product has no analytics or third-party runtime scripts.",
+    "test": "npm test -- --grep @claim:no-tracking",
+    "status": "PASS",
+    "exitCode": 0
+  }
+]

@@ -1,0 +1,109 @@
+
+> show-your-debugging@1.0.0 test
+> node scripts/test.mjs --grep @claim:storage-only-permission
+
+
+> show-your-debugging@1.0.0 test:unit
+> vitest run --config vitest.config.ts
+
+
+ RUN  v3.2.4 /work/repo
+
+ ✓ src/receipt.test.ts (2 tests) 18ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  15:43:59
+   Duration  1.05s (transform 182ms, setup 0ms, collect 101ms, tests 18ms, environment 0ms, prepare 221ms)
+
+
+> show-your-debugging@1.0.0 build
+> node scripts/build.mjs
+
+
+[log] WXT 0.20.11
+◇ injected env (0) from .env.production.chrome.local,.env.production.chrome,.env.chrome.local,.env.chrome,.env.production.local,.env.production,.env.local,.env // tip: ◈ encrypted .env [www.dotenvx.com]
+[info] Building chrome-mv3 for production with Vite 7.1.3
+[success] Built extension in 521 ms
+  ├─ .output/chrome-mv3/manifest.json              415 B
+  ├─ .output/chrome-mv3/popup.html                 1.61 kB
+  ├─ .output/chrome-mv3/background.js              585 B
+  ├─ .output/chrome-mv3/chunks/popup-hkoISWWd.js   8.13 kB
+  ├─ .output/chrome-mv3/assets/popup-UQ--BxmO.css  4.79 kB
+  ├─ .output/chrome-mv3/icon-128.png               27.33 kB
+  ├─ .output/chrome-mv3/icon-16.png                918 B
+  ├─ .output/chrome-mv3/icon-32.png                1.95 kB
+  └─ .output/chrome-mv3/icon-48.png                4.01 kB
+Σ Total size: 49.74 kB
+[info] Zipping extension...
+[success] Zipped extension in 127 ms
+  └─ .output/show-your-debugging-1.0.0-chrome.zip  41.46 kB
+Σ Total size: 41.46 kB
+[success] Finished in 678 ms
+ INFO  Files included in the VSIX:
+show-your-debugging-vscode.vsix
+├─ [Content_Types].xml
+├─ extension.vsixmanifest
+└─ extension/
+   ├─ LICENSE.txt [1.04 KB]
+   ├─ package.json [1.51 KB]
+   ├─ package.nls.json [0 KB]
+   ├─ readme.md
+   ├─ dist/
+   │  ├─ extension.js [8.46 KB]
+   │  └─ web-extension.js [8.35 KB]
+   └─ media/
+      ├─ main.js [8.21 KB]
+      ├─ style.css [4.65 KB]
+      └─ trace.svg [0.29 KB]
+
+ DONE  Packaged: /work/repo/site/public/downloads/show-your-debugging-vscode.vsix (11 files, 14.08 KB)
+Built VS Code extension: dist/vscode-extension
+Packaged VS Code extension: dist/site/downloads/show-your-debugging-vscode.vsix
+
+> show-your-debugging@1.0.0 build:site:assets
+> vite build --config vite.config.ts
+
+vite v7.1.3 building for production...
+transforming...
+✓ 5 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/site/index.html                  3.30 kB │ gzip: 1.14 kB
+../dist/site/assets/index-CMrndexH.css  12.69 kB │ gzip: 3.64 kB
+../dist/site/assets/index-BgxhmPWV.js   18.81 kB │ gzip: 6.27 kB │ map: 33.55 kB
+✓ built in 294ms
+Built site: dist/site
+Built extension: dist/extension
+Packaged extension: dist/site/downloads/show-your-debugging-chrome.zip
+Built VS Code extension: dist/vscode-extension
+Packaged VS Code extension: dist/site/downloads/show-your-debugging-vscode.vsix
+
+Running 1 test using 1 worker
+
+  ✓  1 [chromium] › tests/e2e/claims.spec.ts:112:1 › @claim:storage-only-permission ships no tab, file, or blocking access (27ms)
+
+  1 passed (2.7s)
+- Preparing...
+
+  vscode-extension/dist/extension.js       8.5kb
+  vscode-extension/dist/extension.js.map  12.1kb
+
+⚡ Done in 4ms
+
+  vscode-extension/dist/web-extension.js       8.4kb
+  vscode-extension/dist/web-extension.js.map  12.1kb
+
+⚡ Done in 4ms
+
+  vscode-extension/dist/test/suite/index.js  600.2kb
+
+⚡ Done in 82ms
+[WebServer] (node:6353) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:6366) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:6384) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:6384) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

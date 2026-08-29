@@ -1,0 +1,130 @@
+{
+  "status": 200,
+  "url": "https://solution-trace-practice.sociobot.in/",
+  "data": {
+    "title": "Show Your Debugging — Record debugging practice",
+    "lang": "en",
+    "h1": [
+      "Practice the bug before asking for help"
+    ],
+    "visibleText": "Skip to main content\n✓\nShow Your Debugging\nDemo\nHow it works\nPrivacy\nGet VS Code\n\nA DEBUGGING RECEIPT FOR LEARNERS\n\nPractice the bug before asking for help\n\nFor beginning developers in VS Code who want to test their own ideas before asking a coding assistant.\n\nTry it with sample data\nA filled cart-loop hypothesis opens. Nothing is saved to your receipts.\nPrivate. Receipts use VS Code's local extension storage.\nOffline. It works after your first visit.\nFree. The VS Code extension costs nothing.\nExample debugging receipt\n\nEXAMPLE DEBUGGING RECEIPT\n\nSee one complete debugging receipt\n\nThe receipt keeps your reasoning next to the test that changed it.\n\nOpen the sample practice\n→\nRECEIPT 014\nHYPOTHESIS\n\nThe loop reads one item past the end.\n\nTEST OUTPUT\nRangeError: Item 3 is undefined\nFIX I CHOSE\n\nStop the loop before the list length.\n\nCLUE FOR NEXT TIME\n\nInspect loop bounds when the final item is undefined.\n\nTHREE PRACTICE STEPS\n\nHow the practice works\n1\nName one cause\n\nWrite a testable hypothesis before recording test output.\n\n2\nRun one check\n\nPaste only the output that helped you judge the hypothesis.\n\n3\nRecord your repair\n\nSave the fix and one clue you can use on the next bug.\n\nWhat it does not do\nIt does not generate code or answers.\nIt does not read workspace files, open editors, or clipboard contents.\nA receipt records process. It does not prove competence.\nDownload for VS Code\n\nSEPARATE BROWSER VERSION\n\nUse the Chrome toolbar version\n\nThe Chrome extension records the same hypothesis, test output, fix, and clue in a browser popup.\n\nDownload for Chrome\n→\nShow Your Debugging\n\nPractice a hypothesis, test, fix, and clue.\n\nPrivacy\nTerms\nBuilt by Param Factory\n(external site)\n\nVersion 1.0.0 · build 2026.08\n\nOriginal generated collage.",
+    "buttons": [
+      {
+        "kind": "A",
+        "text": "✓ Show Your Debugging",
+        "href": "https://solution-trace-practice.sociobot.in/",
+        "box": {
+          "x": 130,
+          "y": 14.171875,
+          "width": 191.921875,
+          "height": 44,
+          "top": 14.171875,
+          "right": 321.921875,
+          "bottom": 58.171875,
+          "left": 130
+        }
+      },
+      {
+        "kind": "A",
+        "text": "Demo",
+        "href": "https://solution-trace-practice.sociobot.in/?demo=1",
+        "box": {
+          "x": 892.4375,
+          "y": 14.171875,
+          "width": 47.234375,
+          "height": 44,
+          "top": 14.171875,
+          "right": 939.671875,
+          "bottom": 58.171875,
+          "left": 892.4375
+        }
+      },
+      {
+        "kind": "A",
+        "text": "How it works",
+        "href": "https://solution-trace-practice.sociobot.in/#how-it-works",
+        "box": {
+          "x": 963.671875,
+          "y": 14.171875,
+          "width": 104.859375,
+          "height": 44,
+          "top": 14.171875,
+          "right": 1068.53125,
+          "bottom": 58.171875,
+          "left": 963.671875
+        }
+      },
+      {
+        "kind": "A",
+        "text": "Privacy",
+        "href": "https://solution-trace-practice.sociobot.in/privacy",
+        "box": {
+          "x": 1092.53125,
+          "y": 14.171875,
+          "width": 60.5,
+          "height": 44,
+          "top": 14.171875,
+          "right": 1153.03125,
+          "bottom": 58.171875,
+          "left": 1092.53125
+        }
+      },
+      {
+        "kind": "A",
+        "text": "Get VS Code",
+        "href": "https://solution-trace-practice.sociobot.in/downloads/show-your-debugging-vscode.vsix",
+        "box": {
+          "x": 1177.03125,
+          "y": 12,
+          "width": 132.96875,
+          "height": 48.34375,
+          "top": 12,
+          "right": 1310,
+          "bottom": 60.34375,
+          "left": 1177.03125
+        }
+      },
+      {
+        "kind": "A",
+        "text": "Try it with sample data",
+        "href": "https://solution-trace-practice.sociobot.in/?demo=1",
+        "box": {
+          "x": 130,
+          "y": 630.4375,
+          "width": 220.328125,
+          "height": 47.25,
+          "top": 630.4375,
+          "right": 350.328125,
+          "bottom": 677.6875,
+          "left": 130
+        }
+      }
+    ],
+    "main": true,
+    "active": "BODY"
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "url": "https://solution-trace-practice.sociobot.in/",
+      "resourceType": "document"
+    },
+    {
+      "method": "GET",
+      "url": "https://solution-trace-practice.sociobot.in/assets/index-BgxhmPWV.js",
+      "resourceType": "script"
+    },
+    {
+      "method": "GET",
+      "url": "https://solution-trace-practice.sociobot.in/assets/index-CMrndexH.css",
+      "resourceType": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "https://solution-trace-practice.sociobot.in/assets/debug-trail-hero.webp",
+      "resourceType": "image"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": []
+}
