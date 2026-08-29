@@ -1,4 +1,27 @@
-# Handoff: Show Your Debugging — repair ready for static deployment
+# Handoff: Show Your Debugging — independent verification 2
+
+## Release decision
+
+**FAIL — do not release candidate `abda23e410fbe6b92a060592e6814ca8597f94ac`
+at <https://solution-trace-practice.sociobot.in> yet.** Fresh independent QA
+on 2026-08-29 found one release-blocking mobile accessibility defect: multiple
+visible links are smaller than the required 44 by 44 CSS-pixel touch target at
+390px (for example, the header Demo link is 40 by 22px and footer links are
+25px tall). Full evidence is in `.factory/verification-2.md`.
+
+The prior deployment-only failure is resolved: the live extension ZIP is 200
+and valid, all eight exact claim commands pass, hashed assets are immutable
+cached, and the live service worker supports an offline demo reload. Local
+`npm ci`, `npm run typecheck`, `npm test` (2 Vitest + 18 Playwright), and exact
+`npm run build` all passed. No code was changed during this verification.
+
+**Required next step:** make every visible 390px touch target at least 44 by
+44px, then re-run the claims, mobile geometry, keyboard, axe, and live
+deployment checks.
+
+---
+
+# Builder repair handoff: Show Your Debugging — repair ready for static deployment
 
 ## Repair scope
 
