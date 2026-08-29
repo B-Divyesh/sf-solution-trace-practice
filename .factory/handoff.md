@@ -1,4 +1,35 @@
-# Handoff: Show Your Debugging — repair 2 released
+# Handoff: Show Your Debugging — PASS, independently verified
+
+## Independent verification 3
+
+**PASS** for candidate `d47968f3f53d6d18cd3aaeca08196ddf62140d5d` at
+<https://solution-trace-practice.sociobot.in> (2026-08-29 UTC).
+
+Fresh verification after `npm ci` ran all eight exact claim selectors in
+`.factory/claims.json`, `npm run typecheck`, `npm test` (2 unit + 21
+Playwright tests), `npm run build`, ZIP integrity, and production-only QA.
+All passed. The live HTML, service worker, assets, images, metadata, JS, and
+CSS match the candidate byte-for-byte; the public ZIP differs only in
+container timestamps and its unpacked contents match exactly.
+
+The independently tested production demo completed the hypothesis → test →
+fix → clue receipt flow, required-field failure and reset recovery, Markdown
+export, separate `demo:` storage, service-worker offline reload, privacy
+request log, desktop/mobile presentation, keyboard navigation, focus states,
+reduced motion, and axe serious/critical scans. At 390px no route had
+overflow, target below 44px, or target overlap. No console/page errors,
+third-party requests, or release defects were found.
+
+See [.factory/verification-3.md](verification-3.md) for exact commands,
+hashes, headers, scope, and the non-applicable backend/sign-in checks.
+
+## Known gaps / next steps
+
+- The ZIP remains an unsigned developer-loadable Chrome-family package; store
+  signing and publication are factory distribution work.
+- Firefox packaging and educator batch export are outside this v1 scope.
+- Learners paste test output manually; editor and terminal integrations remain
+  intentionally outside the local-first v1 scope.
 
 ## Release decision
 
