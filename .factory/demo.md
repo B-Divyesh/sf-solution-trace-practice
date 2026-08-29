@@ -2,9 +2,9 @@
 
 ## Entry point
 
-- URL: `https://solution-trace-practice.sociobot.in/demo`
-- Local URL after `npm run build`: `http://127.0.0.1:4173/demo`
-- The supported catalog and verifier URL is `/demo`.
+- URL: `https://solution-trace-practice.sociobot.in/?demo=1`
+- Local URL after `npm run build`: `http://127.0.0.1:4173/?demo=1`
+- The supported catalog and verifier entry is `/?demo=1`. `/demo` remains a compatible direct link.
 
 ## Sample data
 
@@ -27,4 +27,4 @@ The extension uses `chrome.storage.local` and never reads website localStorage. 
 
 ## Offline check
 
-Visit `/demo` once and wait for the service worker to install. The route, built script, stylesheet, and sample assets then reload without a network. This is covered by `@claim:offline-reload`.
+Visit `/?demo=1` once and wait for the service worker to install. The route, built script, stylesheet, and sample assets then reload without a network. This is covered by `@claim:offline-reload`.

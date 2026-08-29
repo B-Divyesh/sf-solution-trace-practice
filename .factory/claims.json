@@ -1,31 +1,59 @@
 [
   {
+    "id": "sample-opens",
+    "claim": "One click opens a filled cart-loop practice with sample history.",
+    "where": "landing first-screen action, README demo link",
+    "test": "npm test -- --grep @claim:sample-opens",
+    "sandbox": "fresh browser context at /; click the first-screen sample action and assert /?demo=1, the demo banner, seeded hypothesis, and sample history"
+  },
+  {
+    "id": "demo-reset",
+    "claim": "Reset demo restores the shipped sample, and leaving the demo clears its keys.",
+    "where": "demo banner, privacy page, demo documentation",
+    "test": "npm test -- --grep @claim:demo-reset",
+    "sandbox": "fresh browser context at /?demo=1; edit and reset, assert the shipped sample, then leave through Home and assert no localStorage keys remain"
+  },
+  {
+    "id": "receipt-workflow",
+    "claim": "The extension records a hypothesis, test output, fix, and clue in a debugging receipt.",
+    "where": "landing, extension, README",
+    "test": "npm test -- --grep @claim:receipt-workflow",
+    "sandbox": "fresh Chromium extension profile; load the packaged MV3 extension, complete all four fields, save, and inspect the receipt"
+  },
+  {
+    "id": "receipt-delete",
+    "claim": "The extension can delete all saved receipts after a specific confirmation.",
+    "where": "privacy page, extension receipt history",
+    "test": "npm test -- --grep @claim:receipt-delete",
+    "sandbox": "fresh Chromium extension profile; save a receipt, open history, accept the named delete-all confirmation, and assert the empty state and zero count"
+  },
+  {
     "id": "hypothesis-first",
     "claim": "The practice asks for a testable hypothesis before test output or a fix.",
     "where": "landing how-it-works, extension practice, README",
     "test": "npm test -- --grep @claim:hypothesis-first",
-    "sandbox": "fresh browser context at /demo; assert the test field is absent until the hypothesis is locked"
+    "sandbox": "fresh browser context at /?demo=1; assert the test field is absent until the hypothesis is locked"
   },
   {
     "id": "local-only",
     "claim": "Your entries stay in your browser.",
     "where": "landing facts, privacy page, extension footer, README",
     "test": "npm test -- --grep @claim:local-only",
-    "sandbox": "fresh browser context at /demo; complete a receipt while recording requests and inspect demo-only localStorage keys"
+    "sandbox": "fresh browser context at /?demo=1; complete a receipt while recording requests and inspect demo-only localStorage keys"
   },
   {
     "id": "offline-reload",
     "claim": "The website demo works offline after the first visit.",
     "where": "landing facts, offline status, README",
     "test": "npm test -- --grep @claim:offline-reload",
-    "sandbox": "fresh browser context at /demo; wait for service worker, reload once under control, set offline, and reload"
+    "sandbox": "fresh browser context at /?demo=1; wait for service worker, reload once under control, set offline, and reload"
   },
   {
     "id": "markdown-export",
     "claim": "A completed receipt exports as Markdown.",
     "where": "demo and extension receipt action, README",
     "test": "npm test -- --grep @claim:markdown-export",
-    "sandbox": "fresh browser context at /demo; finish the seeded trace and assert the downloaded Markdown contains all four sections"
+    "sandbox": "fresh browser context at /?demo=1; finish the seeded trace and assert the downloaded Markdown contains all four sections"
   },
   {
     "id": "free-download",

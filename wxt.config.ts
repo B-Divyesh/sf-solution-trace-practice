@@ -6,7 +6,7 @@ export default defineConfig({
   outDir: '.output',
   manifest: {
     name: 'Show Your Debugging',
-    description: 'Record a hypothesis, test result, fix, and lesson before asking for an answer.',
+    description: 'Record a hypothesis, test result, fix, and clue before asking for an answer.',
     version: '1.0.0',
     permissions: ['storage'],
     action: {

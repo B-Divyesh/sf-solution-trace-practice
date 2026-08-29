@@ -1,4 +1,4 @@
-import { cp, mkdir, readdir, rm } from 'node:fs/promises';
+import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
 
@@ -24,6 +24,50 @@ await mkdir(publicDownloads, { recursive: true });
 await cp(resolve(root, '.output', zipName), resolve(publicDownloads, 'show-your-debugging-chrome.zip'));
 
 run('npm', ['run', 'build:site:assets']);
+
+const siteOutput = resolve(root, 'dist/site');
+const builtIndex = await readFile(resolve(siteOutput, 'index.html'), 'utf8');
+const routeMetadata = [
+  {
+    directory: 'demo',
+    title: 'Demo — Show Your Debugging',
+    description: 'Try a sample debugging receipt stored only in a separate browser demo space.',
+    canonical: 'https://solution-trace-practice.sociobot.in/?demo=1'
+  },
+  {
+    directory: 'privacy',
+    title: 'Privacy — Show Your Debugging',
+    description: 'How Show Your Debugging stores receipts locally and keeps them under your control.',
+    canonical: 'https://solution-trace-practice.sociobot.in/privacy'
+  },
+  {
+    directory: 'terms',
+    title: 'Terms — Show Your Debugging',
+    description: 'Terms for using Show Your Debugging as a free debugging practice tool.',
+    canonical: 'https://solution-trace-practice.sociobot.in/terms'
+  }
+];
+
+function withMetadata(html, route) {
+  const replacements = [
+    [/<title>[^<]*<\/title>/, `<title>${route.title}</title>`],
+    [/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${route.description}" />`],
+    [/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${route.canonical}" />`],
+    [/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${route.title}" />`],
+    [/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${route.description}" />`],
+    [/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${route.canonical}" />`],
+    [/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${route.title}" />`],
+    [/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${route.description}" />`]
+  ];
+  return replacements.reduce((result, [pattern, replacement]) => result.replace(pattern, replacement), html);
+}
+
+for (const route of routeMetadata) {
+  const directory = resolve(siteOutput, route.directory);
+  await mkdir(directory, { recursive: true });
+  await writeFile(resolve(directory, 'index.html'), withMetadata(builtIndex, route));
+}
+
 await cp(resolve(root, '.output/chrome-mv3'), resolve(root, 'dist/extension'), { recursive: true });
 
 console.log('Built site: dist/site');

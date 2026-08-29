@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Practice independent debugging by recording a hypothesis, test, fix, and lesson.",
+  "description": "Practice independent debugging by recording a hypothesis, test, fix, and clue.",
   "scripts": {
     "dev": "wxt",
     "dev:site": "vite --config vite.config.ts",

@@ -1,0 +1,1 @@
+Practice a hypothesis, test, fix, and clue before asking a coding assistant.

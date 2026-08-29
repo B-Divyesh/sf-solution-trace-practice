@@ -6,6 +6,7 @@ const banner = document.querySelector<HTMLElement>('#demo-banner')!;
 const announcer = document.querySelector<HTMLElement>('.route-announcer')!;
 const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')!;
 const networkStatus = document.querySelector<HTMLElement>('#network-status')!;
+const origin = 'https://solution-trace-practice.sociobot.in';
 
 const DEMO_RECEIPTS_KEY = 'demo:receipts';
 const DEMO_DRAFT_KEY = 'demo:draft';
@@ -38,7 +39,14 @@ function escapeHtml(value: string): string {
 function setMeta(title: string, description: string, path: string): void {
   document.title = title;
   document.querySelector<HTMLMetaElement>('meta[name="description"]')!.content = description;
-  canonical.href = `https://solution-trace-practice.sociobot.in${path}`;
+  canonical.href = `${origin}${path}`;
+  document.querySelector<HTMLMetaElement>('meta[property="og:title"]')!.content = title;
+  document.querySelector<HTMLMetaElement>('meta[property="og:description"]')!.content = description;
+  document.querySelector<HTMLMetaElement>('meta[property="og:url"]')!.content = `${origin}${path}`;
+  document.querySelector<HTMLMetaElement>('meta[property="og:image"]')!.content = `${origin}/assets/social-card.webp`;
+  document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')!.content = title;
+  document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')!.content = description;
+  document.querySelector<HTMLMetaElement>('meta[name="twitter:image"]')!.content = `${origin}/assets/social-card.webp`;
 }
 
 function landingMarkup(): string {
@@ -49,8 +57,8 @@ function landingMarkup(): string {
         <h1 tabindex="-1">Practice the bug before asking for help</h1>
         <p class="hero-lead">For beginning developers using coding assistants who want to keep their own debugging habits.</p>
         <div class="hero-action">
-          <a class="button primary" href="/demo" data-route>Try it with sample data</a>
-          <span>A ready bug opens. Nothing is saved to your receipts.</span>
+          <a class="button primary" href="/?demo=1" data-route>Try it with sample data</a>
+          <span>A filled cart-loop hypothesis opens. Nothing is saved to your receipts.</span>
         </div>
         <ul class="plain-facts" aria-label="Product facts">
           <li><strong>Private.</strong> Your entries stay in your browser.</li>
@@ -60,16 +68,16 @@ function landingMarkup(): string {
       </div>
       <figure class="hero-art">
         <img src="/assets/debug-trail-hero.webp" srcset="/assets/debug-trail-hero-640.webp 640w, /assets/debug-trail-hero.webp 1200w" sizes="(max-width: 850px) 92vw, 52vw" width="1200" height="800" alt="A paper hypothesis, terminal, test strip, and code fix joined by a coral thread." fetchpriority="high" decoding="async" />
-        <figcaption>Follow the evidence from guess to fix.</figcaption>
+        <figcaption>Example debugging receipt</figcaption>
       </figure>
     </section>
 
     <section class="receipt-preview section-shell" aria-labelledby="preview-title">
       <div class="section-intro">
-        <p class="kicker">The product, not a promise</p>
-        <h2 id="preview-title">One short record of the work you did</h2>
+        <p class="kicker">Example debugging receipt</p>
+        <h2 id="preview-title">See one complete debugging receipt</h2>
         <p>The receipt keeps your reasoning next to the test that changed it.</p>
-        <a class="text-link" href="/demo" data-route>Open the live practice <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="/?demo=1" data-route>Open the sample practice <span aria-hidden="true">→</span></a>
       </div>
       <article class="sample-receipt" aria-label="Example debugging receipt">
         <div class="receipt-stamp">Receipt 014</div>
@@ -82,7 +90,7 @@ function landingMarkup(): string {
 
     <section class="how-section" id="how-it-works" aria-labelledby="how-title">
       <div class="section-shell">
-        <p class="kicker">Three deliberate pauses</p>
+        <p class="kicker">Three practice steps</p>
         <h2 id="how-title">How the practice works</h2>
         <ol class="step-list">
           <li><span>1</span><div><h3>Name one cause</h3><p>Write a testable hypothesis before you reveal another answer.</p></div></li>
@@ -94,7 +102,6 @@ function landingMarkup(): string {
 
     <section class="limits-section section-shell" aria-labelledby="limits-title">
       <div>
-        <p class="kicker">A notebook, not a judge</p>
         <h2 id="limits-title">What it does not do</h2>
       </div>
       <ul class="limits-list">
@@ -109,7 +116,8 @@ function landingMarkup(): string {
 
 function renderLanding(): void {
   banner.replaceChildren();
-  setMeta('Show Your Debugging — Practice before asking', 'Record a hypothesis, test result, fix, and lesson before asking a coding assistant for the answer.', '/');
+  banner.className = '';
+  setMeta('Show Your Debugging — Practice before asking', 'Record a hypothesis, test result, fix, and clue before asking a coding assistant for the answer.', '/');
   main.className = '';
   main.innerHTML = landingMarkup();
 }
@@ -150,6 +158,11 @@ function demoBannerMarkup(): string {
   return `<div class="demo-banner-inner"><strong>Demo — sample data, nothing is saved to your receipts</strong><div><button id="reset-demo" type="button">Reset demo</button><a href="/downloads/show-your-debugging-chrome.zip" download id="start-real">Start for real</a></div></div>`;
 }
 
+function clearDemoData(): void {
+  localStorage.removeItem(DEMO_RECEIPTS_KEY);
+  localStorage.removeItem(DEMO_DRAFT_KEY);
+}
+
 function demoShellMarkup(): string {
   return `<section class="demo-shell section-shell">
     <div class="demo-heading">
@@ -179,8 +192,7 @@ function demoShellMarkup(): string {
 
 function bindDemoBanner(): void {
   document.querySelector<HTMLButtonElement>('#reset-demo')!.addEventListener('click', () => {
-    localStorage.removeItem(DEMO_RECEIPTS_KEY);
-    localStorage.removeItem(DEMO_DRAFT_KEY);
+    clearDemoData();
     demoStep = 'hypothesis';
     activeReceipt = null;
     readDemoData();
@@ -189,8 +201,7 @@ function bindDemoBanner(): void {
     showDemoStatus('Demo reset to the original sample.');
   });
   document.querySelector<HTMLAnchorElement>('#start-real')!.addEventListener('click', () => {
-    localStorage.removeItem(DEMO_RECEIPTS_KEY);
-    localStorage.removeItem(DEMO_DRAFT_KEY);
+    clearDemoData();
   });
 }
 
@@ -239,7 +250,7 @@ function renderDemoStep(): void {
       if (saveDemoData()) { demoStep = 'receipt'; renderDemoStep(); renderDemoReceiptList(); showDemoStatus('Sample receipt saved inside the demo.'); }
     });
   } else if (activeReceipt) {
-    workspace.innerHTML = `<p class="step-count">Receipt saved</p><h2 id="practice-step-title">Review the path, not only the patch</h2>
+    workspace.innerHTML = `<p class="step-count">Receipt saved</p><h2 id="practice-step-title">Review your debugging receipt</h2>
       <article class="demo-receipt"><section><h3>Hypothesis</h3><p>${escapeHtml(activeReceipt.hypothesis)}</p></section><section><h3>Test output</h3><pre>${escapeHtml(activeReceipt.testOutput)}</pre></section><section><h3>Fix I chose</h3><p>${escapeHtml(activeReceipt.fix)}</p></section><section><h3>Clue for next time</h3><p>${escapeHtml(activeReceipt.lesson)}</p></section></article><p class="evidence-note">This receipt records your process. It does not prove competence.</p><div class="button-row"><button class="button primary" id="export-receipt" type="button">Export Markdown</button><button class="button quiet" id="new-demo" type="button">Start another sample</button></div>`;
     document.querySelector<HTMLButtonElement>('#export-receipt')!.addEventListener('click', () => { downloadReceipt(activeReceipt!); showDemoStatus('Markdown receipt downloaded.'); });
     document.querySelector<HTMLButtonElement>('#new-demo')!.addEventListener('click', () => { demoDraft = { ...sampleDraft }; activeReceipt = null; demoStep = 'hypothesis'; saveDemoData(); renderDemoStep(); });
@@ -265,7 +276,7 @@ function renderDemoReceiptList(): void {
 }
 
 function renderDemo(): void {
-  setMeta('Demo — Show Your Debugging', 'Try a sample debugging receipt in a sandbox that never touches your extension data.', '/demo');
+  setMeta('Demo — Show Your Debugging', 'Try a sample debugging receipt stored only in a separate browser demo space.', '/?demo=1');
   main.className = 'demo-page';
   banner.className = 'demo-banner';
   banner.innerHTML = demoBannerMarkup();
@@ -277,15 +288,15 @@ function renderDemo(): void {
 }
 
 function legalMarkup(kind: 'privacy' | 'terms'): string {
-  if (kind === 'privacy') return `<article class="legal section-shell"><p class="kicker">Plain privacy</p><h1 tabindex="-1">Your debugging notes stay with you</h1><p class="legal-lead">Show Your Debugging stores receipts in your browser. It has no account, analytics, ads, or remote database.</p><h2>What the extension stores</h2><p>It stores the hypothesis, test output, fix, lesson, and date that you enter. You can delete all receipts from the extension.</p><h2>What the extension can access</h2><p>The extension requests browser storage only. It cannot read open tabs, editor files, clipboard contents, or browsing history.</p><h2>Demo storage</h2><p>The website demo uses separate browser keys that start with <code>demo:</code>. Resetting or leaving the demo clears those keys.</p><h2>Network use</h2><p>The extension sends no receipt content over the network. The website loads its own static files from this domain.</p><h2>Contact</h2><p>Email <a href="mailto:privacy@sociobot.in">privacy@sociobot.in</a> with privacy questions.</p><p class="updated">Last updated: August 28, 2026.</p></article>`;
-  return `<article class="legal section-shell"><p class="kicker">Terms in plain words</p><h1 tabindex="-1">Use the practice as your own notebook</h1><p class="legal-lead">Show Your Debugging is free software for personal, classroom, and workplace practice.</p><h2>Your responsibility</h2><p>Paste only code or output you are allowed to store. Review exported receipts before you share them.</p><h2>No grading claim</h2><p>A receipt shows the steps you recorded. It does not certify skill, authorship, or competence.</p><h2>No warranty</h2><p>The software is provided as-is under the MIT License. Keep another copy of receipts you need to retain.</p><h2>Changes</h2><p>We may update these terms when the product changes. The date below shows the current version.</p><h2>Contact</h2><p>Email <a href="mailto:hello@sociobot.in">hello@sociobot.in</a> with terms questions.</p><p class="updated">Last updated: August 28, 2026.</p></article>`;
+  if (kind === 'privacy') return `<article class="legal section-shell"><p class="kicker">Privacy details</p><h1 tabindex="-1">Your debugging notes stay in this browser</h1><p class="legal-lead">Show Your Debugging stores receipts in your browser. It uses no analytics or third-party runtime scripts.</p><h2>What the extension stores</h2><p>It stores the hypothesis, test output, fix, clue, and date that you enter. You can delete all receipts from the extension.</p><h2>What the extension can access</h2><p>The extension requests browser storage only. It cannot read open tabs, editor files, clipboard contents, or browsing history.</p><h2>Demo storage</h2><p>The website demo uses separate browser keys that start with <code>demo:</code>. Resetting or leaving the demo clears those keys.</p><h2>Network use</h2><p>The extension sends no receipt content over the network. The website loads its own static files from this domain.</p><h2>Contact</h2><p>Email <a href="mailto:privacy@sociobot.in">privacy@sociobot.in</a> with privacy questions.</p><p class="updated">Last updated: August 29, 2026.</p></article>`;
+  return `<article class="legal section-shell"><p class="kicker">Terms in plain words</p><h1 tabindex="-1">Use the practice for your own debugging</h1><p class="legal-lead">Show Your Debugging is free software for personal, classroom, and workplace practice.</p><h2>Your responsibility</h2><p>Paste only code or output you are allowed to store. Review exported receipts before you share them.</p><h2>Receipts are not grades</h2><p>A receipt shows the steps you recorded. It does not certify skill, authorship, or competence.</p><h2>No warranty</h2><p>The software is provided as-is under the MIT License. Keep another copy of receipts you need to retain.</p><h2>Changes</h2><p>We may update these terms when the product changes. The date below shows the current version.</p><h2>Contact</h2><p>Email <a href="mailto:hello@sociobot.in">hello@sociobot.in</a> with terms questions.</p><p class="updated">Last updated: August 29, 2026.</p></article>`;
 }
 
 function renderLegal(kind: 'privacy' | 'terms'): void {
   banner.replaceChildren();
   banner.className = '';
   const privacy = kind === 'privacy';
-  setMeta(`${privacy ? 'Privacy' : 'Terms'} — Show Your Debugging`, privacy ? 'How Show Your Debugging stores receipts locally and keeps them under your control.' : 'Terms for using Show Your Debugging as a free practice notebook.', `/${kind}`);
+  setMeta(`${privacy ? 'Privacy' : 'Terms'} — Show Your Debugging`, privacy ? 'How Show Your Debugging stores receipts locally and keeps them under your control.' : 'Terms for using Show Your Debugging as a free debugging practice tool.', `/${kind}`);
   main.className = '';
   main.innerHTML = legalMarkup(kind);
 }
@@ -295,13 +306,15 @@ function renderNotFound(): void {
   banner.className = '';
   setMeta('Page not found — Show Your Debugging', 'This page does not exist. Return to Show Your Debugging.', '/404');
   main.className = '';
-  main.innerHTML = `<section class="not-found section-shell"><div class="error-stamp" aria-hidden="true">404</div><p class="kicker">This trail ends here</p><h1 tabindex="-1">This page is not in the receipt</h1><p>The address may be wrong or the page may have moved.</p><a class="button primary" href="/" data-route>Return to the practice</a></section>`;
+  main.innerHTML = `<section class="not-found section-shell"><div class="error-stamp" aria-hidden="true">404</div><p class="kicker">Page not found</p><h1 tabindex="-1">This page does not exist</h1><p>The address may be wrong or the page may have moved.</p><a class="button primary" href="/" data-route>Return home</a></section>`;
 }
 
 function renderRoute(focus = false): void {
   const path = window.location.pathname.replace(/\/$/, '') || '/';
-  if (path === '/') renderLanding();
-  else if (path === '/demo') renderDemo();
+  const isDemo = path === '/demo' || (path === '/' && new URLSearchParams(window.location.search).get('demo') === '1');
+  if (!isDemo) clearDemoData();
+  if (isDemo) renderDemo();
+  else if (path === '/') renderLanding();
   else if (path === '/privacy') renderLegal('privacy');
   else if (path === '/terms') renderLegal('terms');
   else renderNotFound();
@@ -329,7 +342,8 @@ function bindRouteLinks(): void {
 
 window.addEventListener('popstate', () => renderRoute(true));
 document.addEventListener('keydown', (event) => {
-  if ((event.ctrlKey || event.metaKey) && event.key === 'Enter' && window.location.pathname === '/demo') {
+  const demoQuery = new URLSearchParams(window.location.search).get('demo') === '1';
+  if ((event.ctrlKey || event.metaKey) && event.key === 'Enter' && (window.location.pathname === '/demo' || demoQuery)) {
     const form = document.querySelector<HTMLFormElement>('#demo-workspace form');
     if (form) { event.preventDefault(); form.requestSubmit(); }
   }

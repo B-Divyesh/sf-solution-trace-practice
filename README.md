@@ -1,6 +1,6 @@
 # Show Your Debugging
 
-Practice a hypothesis, test, fix, and lesson before asking a coding assistant for the answer.
+Practice a hypothesis, test, fix, and clue before asking a coding assistant for the answer.
 
 Show Your Debugging is a free Chrome MV3 extension for beginning developers. It asks for one testable hypothesis, captures test output you paste, records your chosen fix, and saves a reviewable debugging receipt.
 
@@ -8,7 +8,7 @@ Receipts stay in `chrome.storage.local`. The extension requests no tab, file, cl
 
 Live site: <https://solution-trace-practice.sociobot.in>
 
-One-click sandbox: <https://solution-trace-practice.sociobot.in/demo>
+One-click sandbox: <https://solution-trace-practice.sociobot.in/?demo=1>
 
 ## Use the extension
 
@@ -17,7 +17,7 @@ One-click sandbox: <https://solution-trace-practice.sociobot.in/demo>
 3. Choose **Load unpacked** and select the unzipped folder.
 4. Pin the extension, open it, and write your hypothesis before running the next check.
 
-Chrome Web Store signing is outside this repository. The factory can publish the same MV3 package later.
+The extension is currently available as a zip for manual installation.
 
 ## Run locally
 
@@ -61,13 +61,14 @@ It creates:
 - `dist/site/downloads/show-your-debugging-chrome.zip`
 - `dist/extension/` for local unpacked installation
 
-Deploy `dist/site/` as the static root. The included `staticwebapp.config.json` supplies SPA fallback, the styled 404 page, CSP, and security headers. The factory owns infrastructure and DNS.
+Deploy `dist/site/` as the static root. The included `staticwebapp.config.json` supplies route fallback, the styled 404 page, CSP, and security headers.
 
 ## Product boundaries
 
-- No code generation, assistant blocking, grading, accounts, or surveillance
+- No code generation or answers
+- Browser storage is the extension's only permission
+- No access to open tabs or editor files
 - No analytics or third-party runtime scripts
-- No source or test capture unless the learner pastes it
 - Offline demo after the first visit
 - Markdown export for completed receipts
 

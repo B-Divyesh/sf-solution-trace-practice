@@ -7,8 +7,37 @@ async function finishSample(page: import('@playwright/test').Page): Promise<void
   await page.getByRole('button', { name: 'Save sample receipt' }).click();
 }
 
+const demoUrl = '/?demo=1';
+
+test('@claim:sample-opens opens a filled cart-loop practice in one click', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Try it with sample data' }).click();
+  await expect(page).toHaveURL(/\?demo=1$/);
+  await expect(page.getByText('Demo — sample data, nothing is saved to your receipts')).toBeVisible();
+  await expect(page.getByLabel('My hypothesis')).toHaveValue('The loop reads one item past the end of the cart.');
+  await expect(page.getByText('The profile request runs before the session finishes loading.')).toBeVisible();
+});
+
+test('@claim:demo-reset restores the shipped sample and clears edits', async ({ page }) => {
+  await page.goto(demoUrl);
+  await page.getByLabel('My hypothesis').fill('A changed demo hypothesis.');
+  await page.getByRole('button', { name: 'Lock in my hypothesis' }).click();
+  await page.getByLabel('Test output').fill('A changed test result.');
+  await page.getByRole('button', { name: 'Reset demo' }).click();
+  await expect(page.getByLabel('My hypothesis')).toHaveValue('The loop reads one item past the end of the cart.');
+  const data = await page.evaluate(() => ({
+    draft: JSON.parse(localStorage.getItem('demo:draft') ?? '{}'),
+    keys: Object.keys(localStorage)
+  }));
+  expect(data.draft.testOutput).toContain('RangeError: Item 3 is undefined');
+  expect(data.keys.sort()).toEqual(['demo:draft', 'demo:receipts']);
+  await page.locator('.site-header .wordmark').click();
+  await expect(page).toHaveURL(/\/$/);
+  expect(await page.evaluate(() => Object.keys(localStorage))).toEqual([]);
+});
+
 test('@claim:hypothesis-first requires the guess before showing the test', async ({ page }) => {
-  await page.goto('/demo');
+  await page.goto(demoUrl);
   await expect(page.getByLabel('My hypothesis')).toBeVisible();
   await expect(page.getByLabel('Test output')).toHaveCount(0);
   await expect(page.getByLabel('Fix I chose')).toHaveCount(0);
@@ -19,7 +48,7 @@ test('@claim:hypothesis-first requires the guess before showing the test', async
 test('@claim:local-only keeps demo entries in a separate browser namespace', async ({ page }) => {
   const requests: string[] = [];
   page.on('request', (request) => requests.push(request.url()));
-  await page.goto('/demo');
+  await page.goto(demoUrl);
   await finishSample(page);
   await expect(page.getByText('Sample receipt saved inside the demo.')).toBeVisible();
   const keys = await page.evaluate(() => Object.keys(localStorage));
@@ -29,7 +58,7 @@ test('@claim:local-only keeps demo entries in a separate browser namespace', asy
 });
 
 test('@claim:offline-reload reloads the demo without a network', async ({ page, context }) => {
-  await page.goto('/demo');
+  await page.goto(demoUrl);
   await page.evaluate(() => navigator.serviceWorker.ready);
   if (!await page.evaluate(() => Boolean(navigator.serviceWorker.controller))) await page.reload();
   await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller))).toBe(true);
@@ -48,7 +77,7 @@ test('@claim:offline-reload reloads the demo without a network', async ({ page, 
 });
 
 test('@claim:markdown-export downloads all receipt sections', async ({ page }) => {
-  await page.goto('/demo');
+  await page.goto(demoUrl);
   await finishSample(page);
   const downloadPromise = page.waitForEvent('download');
   await page.getByRole('button', { name: 'Export Markdown' }).click();
@@ -60,7 +89,7 @@ test('@claim:markdown-export downloads all receipt sections', async ({ page }) =
   expect(markdown).toContain('## Hypothesis');
   expect(markdown).toContain('## Test output');
   expect(markdown).toContain('## Fix I chose');
-  expect(markdown).toContain('## What I learned');
+  expect(markdown).toContain('## Clue for next time');
 });
 
 test('@claim:free-download serves the packaged extension without a gate', async ({ request }) => {
@@ -71,10 +100,11 @@ test('@claim:free-download serves the packaged extension without a gate', async 
   expect(body.byteLength).toBeGreaterThan(5_000);
 });
 
-test('@claim:storage-only-permission ships no tab or file permissions', async () => {
-  const manifest = JSON.parse(await readFile('dist/extension/manifest.json', 'utf8')) as { permissions?: string[]; host_permissions?: string[] };
+test('@claim:storage-only-permission ships no tab, file, or blocking access', async () => {
+  const manifest = JSON.parse(await readFile('dist/extension/manifest.json', 'utf8')) as { permissions?: string[]; host_permissions?: string[]; content_scripts?: unknown[] };
   expect(manifest.permissions).toEqual(['storage']);
   expect(manifest.host_permissions ?? []).toEqual([]);
+  expect(manifest.content_scripts ?? []).toEqual([]);
 });
 
 test('@claim:no-code-generation has no model host or endpoint', async () => {
@@ -90,7 +120,7 @@ test('@claim:no-tracking loads no third-party runtime request or script', async 
   const requests: string[] = [];
   page.on('request', (request) => requests.push(request.url()));
   await page.goto('/');
-  await page.goto('/demo');
+  await page.goto(demoUrl);
   const scriptSources = await page.locator('script[src]').evaluateAll((scripts) => scripts.map((script) => (script as HTMLScriptElement).src));
   expect([...requests, ...scriptSources].every((url) => new URL(url).origin === 'http://127.0.0.1:4173')).toBe(true);
 });

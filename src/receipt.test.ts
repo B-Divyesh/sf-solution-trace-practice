@@ -33,7 +33,7 @@ describe('debugging receipts', () => {
     expect(markdown).toContain('## Hypothesis');
     expect(markdown).toContain('## Test output');
     expect(markdown).toContain('## Fix I chose');
-    expect(markdown).toContain('## What I learned');
+    expect(markdown).toContain('## Clue for next time');
     expect(markdown).toContain('does not prove competence');
   });
 });

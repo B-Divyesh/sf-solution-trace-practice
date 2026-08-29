@@ -3,15 +3,16 @@ import { expect, test } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
 const routes = [
-  ['/', 'Show Your Debugging — Practice before asking'],
-  ['/demo', 'Demo — Show Your Debugging'],
-  ['/privacy', 'Privacy — Show Your Debugging'],
-  ['/terms', 'Terms — Show Your Debugging'],
-  ['/404.html', 'Page not found — Show Your Debugging'],
-  ['/missing-page', 'Page not found — Show Your Debugging']
+  { route: '/', title: 'Show Your Debugging — Practice before asking', description: 'Record a hypothesis, test result, fix, and clue before asking a coding assistant for the answer.', canonical: '/' },
+  { route: '/?demo=1', title: 'Demo — Show Your Debugging', description: 'Try a sample debugging receipt stored only in a separate browser demo space.', canonical: '/?demo=1' },
+  { route: '/demo', title: 'Demo — Show Your Debugging', description: 'Try a sample debugging receipt stored only in a separate browser demo space.', canonical: '/?demo=1' },
+  { route: '/privacy', title: 'Privacy — Show Your Debugging', description: 'How Show Your Debugging stores receipts locally and keeps them under your control.', canonical: '/privacy' },
+  { route: '/terms', title: 'Terms — Show Your Debugging', description: 'Terms for using Show Your Debugging as a free debugging practice tool.', canonical: '/terms' },
+  { route: '/404.html', title: 'Page not found — Show Your Debugging', description: 'This page does not exist. Return to Show Your Debugging.', canonical: '/404' },
+  { route: '/missing-page', title: 'Page not found — Show Your Debugging', description: 'This page does not exist. Return to Show Your Debugging.', canonical: '/404' }
 ] as const;
 
-for (const [route, title] of routes) {
+for (const { route, title, description, canonical } of routes) {
   test(`${route} has clean structure, console, and accessibility`, async ({ page }) => {
     const errors: string[] = [];
     page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
@@ -22,6 +23,15 @@ for (const [route, title] of routes) {
     await expect(page.locator('main')).toHaveCount(1);
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.locator('img:not([alt])')).toHaveCount(0);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', description);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://solution-trace-practice.sociobot.in${canonical}`);
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute('content', title);
+    await expect(page.locator('meta[property="og:description"]')).toHaveAttribute('content', description);
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', `https://solution-trace-practice.sociobot.in${canonical}`);
+    await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute('content', title);
+    await expect(page.locator('meta[name="twitter:description"]')).toHaveAttribute('content', description);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /\/assets\/social-card\.webp$/);
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute('content', /\/assets\/social-card\.webp$/);
     const results = await new AxeBuilder({ page: page as never }).analyze();
     const serious = results.violations.filter((violation) => ['serious', 'critical'].includes(violation.impact ?? ''));
     expect(serious).toEqual([]);
@@ -35,7 +45,7 @@ test('keyboard navigation changes routes and moves focus to the heading', async 
   await expect(page.getByRole('link', { name: 'Skip to main content' })).toBeFocused();
   await page.getByRole('link', { name: 'Demo', exact: true }).focus();
   await page.keyboard.press('Enter');
-  await expect(page).toHaveURL(/\/demo$/);
+  await expect(page).toHaveURL(/\?demo=1$/);
   await expect(page.getByRole('heading', { level: 1 })).toBeFocused();
   await page.goBack();
   await expect(page).toHaveURL(/\/$/);
@@ -43,17 +53,32 @@ test('keyboard navigation changes routes and moves focus to the heading', async 
 
 test('the landing and demo fit a 390px phone viewport', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  for (const route of ['/', '/demo']) {
+  for (const route of ['/', '/?demo=1']) {
     await page.goto(route);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow).toBeLessThanOrEqual(1);
   }
 });
 
+test('the three product facts are visible in the first 390px screen', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const geometry = await page.locator('.plain-facts li').evaluateAll((facts) => facts.map((fact) => ({
+    text: fact.textContent?.trim(),
+    top: fact.getBoundingClientRect().top,
+    bottom: fact.getBoundingClientRect().bottom
+  })));
+  expect(geometry).toHaveLength(3);
+  for (const fact of geometry) {
+    expect(fact.top, `${fact.text} starts above the viewport`).toBeGreaterThanOrEqual(0);
+    expect(fact.bottom, `${fact.text} falls below the first screen`).toBeLessThanOrEqual(844);
+  }
+});
+
 test('every rendered 390px touch target is at least 44 by 44 CSS pixels', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
 
-  for (const route of ['/', '/demo', '/privacy', '/terms', '/404.html']) {
+  for (const route of ['/', '/?demo=1', '/privacy', '/terms', '/404.html']) {
     await page.goto(route);
     const geometry = await page.locator('a[href], button, input:not([type="hidden"]), textarea, select, [role="button"]').evaluateAll((targets) => {
       const rendered = targets.flatMap((target) => {
@@ -89,6 +114,31 @@ test('every rendered 390px touch target is at least 44 by 44 CSS pixels', async 
 
     expect(geometry.undersized, `${route} has undersized touch targets`).toEqual([]);
     expect(geometry.overlaps, `${route} has overlapping touch targets`).toEqual([]);
+  }
+});
+
+test('the standalone 404 uses the shared site skeleton', async ({ page }) => {
+  await page.goto('/404.html');
+  await expect(page.getByRole('link', { name: 'Skip to main content' })).toHaveAttribute('href', '#main');
+  await expect(page.locator('header nav').getByRole('link')).toHaveCount(4);
+  await expect(page.locator('footer').getByText('Practice a hypothesis, test, fix, and clue.')).toBeVisible();
+  await expect(page.locator('footer').getByText('Version 1.0.0 · build 2026.08')).toBeVisible();
+  await expect(page.locator('footer').getByRole('link', { name: /Built by Param Factory/ })).toBeVisible();
+});
+
+test('built route documents expose correct metadata before JavaScript runs', async () => {
+  const documents = [
+    ['dist/site/demo/index.html', 'Demo — Show Your Debugging', 'https://solution-trace-practice.sociobot.in/?demo=1'],
+    ['dist/site/privacy/index.html', 'Privacy — Show Your Debugging', 'https://solution-trace-practice.sociobot.in/privacy'],
+    ['dist/site/terms/index.html', 'Terms — Show Your Debugging', 'https://solution-trace-practice.sociobot.in/terms']
+  ] as const;
+  for (const [file, title, canonical] of documents) {
+    const html = await readFile(file, 'utf8');
+    expect(html).toContain(`<title>${title}</title>`);
+    expect(html).toContain(`<link rel="canonical" href="${canonical}"`);
+    expect(html).toContain(`<meta property="og:title" content="${title}"`);
+    expect(html).toContain(`<meta property="og:url" content="${canonical}"`);
+    expect(html).toContain(`<meta name="twitter:title" content="${title}"`);
   }
 });
 

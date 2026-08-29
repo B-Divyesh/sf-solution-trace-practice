@@ -147,8 +147,8 @@ pre { max-width: 100%; margin: 0; padding: 12px; overflow: auto; color: var(--pa
   .site-header { align-items: flex-start; }
   .site-header nav { gap: 14px; font-size: .85rem; }
   .site-header nav a[href="/#how-it-works"] { display: none; }
-  .hero { grid-template-columns: 1fr; min-height: auto; padding-block: 64px 80px; }
-  .hero-art { order: -1; width: min(92%, 620px); margin: 0 auto; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-block: 48px 80px; }
+  .hero-art { width: min(92%, 620px); margin: 0 auto; }
   .receipt-preview, .limits-section { grid-template-columns: 1fr; }
   .step-list { grid-template-columns: 1fr; gap: 24px; }
   .demo-layout { grid-template-columns: 1fr; }
@@ -159,10 +159,13 @@ pre { max-width: 100%; margin: 0; padding: 12px; overflow: auto; color: var(--pa
   .section-shell { width: min(100% - 32px, 1180px); }
   .site-header { min-height: 64px; padding-inline: 16px; }
   .wordmark { max-width: 130px; font-size: 15px; line-height: 1.05; }
-  .site-header nav a:not(.nav-download):not([href="/demo"]) { display: none; }
+  .site-header nav a:not(.nav-download):not([href="/?demo=1"]) { display: none; }
   .nav-download { padding: 7px 9px; }
   h1 { font-size: clamp(2.45rem, 13vw, 3.6rem); }
-  .hero { padding-top: 48px; }
+  .hero { gap: 52px; padding-top: 28px; }
+  .hero-lead { margin-block: 16px; }
+  .hero-action { gap: 8px; margin-block: 18px; }
+  .plain-facts { gap: 3px; margin-top: 16px; font-size: .82rem; }
   .hero-action { align-items: stretch; flex-direction: column; }
   .hero-action .button { width: 100%; }
   .sample-receipt { grid-template-columns: 1fr; }

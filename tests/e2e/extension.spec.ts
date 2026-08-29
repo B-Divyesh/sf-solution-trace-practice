@@ -4,7 +4,7 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 
-test('the packaged extension completes a real receipt', async () => {
+test('@claim:receipt-workflow @claim:receipt-delete the packaged extension completes and deletes a real receipt', async () => {
   const extensionPath = resolve('dist/extension');
   const userDataDir = await mkdtemp(resolve(tmpdir(), 'show-debugging-test-'));
   const context = await chromium.launchPersistentContext(userDataDir, {
@@ -35,6 +35,11 @@ test('the packaged extension completes a real receipt', async () => {
     const results = await new AxeBuilder({ page: page as never }).analyze();
     const serious = results.violations.filter((violation) => ['serious', 'critical'].includes(violation.impact ?? ''));
     expect(serious).toEqual([]);
+    await page.getByRole('button', { name: 'Receipts 1' }).click();
+    page.once('dialog', (dialog) => dialog.accept());
+    await page.getByRole('button', { name: 'Delete all receipts' }).click();
+    await expect(page.getByText('No receipts yet. Start with one bug and one testable cause.')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Receipts 0' })).toBeVisible();
   } finally {
     await context.close();
     await rm(userDataDir, { recursive: true, force: true });

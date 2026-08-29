@@ -33,7 +33,7 @@ export function receiptToMarkdown(receipt: Receipt): string {
     timeStyle: 'short'
   }).format(new Date(receipt.createdAt));
 
-  return `# Debugging receipt\n\nCreated ${date}\n\n## Hypothesis\n\n${receipt.hypothesis}\n\n## Test output\n\n\`\`\`text\n${receipt.testOutput}\n\`\`\`\n\n## Fix I chose\n\n${receipt.fix}\n\n## What I learned\n\n${receipt.lesson}\n\n---\nThis receipt records a process. It does not prove competence.\n`;
+  return `# Debugging receipt\n\nCreated ${date}\n\n## Hypothesis\n\n${receipt.hypothesis}\n\n## Test output\n\n\`\`\`text\n${receipt.testOutput}\n\`\`\`\n\n## Fix I chose\n\n${receipt.fix}\n\n## Clue for next time\n\n${receipt.lesson}\n\n---\nThis receipt records a process. It does not prove competence.\n`;
 }
 
 export function downloadReceipt(receipt: Receipt): void {
