@@ -1,0 +1,64 @@
+
+> show-your-debugging@1.0.0 test
+> node scripts/test.mjs --grep @claim:no-tracking
+
+
+> show-your-debugging@1.0.0 test:unit
+> vitest run --config vitest.config.ts
+
+
+ RUN  v3.2.4 /work/repo
+
+ ✓ src/receipt.test.ts (2 tests) 37ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  09:06:50
+   Duration  1.03s (transform 41ms, setup 0ms, collect 38ms, tests 37ms, environment 0ms, prepare 189ms)
+
+
+> show-your-debugging@1.0.0 build
+> node scripts/build.mjs
+
+
+[log] WXT 0.20.11
+◇ injected env (0) from .env.production.chrome.local,.env.production.chrome,.env.chrome.local,.env.chrome,.env.production.local,.env.production,.env.local,.env // tip: ⌘ override existing { override: true }
+[info] Building chrome-mv3 for production with Vite 7.1.3
+[success] Built extension in 553 ms
+  ├─ .output/chrome-mv3/manifest.json              415 B   
+  ├─ .output/chrome-mv3/popup.html                 1.61 kB 
+  ├─ .output/chrome-mv3/background.js              585 B   
+  ├─ .output/chrome-mv3/chunks/popup-D3-wYnHq.js   8.13 kB 
+  ├─ .output/chrome-mv3/assets/popup-DNayWpSo.css  4.79 kB 
+  ├─ .output/chrome-mv3/icon-128.png               27.33 kB
+  ├─ .output/chrome-mv3/icon-16.png                918 B   
+  ├─ .output/chrome-mv3/icon-32.png                1.95 kB 
+  └─ .output/chrome-mv3/icon-48.png                4.01 kB 
+Σ Total size: 49.73 kB                           
+[info] Zipping extension...
+[success] Zipped extension in 95 ms
+  └─ .output/show-your-debugging-1.0.0-chrome.zip  41.46 kB
+Σ Total size: 41.46 kB                           
+[success] Finished in 679 ms
+
+> show-your-debugging@1.0.0 build:site:assets
+> vite build --config vite.config.ts
+
+vite v7.1.3 building for production...
+transforming...
+✓ 5 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist/site/index.html                  3.25 kB │ gzip: 1.12 kB
+../dist/site/assets/index-BxOB-Esn.css  12.40 kB │ gzip: 3.59 kB
+../dist/site/assets/index-BHyDUCd0.js   18.04 kB │ gzip: 6.10 kB │ map: 32.60 kB
+✓ built in 269ms
+Built site: dist/site
+Built extension: dist/extension
+Packaged extension: dist/site/downloads/show-your-debugging-chrome.zip
+
+Running 1 test using 1 worker
+
+  ✓  1 [chromium] › tests/e2e/claims.spec.ts:126:1 › @claim:no-tracking loads no third-party runtime request or script (1.4s)
+
+  1 passed (4.3s)
