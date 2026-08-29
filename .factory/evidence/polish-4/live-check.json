@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-08-29T10:26:20.463Z",
+  "deploymentId": "36e4e16b-30a3-46dc-9cef-7765c3e7b6e2",
+  "base": "https://solution-trace-practice.sociobot.in",
+  "pass": true,
+  "routes": [
+    {"path":"/","status":200,"title":"Show Your Debugging — Record debugging practice","canonical":"/","h1":1,"main":1,"seriousCriticalAxe":[],"consoleErrors":[],"pass":true},
+    {"path":"/?demo=1","status":200,"title":"Demo — Show Your Debugging","canonical":"/demo","h1":1,"main":1,"seriousCriticalAxe":[],"consoleErrors":[],"pass":true},
+    {"path":"/demo","status":200,"title":"Demo — Show Your Debugging","canonical":"/demo","h1":1,"main":1,"seriousCriticalAxe":[],"consoleErrors":[],"pass":true},
+    {"path":"/privacy","status":200,"title":"Privacy — Show Your Debugging","canonical":"/privacy","h1":1,"main":1,"seriousCriticalAxe":[],"consoleErrors":[],"pass":true},
+    {"path":"/terms","status":200,"title":"Terms — Show Your Debugging","canonical":"/terms","h1":1,"main":1,"seriousCriticalAxe":[],"consoleErrors":[],"pass":true},
+    {"path":"/404.html","status":200,"title":"Page not found — Show Your Debugging","canonical":"/404","h1":1,"main":1,"seriousCriticalAxe":[],"consoleErrors":[],"pass":true},
+    {"path":"/missing-page","status":200,"title":"Page not found — Show Your Debugging","canonical":"/404","h1":1,"main":1,"seriousCriticalAxe":[],"consoleErrors":[],"pass":true}
+  ],
+  "mobile": {
+    "viewport": "390x844",
+    "audienceVisible": true,
+    "privacyVisible": true,
+    "downloadHref": "/downloads/show-your-debugging-vscode.vsix",
+    "factBottomsPx": [591.59, 616.19, 640.78],
+    "visibleHeaderTargetSizes": [[100,44],[44,44],[45.94,44],[96.17,44]],
+    "horizontalOverflowPx": 0,
+    "consoleErrors": []
+  },
+  "demo": {
+    "oneClickEntry": true,
+    "bannerVisible": true,
+    "seededHypothesis": "The loop reads one item past the end of the cart.",
+    "seededHistoryVisible": true,
+    "storageKeys": ["demo:draft","demo:receipts"],
+    "resetRestoredSeed": true,
+    "offlineReload": true,
+    "storageKeysAfterExit": [],
+    "requestOrigins": ["https://solution-trace-practice.sociobot.in"],
+    "consoleErrors": []
+  },
+  "keyboard": {"demoHeadingFocused":true,"backNavigationHeadingFocused":true},
+  "downloads": {
+    "vscode": {"status":200,"bytes":14416,"signature":"PK","sha256":"b226a8ebf33be3c97bfe11f35d66d708f44226e7cefaa2a48e849158a2d5ee6e"},
+    "chrome": {"status":200,"bytes":41460,"signature":"PK","sha256":"9e31c14564cb4062a90a9d3e89e88fcb74245108d08e91ee7d14c3ee6026628c"}
+  },
+  "deployedAssets": {
+    "index-CXVsAXXs.js": "7205f274f40f4f5314e6d4b7045a618e31677f93a168421892e3d767ad8d723b",
+    "index-CMrndexH.css": "d541586bcd7e0c732b2d32dbc1dc866247a590ac824a1ec5334ffea555a07516"
+  },
+  "headers": {
+    "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+    "x-content-type-options": "nosniff",
+    "referrer-policy": "strict-origin-when-cross-origin"
+  }
+}
