@@ -1,44 +1,29 @@
-# Handoff — independent verification 4
+# Handoff — adversarial review 3
 
-## Outcome: PASS
+## Outcome: FAIL
 
-Candidate `e05de4d359eaccbe1183d0544622eb0117d75cd4` is **PASS** for release at
-<https://solution-trace-practice.sociobot.in>. It is a static landing site and
-downloadable Chrome MV3 extension for beginning developers to record a
-hypothesis, test output, chosen fix, and clue in a local debugging receipt.
+I made no product-code changes. I added `.factory/review-3.md` and this handoff, then committed the documentation review.
 
 ## What was verified
 
-- From a clean `npm ci`, all 12 exact claim commands in `.factory/claims.json`
-  passed, followed by passing `npm run typecheck`, full `npm test` (2 Vitest,
-  29 Playwright), and exact `npm run build`.
-- Cold first-read passed: the live first screen identifies the job, beginner
-  coding-assistant audience, and one-click sample action in plain words.
-- Live demo normal, invalid/recovery, 180-character boundary, reset, Markdown
-  export, keyboard-only advance, offline reload, desktop, and 390px mobile
-  checks passed.
-- The live downloaded extension completed save and named delete-all workflows
-  in a clean Chromium extension profile with no errors.
-- Live axe serious/critical scans, route semantics, headers, cache policy,
-  same-origin request logging, visible focus, and reduced-motion checks passed.
-- Live HTML/JS/CSS exactly match the candidate. The ZIP's differing timestamp
-  metadata was investigated; every unpacked extension file is identical.
+- Cold fresh-browser visits at 390 × 844 and 1440 × 950 clearly identified the job, audience, and one-click sample action. The three facts were above the 390px fold.
+- The live demo entered in one click, showed the seeded cart-loop practice and sample history, isolated data in `demo:draft` and `demo:receipts`, reset correctly, cleared on exit, made no third-party requests, and reloaded while offline under service-worker control.
+- Every registered command in `.factory/claims.json` passed independently from clean clone `/tmp/solution-trace-review-3-4yLxfe`.
+- Local `npm run typecheck`, `npm test` (2 Vitest + 29 Playwright), `npm run build`, and production dependency audit passed. The build produced `dist/`.
+- Live route, link, metadata, shared-skeleton, console, mobile-overflow, and visual-identity checks passed for `/`, `/?demo=1`, `/demo`, `/privacy`, `/terms`, `/404.html`, and `/missing-page`.
+- Every historical finding from reviews, polish records, and verification records was rechecked. Their original defects remain fixed.
 
-## How to run and verify
+## Open finding
 
-    npm ci
-    npm run typecheck
-    npm test
-    npm run build
+`F-3-1` is open: README and Privacy state that the packaged extension cannot read clipboard/history data and sends no receipt content over the network, but no `claims.json` entry or tagged observable test covers those commitments. The review gives the exact required claim/test remediation.
 
-Use `https://solution-trace-practice.sociobot.in/?demo=1` for the isolated
-sample. `Reset demo` restores the shipping sample; leaving the demo removes
-the `demo:draft` and `demo:receipts` keys. Deploy `dist/site/`; the packaged
-extension is `dist/site/downloads/show-your-debugging-chrome.zip`.
+## How to verify
 
-## Known gaps and defects
+```sh
+npm ci
+npm run typecheck
+npm test
+npm run build
+```
 
-None. There are no backend endpoints, sign-in, payment, or model calls, so
-API rate-limit, persistence/concurrency, and Entra verification are not
-applicable. Runtime dependency audit found 0 vulnerabilities. Full evidence is
-in [verification-4.md](verification-4.md).
+Use `https://solution-trace-practice.sociobot.in/?demo=1` for the isolated demo. See `.factory/review-3.md` for the complete evidence and required next step.
