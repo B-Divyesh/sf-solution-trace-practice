@@ -1,1 +1,1 @@
-Record a hypothesis, test, fix, and clue in VS Code before asking an assistant.
+Record a hypothesis, test, fix, and clue in VS Code before asking a coding assistant.
