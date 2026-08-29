@@ -34,6 +34,13 @@ test('@claim:demo-reset restores the shipped sample and clears edits', async ({ 
   await page.locator('.site-header .wordmark').click();
   await expect(page).toHaveURL(/\/$/);
   expect(await page.evaluate(() => Object.keys(localStorage))).toEqual([]);
+
+  await page.goto(demoUrl);
+  await page.getByLabel('My hypothesis').fill('Discard this second demo edit.');
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('link', { name: 'Start for real' }).click();
+  await downloadPromise;
+  expect(await page.evaluate(() => Object.keys(localStorage))).toEqual([]);
 });
 
 test('@claim:hypothesis-first requires the guess before showing the test', async ({ page }) => {

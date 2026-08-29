@@ -70,6 +70,13 @@
     "sandbox": "built extension; inspect the MV3 manifest and assert storage is the only requested permission"
   },
   {
+    "id": "extension-privacy-boundary",
+    "claim": "The extension has no tab, history, clipboard, or host permission and sends no receipt content over the network.",
+    "where": "README introduction, privacy page",
+    "test": "npm test -- --grep @claim:extension-privacy-boundary",
+    "sandbox": "fresh Chromium extension profile; assert all permission surfaces are storage-only, scan the packaged bundle for private-data APIs, complete a uniquely marked receipt while recording requests, and assert no HTTP request or receipt value leaves the extension"
+  },
+  {
     "id": "no-code-generation",
     "claim": "The extension does not generate code or answers.",
     "where": "landing limits, README",

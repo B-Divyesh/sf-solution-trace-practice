@@ -1,6 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 
 const routes = [
   { route: '/', title: 'Show Your Debugging — Practice before asking', description: 'Record a hypothesis, test result, fix, and clue before asking a coding assistant for the answer.', canonical: '/' },
@@ -49,6 +49,7 @@ test('keyboard navigation changes routes and moves focus to the heading', async 
   await expect(page.getByRole('heading', { level: 1 })).toBeFocused();
   await page.goBack();
   await expect(page).toHaveURL(/\/$/);
+  await expect(page.getByRole('heading', { level: 1 })).toBeFocused();
 });
 
 test('the landing and demo fit a 390px phone viewport', async ({ page }) => {
@@ -79,6 +80,9 @@ test('the practice steps describe the next product action without promising an a
   await page.goto('/');
   await expect(page.getByText('Write a testable hypothesis before recording test output.')).toBeVisible();
   await expect(page.getByText('Write a testable hypothesis before you reveal another answer.')).toHaveCount(0);
+  const extensionPage = await readFile('extension/entrypoints/popup/index.html', 'utf8');
+  expect(extensionPage).toContain('Record a debugging receipt before asking for help');
+  expect(extensionPage).not.toMatch(/reveal (?:another |the )?answer/i);
 });
 
 test('the README leads with plain privacy outcomes', async () => {
@@ -157,14 +161,26 @@ test('built route documents expose correct metadata before JavaScript runs', asy
   }
 });
 
-test('every internal landing link resolves', async ({ page, request }) => {
-  await page.goto('/');
-  const hrefs = await page.locator('a').evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).href));
-  for (const href of new Set(hrefs)) {
-    const url = new URL(href);
-    if (url.origin !== 'http://127.0.0.1:4173' || url.protocol === 'mailto:') continue;
-    const response = await request.get(url.pathname);
-    expect(response.status(), `${url.pathname} should resolve`).toBe(200);
+test('every internal link across product and legal routes resolves', async ({ page, request }) => {
+  for (const route of ['/', '/?demo=1', '/privacy', '/terms', '/404.html']) {
+    await page.goto(route);
+    const hrefs = await page.locator('a').evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).href));
+    for (const href of new Set(hrefs)) {
+      const url = new URL(href);
+      if (url.origin !== 'http://127.0.0.1:4173' || url.protocol === 'mailto:') continue;
+      const response = await request.get(`${url.pathname}${url.search}`);
+      expect(response.status(), `${route} link ${url.pathname} should resolve`).toBe(200);
+    }
+  }
+});
+
+test('every listed claim has exactly one tagged observable test', async () => {
+  const claims = JSON.parse(await readFile('.factory/claims.json', 'utf8')) as Array<{ id: string; test: string }>;
+  const testFiles = (await readdir('tests/e2e')).filter((file) => file.endsWith('.spec.ts'));
+  const source = (await Promise.all(testFiles.map((file) => readFile(`tests/e2e/${file}`, 'utf8')))).join('\n');
+  for (const claim of claims) {
+    expect(claim.test).toBe(`npm test -- --grep @claim:${claim.id}`);
+    expect(source.match(new RegExp(`@claim:${claim.id}(?![a-z0-9-])`, 'g')) ?? [], claim.id).toHaveLength(1);
   }
 });
 
@@ -175,9 +191,11 @@ test('release output keeps the extension package and immutable asset policy', as
 
   const config = JSON.parse(await readFile('site/public/staticwebapp.config.json', 'utf8')) as {
     routes: Array<{ route: string; headers?: Record<string, string> }>;
+    responseOverrides?: Record<string, { rewrite?: string }>;
   };
   const assets = config.routes.find((route) => route.route === '/assets/*');
   expect(assets?.headers?.['Cache-Control']).toBe('public, max-age=31536000, immutable');
+  expect(config.responseOverrides?.['404']?.rewrite).toBe('/404.html');
 });
 
 test('service worker does not make the extension download a precache requirement', async () => {
