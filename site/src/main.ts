@@ -276,7 +276,7 @@ function renderDemoReceiptList(): void {
 }
 
 function renderDemo(): void {
-  setMeta('Demo — Show Your Debugging', 'Try a sample debugging receipt stored only in a separate browser demo space.', '/?demo=1');
+  setMeta('Demo — Show Your Debugging', 'Try a sample debugging receipt stored only in a separate browser demo space.', '/demo');
   main.className = 'demo-page';
   banner.className = 'demo-banner';
   banner.innerHTML = demoBannerMarkup();

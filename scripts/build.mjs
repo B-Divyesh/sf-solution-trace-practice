@@ -32,7 +32,7 @@ const routeMetadata = [
     directory: 'demo',
     title: 'Demo — Show Your Debugging',
     description: 'Try a sample debugging receipt stored only in a separate browser demo space.',
-    canonical: 'https://solution-trace-practice.sociobot.in/?demo=1'
+    canonical: 'https://solution-trace-practice.sociobot.in/demo'
   },
   {
     directory: 'privacy',

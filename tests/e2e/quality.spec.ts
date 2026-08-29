@@ -4,8 +4,8 @@ import { readFile } from 'node:fs/promises';
 
 const routes = [
   { route: '/', title: 'Show Your Debugging — Practice before asking', description: 'Record a hypothesis, test result, fix, and clue before asking a coding assistant for the answer.', canonical: '/' },
-  { route: '/?demo=1', title: 'Demo — Show Your Debugging', description: 'Try a sample debugging receipt stored only in a separate browser demo space.', canonical: '/?demo=1' },
-  { route: '/demo', title: 'Demo — Show Your Debugging', description: 'Try a sample debugging receipt stored only in a separate browser demo space.', canonical: '/?demo=1' },
+  { route: '/?demo=1', title: 'Demo — Show Your Debugging', description: 'Try a sample debugging receipt stored only in a separate browser demo space.', canonical: '/demo' },
+  { route: '/demo', title: 'Demo — Show Your Debugging', description: 'Try a sample debugging receipt stored only in a separate browser demo space.', canonical: '/demo' },
   { route: '/privacy', title: 'Privacy — Show Your Debugging', description: 'How Show Your Debugging stores receipts locally and keeps them under your control.', canonical: '/privacy' },
   { route: '/terms', title: 'Terms — Show Your Debugging', description: 'Terms for using Show Your Debugging as a free debugging practice tool.', canonical: '/terms' },
   { route: '/404.html', title: 'Page not found — Show Your Debugging', description: 'This page does not exist. Return to Show Your Debugging.', canonical: '/404' },
@@ -128,7 +128,7 @@ test('the standalone 404 uses the shared site skeleton', async ({ page }) => {
 
 test('built route documents expose correct metadata before JavaScript runs', async () => {
   const documents = [
-    ['dist/site/demo/index.html', 'Demo — Show Your Debugging', 'https://solution-trace-practice.sociobot.in/?demo=1'],
+    ['dist/site/demo/index.html', 'Demo — Show Your Debugging', 'https://solution-trace-practice.sociobot.in/demo'],
     ['dist/site/privacy/index.html', 'Privacy — Show Your Debugging', 'https://solution-trace-practice.sociobot.in/privacy'],
     ['dist/site/terms/index.html', 'Terms — Show Your Debugging', 'https://solution-trace-practice.sociobot.in/terms']
   ] as const;

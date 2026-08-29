@@ -2,7 +2,7 @@
   {
     "id": "sample-opens",
     "claim": "One click opens a filled cart-loop practice with sample history.",
-    "where": "landing first-screen action, README demo link",
+    "where": "landing first-screen action",
     "test": "npm test -- --grep @claim:sample-opens",
     "sandbox": "fresh browser context at /; click the first-screen sample action and assert /?demo=1, the demo banner, seeded hypothesis, and sample history"
   },
