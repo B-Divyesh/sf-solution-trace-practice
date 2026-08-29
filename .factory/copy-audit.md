@@ -1,6 +1,6 @@
 # Copy audit
 
-Audited 2026-08-29 for polish round 5. Counts treat hyphenated terms and `VS Code` as written words. No sentence exceeds 22 words or uses a banned marketing word.
+Audited 2026-08-29 for polish round 6. Counts treat hyphenated terms and `VS Code` as written words. No sentence exceeds 22 words or uses a banned marketing word.
 
 ## Landing page
 
@@ -69,6 +69,8 @@ The first screen reads in one breath: record debugging practice in VS Code, then
 - Privacy separates VS Code local state, Chrome permissions, demo keys, and network behavior.
 - The demo, Chrome popup, and VS Code view use the same four field names: **hypothesis**, **test output**, **fix**, and **clue**.
 - Route titles name their content. The landing title is **Show Your Debugging — Record debugging practice**.
+- The deploy instruction says: “The included `staticwebapp.config.json` serves supported routes, a styled 404 response, CSP, and security headers.” (14 words, pass.)
+- Catalog description: “Record each debugging hypothesis, test, fix, and clue before asking a coding assistant.” (13 words, verb-first, 88 characters, pass.)
 - No visitor-facing copy uses “lesson,” “answer reveal,” Chrome MV3 jargon, internal infrastructure language, or the earlier mood headings.
 
 ## Terminology table
