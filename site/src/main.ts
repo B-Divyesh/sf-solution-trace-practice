@@ -3,6 +3,7 @@ import './style.css';
 
 const main = document.querySelector<HTMLElement>('#main')!;
 const banner = document.querySelector<HTMLElement>('#demo-banner')!;
+const routeContent = document.querySelector<HTMLElement>('#route-content')!;
 const announcer = document.querySelector<HTMLElement>('.route-announcer')!;
 const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')!;
 const networkStatus = document.querySelector<HTMLElement>('#network-status')!;
@@ -127,7 +128,7 @@ function renderLanding(): void {
   banner.className = '';
   setMeta('Show Your Debugging — Record debugging practice', 'Record a hypothesis, test result, fix, and clue before asking a coding assistant for the answer.', '/');
   main.className = '';
-  main.innerHTML = landingMarkup();
+  routeContent.innerHTML = landingMarkup();
 }
 
 function readDemoData(): void {
@@ -289,7 +290,7 @@ function renderDemo(): void {
   banner.className = 'demo-banner';
   banner.innerHTML = demoBannerMarkup();
   readDemoData();
-  main.innerHTML = demoShellMarkup();
+  routeContent.innerHTML = demoShellMarkup();
   bindDemoBanner();
   renderDemoStep();
   renderDemoReceiptList();
@@ -306,7 +307,7 @@ function renderLegal(kind: 'privacy' | 'terms'): void {
   const privacy = kind === 'privacy';
   setMeta(`${privacy ? 'Privacy' : 'Terms'} — Show Your Debugging`, privacy ? 'How Show Your Debugging stores receipts locally and keeps them under your control.' : 'Terms for using Show Your Debugging as a free debugging practice tool.', `/${kind}`);
   main.className = '';
-  main.innerHTML = legalMarkup(kind);
+  routeContent.innerHTML = legalMarkup(kind);
 }
 
 function renderNotFound(): void {
@@ -314,7 +315,7 @@ function renderNotFound(): void {
   banner.className = '';
   setMeta('Page not found — Show Your Debugging', 'This page does not exist. Return to Show Your Debugging.', '/404');
   main.className = '';
-  main.innerHTML = `<section class="not-found section-shell"><div class="error-stamp" aria-hidden="true">404</div><p class="kicker">Page not found</p><h1 tabindex="-1">This page does not exist</h1><p>The address may be wrong or the page may have moved.</p><a class="button primary" href="/" data-route>Return home</a></section>`;
+  routeContent.innerHTML = `<section class="not-found section-shell"><div class="error-stamp" aria-hidden="true">404</div><p class="kicker">Page not found</p><h1 tabindex="-1">This page does not exist</h1><p>The address may be wrong or the page may have moved.</p><a class="button primary" href="/" data-route>Return home</a></section>`;
 }
 
 function renderRoute(focus = false): void {

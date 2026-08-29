@@ -1,6 +1,6 @@
 # Copy audit
 
-Audited 2026-08-29 after polish round 4. Counts treat hyphenated terms and `VS Code` as written words. No sentence exceeds 22 words or uses a banned marketing word.
+Audited 2026-08-29 for polish round 5. Counts treat hyphenated terms and `VS Code` as written words. No sentence exceeds 22 words or uses a banned marketing word.
 
 ## Landing page
 
@@ -64,6 +64,7 @@ The first screen reads in one breath: record debugging practice in VS Code, then
 ## Other visitor-facing copy
 
 - The README begins with the VS Code job and local-storage result. Installation uses the exact VS Code labels **Extensions**, **Install from VSIX…**, and **Command Palette**.
+- Its test description uses three short sentences: “It scans screens with Axe and checks the 390 px layout.” (10 words), “It completes a receipt in a clean VS Code profile.” (10 words), and “It checks the Chrome package.” (6 words).
 - The Chrome version is always called a separate browser version. Its installation steps remain under their own heading.
 - Privacy separates VS Code local state, Chrome permissions, demo keys, and network behavior.
 - The demo, Chrome popup, and VS Code view use the same four field names: **hypothesis**, **test output**, **fix**, and **clue**.

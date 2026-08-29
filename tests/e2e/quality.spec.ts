@@ -39,6 +39,16 @@ for (const { route, title, description, canonical } of routes) {
   });
 }
 
+test('demo controls are in main and have no Axe region violation', async ({ page }) => {
+  await page.goto('/?demo=1');
+  const demoControls = page.locator('main > #demo-banner');
+  await expect(demoControls).toContainText('Demo — sample data, nothing is saved to your receipts');
+  await expect(demoControls.getByRole('button', { name: 'Reset demo' })).toBeVisible();
+  await expect(demoControls.getByRole('link', { name: 'Start for real' })).toBeVisible();
+  const results = await new AxeBuilder({ page: page as never }).analyze();
+  expect(results.violations.filter((violation) => violation.id === 'region')).toEqual([]);
+});
+
 test('keyboard navigation changes routes and moves focus to the heading', async ({ page }) => {
   await page.goto('/');
   await page.keyboard.press('Tab');
@@ -92,6 +102,14 @@ test('the README leads with plain privacy outcomes', async () => {
   expect(readme).not.toContain('Chrome MV3 extension');
   expect(readme).not.toContain('chrome.storage.local');
   expect(readme).not.toContain('host access');
+});
+
+test('the README test description uses one short verification result per sentence', async () => {
+  const readme = await readFile('README.md', 'utf8');
+  expect(readme).toContain('It scans screens with Axe and checks the 390 px layout.');
+  expect(readme).toContain('It completes a receipt in a clean VS Code profile.');
+  expect(readme).toContain('It checks the Chrome package.');
+  expect(readme).not.toContain('It also scans screens with axe, checks the 390 px layout, completes a receipt in a clean VS Code profile, and checks the Chrome package.');
 });
 
 test('the first screen and static document name debugging practice and VS Code', async ({ page }) => {

@@ -46,7 +46,7 @@ npm test
 
 The command runs unit tests and makes a clean production build. It tests each listed claim in Chromium.
 
-It also scans screens with axe, checks the 390 px layout, completes a receipt in a clean VS Code profile, and checks the Chrome package.
+It scans screens with Axe and checks the 390 px layout. It completes a receipt in a clean VS Code profile. It checks the Chrome package.
 
 Run one claim with its command from [.factory/claims.json](.factory/claims.json). For example:
 
