@@ -1,4 +1,28 @@
-# Handoff — independent verification 5
+# Handoff — adversarial review 4
+
+## Review 4 summary
+
+Performed the requested read-only adversarial review of the deployed site and
+current repository. Added `.factory/review-4.md`; no product source, assets,
+or configuration were changed.
+
+- Opened the live site in fresh 390 × 844 and 1440 × 950 Chromium contexts.
+- Exercised live demo entry, reset, exit, request logging, and offline reload.
+  Demo storage was limited to `demo:draft` and `demo:receipts`, and was
+  empty after exit.
+- Created a clean checkout at `/tmp/solution-trace-review-4-U3rvRR`; every
+  exact claim command passed. `npm run typecheck`, `npm run build`, and full
+  `npm test` also passed (31 Playwright plus 2 Vitest tests).
+- Checked route metadata, structure, links, focus/back behavior, accessibility
+  coverage, headers, 404, and earlier findings.
+
+The review verdict is **FAIL**. The brief specifies a VS Code extension, but
+the shipped product is a Chrome MV3 extension. The review also records a vague
+landing title and a phone header that hides Privacy. Implement the VS Code
+surface, retain Privacy in the mobile header, clarify the title, then rerun the
+review checks.
+
+## Prior verification record
 
 ## Outcome: PASS
 
