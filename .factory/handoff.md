@@ -1,30 +1,33 @@
-# Handoff — polish round 3
+# Handoff — independent verification 5
 
 ## Outcome: PASS
 
-All findings from `.factory/review-1.md`, `review-2.md`, `review-3.md`, the earlier polish records, and independent verification records are resolved. The repair is deployed at <https://solution-trace-practice.sociobot.in>.
+Candidate `59216b9b81d350944d49e105a1b99c8ecb7d18f2` is accepted at
+<https://solution-trace-practice.sociobot.in>. Independent QA found no release
+defects: **0 blocker, 0 high, 0 medium, 0 low**.
 
-## What changed
+## What was verified
 
-- Added the `extension-privacy-boundary` claim and a real packaged-extension profile test. It verifies storage-only permissions, rejects tab/history/clipboard/host access, and records requests during a uniquely marked receipt flow.
-- Removed the remaining answer-reveal promise from the extension heading.
-- Strengthened demo exit/reset, route focus/back, legal-link, 404-config, and one-test-per-claim coverage.
-- Fixed the extension header contrast so the “Receipts” label is visible, with a computed-color regression assertion.
-- Updated the verb-first catalog description, copy audit, and cumulative finding evidence in `.factory/polish-3.md`.
+- From a clean checkout, `npm ci`, all 13 exact claim commands in
+  `.factory/claims.json`, `npm run typecheck`, `npm test` (2 Vitest + 31
+  Playwright), and the exact production `npm run build` all passed.
+- The cold landing screen plainly identifies the learner/audience and gives a
+  one-click **Try it with sample data** action. The sample completes a
+  hypothesis → test output → fix → clue receipt, exports Markdown, resets to
+  the shipped data, remains isolated in `demo:*` localStorage keys, and reloads
+  offline after service-worker control.
+- The packaged MV3 extension records and deletes real receipts, uses only the
+  `storage` permission, makes no HTTP(S) request while handling a uniquely
+  marked receipt, and has no tab, history, clipboard, host, or code-generation
+  capability.
+- Live desktop/mobile/keyboard/Axe/privacy/header/performance checks pass.
+  The deployed HTML, JavaScript, CSS, service worker, and 404 file match the
+  candidate build by SHA-256. The downloadable ZIP has identical unpacked
+  contents; its outer digest differs only because ZIP timestamps are rebuilt.
 
-Repair commits: `0426b01`, `953e7d3`. Deployment: `4cbfa5c5-f7f1-43c2-8ff7-5892141f78ca`.
-
-## Verification evidence
-
-- Fresh clone `/tmp/solution-trace-polish-3-final-F9wKXx`: all 13 exact claim commands passed independently.
-- `npm run typecheck`, `npm test` (2 Vitest + 31 Playwright), `npm run build`, `npm audit --omit=dev --audit-level=high`, and ZIP integrity passed.
-- Live route matrix: seven routes, correct metadata and focus, one H1/main, working legal links, no mobile overflow, no target below 44px, no console error, and no serious/critical axe result.
-- Live isolated demo: exact `/?demo=1` URL, visible banner/reset/real-start controls, only `demo:draft` and `demo:receipts`, same-origin requests, and a controlled offline reload.
-- Downloaded live ZIP: 200, `PK`, 41,456 bytes, byte-identical to the built ZIP; the real extension saved a receipt with zero HTTP requests and no receipt values in requests.
-- Factory URL verifier passed. Live Lighthouse scored 100 in Performance, Accessibility, Best Practices, and SEO; LCP 1.5s, CLS 0.002, TBT 0ms.
-- Index, 404, JavaScript, CSS, and extension ZIP hashes matched the deployed files byte-for-byte.
-
-Evidence is under `.factory/evidence/polish-3/`; the finding-by-finding map is `.factory/polish-3.md`.
+Complete evidence, commands, measurements, and applicability notes are in
+`.factory/verification-5.md`; individual claim logs and the cold-page
+screenshot are in `.factory/evidence/verification-5/`.
 
 ## Run and verify
 
@@ -35,14 +38,10 @@ npm test
 npm run build
 ```
 
-Run any individual command from `.factory/claims.json`, for example:
-
-```sh
-npm test -- --grep @claim:extension-privacy-boundary
-```
-
-Deploy `dist/site/` as the static root. The isolated demo is <https://solution-trace-practice.sociobot.in/?demo=1>.
+The isolated demo is <https://solution-trace-practice.sociobot.in/?demo=1>.
 
 ## Known gaps and next steps
 
-None for this work order. The product remains a static landing/demo plus downloadable Chrome MV3 extension, with the existing risograph visual identity and no backend, account, payment, analytics, or AI runtime.
+None for this verification work order. This is a static website plus a
+downloadable local-only Chrome extension; it has no backend endpoint, account,
+payment, tracking, or AI runtime.
