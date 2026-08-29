@@ -1,0 +1,154 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Show Your Debugging — Practice before asking",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "canonical": "https://solution-trace-practice.sociobot.in/",
+      "ogTitle": "Show Your Debugging — Practice before asking",
+      "twitterTitle": "Show Your Debugging — Practice before asking",
+      "overflow": 0,
+      "undersized": [],
+      "privacy": 2,
+      "terms": 1,
+      "factBottoms": [
+        570,
+        594.59,
+        619.19
+      ],
+      "axeSerious": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/?demo=1",
+      "status": 200,
+      "title": "Demo — Show Your Debugging",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "canonical": "https://solution-trace-practice.sociobot.in/demo",
+      "ogTitle": "Demo — Show Your Debugging",
+      "twitterTitle": "Demo — Show Your Debugging",
+      "overflow": 0,
+      "undersized": [],
+      "privacy": 2,
+      "terms": 1,
+      "axeSerious": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/demo",
+      "status": 200,
+      "title": "Demo — Show Your Debugging",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "canonical": "https://solution-trace-practice.sociobot.in/demo",
+      "ogTitle": "Demo — Show Your Debugging",
+      "twitterTitle": "Demo — Show Your Debugging",
+      "overflow": 0,
+      "undersized": [],
+      "privacy": 2,
+      "terms": 1,
+      "axeSerious": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "title": "Privacy — Show Your Debugging",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "canonical": "https://solution-trace-practice.sociobot.in/privacy",
+      "ogTitle": "Privacy — Show Your Debugging",
+      "twitterTitle": "Privacy — Show Your Debugging",
+      "overflow": 0,
+      "undersized": [],
+      "privacy": 2,
+      "terms": 1,
+      "axeSerious": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/terms",
+      "status": 200,
+      "title": "Terms — Show Your Debugging",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "canonical": "https://solution-trace-practice.sociobot.in/terms",
+      "ogTitle": "Terms — Show Your Debugging",
+      "twitterTitle": "Terms — Show Your Debugging",
+      "overflow": 0,
+      "undersized": [],
+      "privacy": 2,
+      "terms": 1,
+      "axeSerious": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/404.html",
+      "status": 200,
+      "title": "Page not found — Show Your Debugging",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "canonical": "https://solution-trace-practice.sociobot.in/404",
+      "ogTitle": "Page not found — Show Your Debugging",
+      "twitterTitle": "Page not found — Show Your Debugging",
+      "overflow": 0,
+      "undersized": [],
+      "privacy": 2,
+      "terms": 1,
+      "axeSerious": 0,
+      "consoleErrors": []
+    },
+    {
+      "route": "/missing-page",
+      "status": 200,
+      "title": "Page not found — Show Your Debugging",
+      "h1": 1,
+      "main": 1,
+      "lang": "en",
+      "canonical": "https://solution-trace-practice.sociobot.in/404",
+      "ogTitle": "Page not found — Show Your Debugging",
+      "twitterTitle": "Page not found — Show Your Debugging",
+      "overflow": 0,
+      "undersized": [],
+      "privacy": 2,
+      "terms": 1,
+      "axeSerious": 0,
+      "consoleErrors": []
+    }
+  ],
+  "demo": {
+    "url": "https://solution-trace-practice.sociobot.in/?demo=1",
+    "keys": [
+      "demo:draft",
+      "demo:receipts"
+    ],
+    "origins": [
+      "https://solution-trace-practice.sociobot.in"
+    ],
+    "reset": true,
+    "banner": true
+  },
+  "focus": {
+    "demoHeading": true,
+    "backHomeHeading": true
+  },
+  "offline": {
+    "controlled": true,
+    "heading": "Make a debugging receipt from this bug",
+    "statusVisible": true
+  },
+  "download": {
+    "status": 200,
+    "bytes": 41456,
+    "signature": "PK"
+  }
+}

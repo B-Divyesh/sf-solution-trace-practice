@@ -1,11 +1,12 @@
 # Copy audit
 
-Audited 2026-08-29 after polish round 2. Counts treat hyphenated terms as one word. No line exceeds 22 words or uses a banned marketing word.
+Audited 2026-08-29 after polish round 3. Counts treat hyphenated terms as one word. No line exceeds 22 words or uses a banned marketing word.
 
 ## Landing page
 
 | Copy | Words | Result |
 | --- | ---: | --- |
+| Skip to main content | 4 | Pass |
 | Show Your Debugging | 3 | Pass |
 | Demo | 1 | Pass |
 | How it works | 3 | Pass |
@@ -53,6 +54,7 @@ Audited 2026-08-29 after polish round 2. Counts treat hyphenated terms as one wo
 | Built by Param Factory | 4 | Pass |
 | Version 1.0.0 · build 2026.08 | 5 | Pass |
 | Original generated collage. | 3 | Pass |
+| A paper hypothesis, terminal, test strip, and code fix joined by a coral thread. | 15 | Pass; image alternative |
 
 The first screen reads in one breath: practice the bug before asking, then open the filled sample. The three factual lines are visible at 390 × 844 without scrolling.
 
@@ -63,7 +65,20 @@ The first screen reads in one breath: practice the bug before asking, then open 
 - Replaced every visitor-facing use of “lesson” with “clue,” including metadata and Markdown export.
 - Replaced mood and metaphor headings with descriptive section names on landing, receipt, legal, and 404 screens.
 - Replaced the nonexistent answer-reveal instruction with the actual next step: recording test output.
+- Removed the remaining answer-reveal promise from the extension heading. It now says “Record a debugging receipt before asking for help.”
 - Replaced Chrome implementation jargon in the README introduction with the plain privacy result. Technical MV3 details remain implicit in the installation workflow only.
+- Registered the clipboard, history, host-permission, and extension-network boundary as `extension-privacy-boundary`; its packaged-profile test records requests during a real receipt flow.
+
+## Extension and privacy copy added to the audit
+
+| Copy | Words | Result |
+| --- | ---: | --- |
+| Record a debugging receipt before asking for help | 8 | Pass |
+| Receipts stay in this browser. | 5 | Pass; `local-only` claim |
+| The extension cannot read your tabs, editor files, or clipboard. | 10 | Pass; `extension-privacy-boundary` claim |
+| The extension requests browser storage only. | 6 | Pass; `storage-only-permission` claim |
+| It cannot read open tabs, editor files, clipboard contents, or browsing history. | 12 | Pass; `extension-privacy-boundary` claim |
+| The extension sends no receipt content over the network. | 9 | Pass; `extension-privacy-boundary` claim |
 
 ## Terminology table
 
