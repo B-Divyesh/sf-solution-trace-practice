@@ -1,82 +1,47 @@
-# Handoff — perfection loop round 4
+# Handoff — independent verification 6
 
 ## Outcome
 
-The cumulative repair is complete and deployed at <https://solution-trace-practice.sociobot.in>. All findings in reviews 1–4 are resolved, including the blocking artifact mismatch. The primary deliverable is now a real packaged VS Code extension; the existing Chrome version remains a clearly labeled separate download.
+**PASS — release accepted** for candidate
+`c2d8eafd6a471f9744acfcbdf113654cf23f65e8` at
+<https://solution-trace-practice.sociobot.in>.
 
-Deployment ID: `36e4e16b-30a3-46dc-9cef-7765c3e7b6e2`
+The deployed static site, VS Code extension, Chrome extension, demo sandbox,
+and downloadable artifacts match the candidate and satisfy the researched
+brief's local-first debugging-receipt workflow.
 
-Product repair commit: `3fceeab6ec21a34c9637d258821c2fc1d40c827f`
+## Verification performed
 
-Local evidence commit: `e25fdd4997928406089a86b05b26f0913211160c`
+- From a clean checkout: `npm ci`, all 16 exact claim commands in
+  `.factory/claims.json`, `npm run typecheck`, `npm test` (2 Vitest + 35
+  Playwright tests), `npm run build`, package integrity checks, and production
+  dependency audit (0 vulnerabilities).
+- Fresh live cold-read, normal, invalid/recovery, reset, exit, Markdown export,
+  request-log, offline reload, keyboard, desktop, 390px mobile, focus,
+  reduced-motion, response-header, and archive checks.
+- Live deployed static artifacts match the fresh candidate build byte-for-byte.
+  The two archive outer hashes differ only in ZIP timestamps; all unpacked
+  Chrome and VSIX content is identical.
+- `verify-url.sh` and live axe scans found no console/page errors and no
+  serious or critical accessibility issue.
 
-## What changed
+Evidence is in [verification-6.md](verification-6.md) and
+`.factory/evidence/verification-6/`.
 
-- Added a VS Code Activity Bar extension with a progressive hypothesis → test output → fix → clue flow, local `globalState` receipts, confirmed deletion, Markdown export, keyboard focus, and reduced-motion support.
-- Added repeatable VSIX packaging and a clean-profile VS Code web integration test. The main build emits the VSIX, the separate Chrome ZIP, both extension build directories, and `dist/site`.
-- Rewrote the first screen and metadata to state the debugging-practice job and VS Code audience directly. The primary site actions now download the VSIX.
-- Kept the one-click `?demo=1` path fully isolated with seeded sample data, a persistent banner, Reset demo, Start for real, demo-only storage keys, and offline behavior.
-- Expanded `.factory/claims.json` to 16 claims with exactly one observable tagged test each, including VS Code storage/privacy and both real extension workflows.
-- Retained and rechecked route-specific titles/metadata, History API focus, designed 404, legal links, mobile facts, mobile Privacy navigation, 44 px targets, and the original risograph debugging-receipt identity.
-- Updated README, privacy/terms copy, demo documentation, design record, copy audit, and the verb-first catalog description.
-
-The complete finding → change → evidence map is in [.factory/polish-4.md](polish-4.md).
-
-## How it was verified
-
-A clean checkout at `/tmp/solution-trace-polish-4-clean-3z5l3V` used repair commit `3fceeab6ec21a34c9637d258821c2fc1d40c827f`:
-
-```sh
-npm ci
-# all 16 exact test commands from .factory/claims.json, one at a time
-npm run typecheck
-npm test
-npm run build
-npm audit --omit=dev --audit-level=high
-unzip -t dist/site/downloads/show-your-debugging-vscode.vsix
-unzip -t dist/site/downloads/show-your-debugging-chrome.zip
-```
-
-Results:
-
-- All 16 claim commands passed.
-- Full suite passed: 2 Vitest and 35 Playwright tests, including the installed-VSIX flow in a fresh VS Code profile.
-- Typecheck, production build, and both archive integrity checks passed.
-- Production dependency audit: 0 vulnerabilities.
-- Initial JS: 18,764 bytes raw / 6,326 bytes gzip. CSS: 12,686 / 3,650 bytes.
-- Local Lighthouse: 100 performance, 100 accessibility, 100 best practices, 100 SEO; LCP 1.8 s, CLS 0.002, TBT 10 ms.
-- Live Lighthouse: 100/100/100/100; LCP 1.6 s, CLS 0.002, TBT 30 ms.
-
-After deployment, fresh desktop and 390 × 844 Chromium contexts rechecked `/`, `/?demo=1`, `/demo`, `/privacy`, `/terms`, `/404.html`, and `/missing-page`. Every route had the correct title and social metadata, one H1/main, legal links, no overflow, zero console errors, and zero serious/critical Axe violations. Keyboard route and Back focus passed. Both downloads returned 200 with valid ZIP signatures. The demo reset its seed, used only `demo:*` storage, cleared on exit, made same-origin requests only, and reloaded offline.
-
-Evidence:
-
-- [.factory/evidence/polish-4/clean-clone-verification.txt](evidence/polish-4/clean-clone-verification.txt)
-- [.factory/evidence/polish-4/live-check.json](evidence/polish-4/live-check.json)
-- [.factory/evidence/polish-4/lighthouse-live.json](evidence/polish-4/lighthouse-live.json)
-- [.factory/evidence/polish-4/live-first-screen.png](evidence/polish-4/live-first-screen.png)
-- [.factory/evidence/polish-4/live-demo.png](evidence/polish-4/live-demo.png)
-- [.factory/evidence/polish-4/live-privacy.png](evidence/polish-4/live-privacy.png)
-- [.factory/evidence/polish-4/live-404.png](evidence/polish-4/live-404.png)
-
-## Run locally
+## How to verify
 
 ```sh
 npm ci
 npm run typecheck
 npm test
 npm run build
-npm run dev:site
 ```
 
-Build outputs:
+Demo: <https://solution-trace-practice.sociobot.in/?demo=1>
 
-- `dist/site`
-- `dist/site/downloads/show-your-debugging-vscode.vsix`
-- `dist/site/downloads/show-your-debugging-chrome.zip`
-- `dist/vscode-extension`
-- `dist/extension`
+## Known gap / next step
 
-## Known gaps and next steps
-
-None. This static, local-first product has no account, backend, payment, analytics, tracking, or runtime AI dependency.
+One non-blocking accessibility improvement remains: Axe's moderate `region`
+rule flags the demo banner because it is outside a landmark. Move that banner
+inside an appropriate landmark in a future polish change. No product-code
+changes were made during this verification.
