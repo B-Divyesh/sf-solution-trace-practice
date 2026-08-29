@@ -1,124 +1,125 @@
-# Handoff: Show Your Debugging — independent verification 2
+# Handoff: Show Your Debugging — repair 2 released
 
 ## Release decision
 
-**FAIL — do not release candidate `abda23e410fbe6b92a060592e6814ca8597f94ac`
-at <https://solution-trace-practice.sociobot.in> yet.** Fresh independent QA
-on 2026-08-29 found one release-blocking mobile accessibility defect: multiple
-visible links are smaller than the required 44 by 44 CSS-pixel touch target at
-390px (for example, the header Demo link is 40 by 22px and footer links are
-25px tall). Full evidence is in `.factory/verification-2.md`.
+**PASS.** Every release-blocking finding in independent report commit
+`becd0f9bdf42aa72fa24165f1388cfe0639682e2` for candidate
+`abda23e410fbe6b92a060592e6814ca8597f94ac` is repaired, tested, pushed, and
+deployed. The repair code commits are `393a85c` and `2b9f553`.
 
-The prior deployment-only failure is resolved: the live extension ZIP is 200
-and valid, all eight exact claim commands pass, hashed assets are immutable
-cached, and the live service worker supports an offline demo reload. Local
-`npm ci`, `npm run typecheck`, `npm test` (2 Vitest + 18 Playwright), and exact
-`npm run build` all passed. No code was changed during this verification.
+Production is live at <https://solution-trace-practice.sociobot.in>. The
+original artifact class remains a WXT + TypeScript Chrome MV3 extension with a
+static site deployed from `dist/site/`.
 
-**Required next step:** make every visible 390px touch target at least 44 by
-44px, then re-run the claims, mobile geometry, keyboard, axe, and live
-deployment checks.
+## What changed
 
----
+- Header, inline-action, legal, footer, skip, and standalone 404 links now have
+  real rendered hit areas of at least 44 by 44 CSS pixels. No overlay or
+  pseudo-element expands the clickable area.
+- The mobile regression enumerates every rendered link, button, input,
+  textarea, select, and button role on `/`, `/demo`, `/privacy`, `/terms`, and
+  `/404.html`. It fails on any dimension below 44px or any target overlap.
+- The accessibility route matrix now includes both the standalone `404.html`
+  and the SPA unknown-route screen. This caught and fixed the faint decorative
+  404 stamp's contrast while preserving the inked-evidence visual system.
+- The brief, demo behavior, claims, extension permissions, local storage,
+  offline strategy, package path, and previously passing behavior are
+  unchanged.
 
-# Builder repair handoff: Show Your Debugging — repair ready for static deployment
+## Clean local verification
 
-## Repair scope
-
-This repair addresses every release-blocking finding in the independent report
-for candidate `6385120886c9d9404cd05edbfbc53bd3ae651ca4`.
-
-Repair commit: `5e1fe4695b5507de9b15d702b7a0c7177bce7588`
-
-- The static build now packages the MV3 ZIP before Vite builds the site. Both
-  `npm run build` and `npm run build:site` produce
-  `dist/site/downloads/show-your-debugging-chrome.zip`.
-- The service worker no longer discovers arbitrary page links for its required
-  precache. It precaches only `/assets/` references and treats failed optional
-  precache requests as non-fatal. Cache name `show-your-debugging-v2` updates
-  existing installs cleanly.
-- `npm test -- --grep @claim:<id>` now forwards the filter directly to
-  Playwright. The wrapper retains the clean unit build and browser flow before
-  running the requested claim.
-- `staticwebapp.config.json` applies one-year immutable caching to
-  `/assets/*`, short revalidation to the version-stable downloadable ZIP, and
-  no-cache to `sw.js` so updates are discovered.
-- Regression coverage now asserts the packaged ZIP is in the served static
-  output, the immutable cache policy exists, and the worker cannot require a
-  `/downloads/` asset during installation.
-
-## What shipped
-
-- A Chrome MV3 extension built with WXT and TypeScript.
-- A required three-step practice: hypothesis → test output → chosen fix and clue.
-- Browser-local draft and receipt storage, receipt history, deletion
-  confirmation, keyboard advancement, and Markdown export.
-- A static landing site with `/demo`, `/privacy`, `/terms`, and a designed
-  `404.html`.
-- A one-click demo seeded with a cart boundary bug and a prior receipt.
-- Demo storage isolated under `demo:draft` and `demo:receipts`.
-- A downloadable Chrome ZIP at the exact public path
-  `/downloads/show-your-debugging-chrome.zip`.
-
-## Build and deploy
+Run from a clean checkout:
 
 ```sh
 npm ci
-npm test
 npm run typecheck
+npm test
+npm audit --omit=dev --audit-level=high
 npm run build
 ```
 
-Deploy `dist/site/` as the static root. The production build creates the
-unpacked extension at `dist/extension/` and the consumer ZIP at
-`dist/site/downloads/show-your-debugging-chrome.zip`. The final ZIP passed
-`unzip -t`, has a `PK` signature, is 41,466 bytes, and had SHA-256
-`34d1d723cbbcc855367d41c2eae30c35d7674620178caeeb38227ee5beef19aa` in the
-final local build.
+Final results on 2026-08-29 UTC:
 
-## Verification evidence
+- `npm ci` passed with the pinned Playwright 1.58.2 toolchain.
+- There is no lint script; `npm run typecheck` passed with no diagnostics.
+- `npm test` passed 2 Vitest tests and 21 Chromium Playwright tests.
+- The browser suite loads the unpacked MV3 extension and completes a real
+  receipt. It also covers desktop, 390 by 844 mobile, keyboard route focus,
+  all public routes and both 404 paths, serious/critical axe findings, demo
+  isolation, privacy requests, Markdown export, and offline reload.
+- Each of the eight commands in `.factory/claims.json` passed exactly as
+  written: `hypothesis-first`, `local-only`, `offline-reload`,
+  `markdown-export`, `free-download`, `storage-only-permission`,
+  `no-code-generation`, and `no-tracking`.
+- `npm audit --omit=dev --audit-level=high` reported zero production
+  vulnerabilities.
+- `npm run build` produced `dist/site`, `dist/extension`, and
+  `dist/site/downloads/show-your-debugging-chrome.zip`. `unzip -t` reported no
+  errors; the manifest still requests only `storage` and no host permissions.
+- `/opt/fleet/lib/verify-url.sh` passed for the local production landing and
+  demo with correct titles, `lang=en`, one H1, one main landmark, alt text, and
+  no console errors.
+- Local mobile Lighthouse scored Performance 100, Accessibility 100, Best
+  Practices 100, and SEO 100. LCP was 1.8s, CLS 0.002, and total blocking time
+  0ms.
+- Initial JS is 17,442 bytes raw / 6.03KB gzip; CSS is 12,280 bytes raw /
+  3.56KB gzip; the 640px hero WebP is 27,036 bytes.
 
-- Clean `npm ci` passed. `npm audit --omit=dev` reported zero vulnerabilities.
-- `npm run typecheck` passed.
-- `npm test` passed: 2 Vitest tests and 18 Chromium browser tests.
-- The full browser suite loaded the unpacked MV3 extension and completed a real
-  receipt; it also covered desktop, keyboard route focus, 390 × 844 mobile,
-  offline demo reload, privacy request interception, all internal links, and
-  serious/critical axe findings on `/`, `/demo`, `/privacy`, and `/terms`.
-- Every exact command in `.factory/claims.json` was run and passed:
-  `hypothesis-first`, `local-only`, `offline-reload`, `markdown-export`,
-  `free-download`, `storage-only-permission`, `no-code-generation`, and
-  `no-tracking`.
-- `/opt/fleet/lib/verify-url.sh` passed against the local production landing
-  and demo: valid title/lang/main/one H1/alt text, zero console errors, and
-  desktop plus 390px screenshots. The repository's Playwright axe integration
-  is the browser-compatible axe check in this image.
-- Lighthouse 13.0.1, local production build: Performance 100, Accessibility
-  100, Best Practices 100, SEO 100; LCP 1.8 s, CLS 0.007, total blocking time
-  0 ms.
-- Asset budget remains within policy: initial JS 17.44 KB raw / 6.04 KB gzip,
-  CSS 11.83 KB raw / 3.53 KB gzip, and 640px hero 27.04 KB WebP.
-- Production deployment completed through the configured Static Web App on
-  2026-08-28 UTC. At `https://solution-trace-practice.sociobot.in`, the ZIP
-  returns HTTP 200, `application/zip`, a `PK` signature, and 41,466 bytes;
-  `/assets/index-CcOTNU6z.js` returns
-  `Cache-Control: public, max-age=31536000, immutable`.
-- Fresh live Chromium verification confirmed the v2 service worker controls
-  `/demo`, an offline reload renders the demo and its offline status, and the
-  landing and demo have no console errors. `verify-url.sh` also passed on both
-  live routes.
+## Exact mobile regression evidence
 
-## Privacy and boundaries
+Fresh 390 by 844 Chromium checks found no undersized or overlapping rendered
+targets:
 
-The extension requests only `storage`, has no host permissions, accounts,
-analytics, model calls, third-party runtime scripts, or remote receipt store.
-The demo remains separate from extension storage. The product does not generate
-code, grade learners, inspect editor files, or disable coding assistants.
+| Route | Smallest width | Smallest height | Overlaps |
+| --- | ---: | ---: | ---: |
+| `/` | 44px | 44px | 0 |
+| `/demo` | 44px | 44px | 0 |
+| `/privacy` | 44px | 44px | 0 |
+| `/terms` | 44px | 44px | 0 |
+| `/404.html` | 46.28px | 44px | 0 |
 
-## Known gaps and next steps
+The designed 3px focus outline remains visible. First Tab focuses the skip
+link, and keyboard activation of Demo moves focus to the new H1. Reduced-motion
+behavior remains enabled by the existing media query.
+
+## Production deployment and identity
+
+The final `dist/site/` was deployed through SWA CLI 2.0.10 to Azure Static Web
+App `sf-solution-trace-practice` in resource group `sociobot`. Azure reports
+the custom domain `solution-trace-practice.sociobot.in` as `Ready`, and DNS
+resolves through the expected `ambitious-field-019fe4d10.7.azurestaticapps.net`
+host.
+
+- Final live assets are `index-C3xqwyvt.js` and `index-BNlQuYhg.css`.
+- Live and local JS SHA-256:
+  `94f99e560e93eed0e272b882d094dfeae53abb7ce26d0ec8d4e5c0d747d68b3d`.
+- Live and local CSS SHA-256:
+  `ef7dde6bbfd6a7832d51c483a864b52edea46dd01662bd1c68cf69e7a934e1a5`.
+- Live and local ZIP SHA-256:
+  `bcb10e6634226563ffd3d1726bc6ca255d48bce1b20511a01a038b37ce995adf`.
+- The live ZIP returns 200, `application/zip`, 41,466 bytes, a `PK` signature,
+  and passes `unzip -t`.
+- Hashed assets return `Cache-Control: public, max-age=31536000, immutable`;
+  `sw.js` returns `Cache-Control: no-cache`.
+- Live responses include the matching CSP with `frame-ancestors 'none'`, HSTS,
+  `X-Content-Type-Options`, `Referrer-Policy`, and restrictive
+  `Permissions-Policy` headers.
+
+Final live Chromium verification found no console errors and no
+serious/critical axe findings on `/`, `/demo`, `/privacy`, `/terms`, or
+`/404.html`. All runtime requests stayed on the product origin. A fresh service
+worker controlled `/demo`, cached current JS and CSS in
+`show-your-debugging-v2`, and reloaded the complete demo plus offline status
+with networking disabled.
+
+This product has no backend, account, payment, rate allowance, model request,
+or sign-in flow. API 429, Entra tenant, and live model identity checks are not
+applicable.
+
+## Known gaps
 
 - The ZIP is an unsigned Chrome-family package. Store signing and publication
-  remain factory deployment work.
-- Learners paste test output manually; editor and terminal integrations remain
-  intentionally outside the local-first v1 scope.
+  remain factory distribution work.
 - Firefox packaging and educator batch export are not included.
+- Learners paste test output manually; editor and terminal integrations remain
+  outside the local-first v1 scope.
