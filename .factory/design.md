@@ -62,6 +62,10 @@ Prompt:
 
 Provenance: generated for this product on 2026-08-28 with the Factory Azure image deployment through `/opt/fleet/lib/gen-image.sh`. The selected PNG source and prompt sidecar live in `assets/src/`. The shipped WebP is optimized to 1200 × 800 and no more than 300 KB. Generated imagery is original to this product.
 
+## Editor surface
+
+The VS Code Activity Bar view carries the same paper, aubergine, coral, violet, and teal tokens into a narrow editor sidebar. It uses a continuous three-step trail, clipped controls, and an offset receipt shadow instead of adopting VS Code's default form styling. The existing Chrome popup remains a separate supported version with the same visual grammar.
+
 ## Dark surfaces
 
-The terminal and browser-extension header are deliberate dark ink islands within the single warm-paper theme. Their text uses paper white, pale lavender, and mint. This provides depth without introducing a separate global theme.
+The terminal, VS Code view header, and Chrome-extension header are deliberate dark ink islands within the single warm-paper theme. Their text uses paper white, pale lavender, and mint. This provides depth without introducing a separate global theme.

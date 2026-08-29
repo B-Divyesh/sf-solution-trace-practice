@@ -1,0 +1,4 @@
+.vscodeignore
+src/**
+**/*.map
+dist/test/**

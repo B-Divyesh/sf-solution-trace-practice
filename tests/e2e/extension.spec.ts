@@ -4,7 +4,7 @@ import { mkdtemp, readFile, readdir, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 
-test('@claim:receipt-workflow @claim:receipt-delete the packaged extension completes and deletes a real receipt', async () => {
+test('@claim:browser-receipt-workflow the separate Chrome extension completes, exports, and deletes a real receipt', async () => {
   const extensionPath = resolve('dist/extension');
   const userDataDir = await mkdtemp(resolve(tmpdir(), 'show-debugging-test-'));
   const context = await chromium.launchPersistentContext(userDataDir, {
@@ -34,6 +34,16 @@ test('@claim:receipt-workflow @claim:receipt-delete the packaged extension compl
     await expect(page.getByText('Receipt saved in this browser.')).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Hypothesis', level: 2 })).toBeVisible();
     await expect(page.getByText('The loop reads one item too far.')).toBeVisible();
+    const downloadPromise = page.waitForEvent('download');
+    await page.getByRole('button', { name: 'Export Markdown' }).click();
+    const download = await downloadPromise;
+    const stream = await download.createReadStream();
+    let markdown = '';
+    for await (const chunk of stream) markdown += chunk.toString();
+    expect(markdown).toContain('## Hypothesis');
+    expect(markdown).toContain('## Test output');
+    expect(markdown).toContain('## Fix I chose');
+    expect(markdown).toContain('## Clue for next time');
     const results = await new AxeBuilder({ page: page as never }).analyze();
     const serious = results.violations.filter((violation) => ['serious', 'critical'].includes(violation.impact ?? ''));
     expect(serious).toEqual([]);

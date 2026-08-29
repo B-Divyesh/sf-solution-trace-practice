@@ -11,6 +11,7 @@ function run(command, args) {
 
 await rm(resolve(root, 'dist'), { recursive: true, force: true });
 run('npx', ['wxt', 'zip']);
+run('node', ['scripts/build-vscode.mjs']);
 
 const outputFiles = await readdir(resolve(root, '.output'), { recursive: true });
 const zipName = outputFiles.find((file) => file.endsWith('.zip'));
@@ -73,3 +74,5 @@ await cp(resolve(root, '.output/chrome-mv3'), resolve(root, 'dist/extension'), {
 console.log('Built site: dist/site');
 console.log('Built extension: dist/extension');
 console.log('Packaged extension: dist/site/downloads/show-your-debugging-chrome.zip');
+console.log('Built VS Code extension: dist/vscode-extension');
+console.log('Packaged VS Code extension: dist/site/downloads/show-your-debugging-vscode.vsix');

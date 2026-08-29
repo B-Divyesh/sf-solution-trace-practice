@@ -1,1 +1,1 @@
-Practice a hypothesis, test, fix, and clue before asking a coding assistant.
+Record a hypothesis, test, fix, and clue in VS Code before asking an assistant.

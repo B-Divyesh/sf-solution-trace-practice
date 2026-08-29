@@ -10,5 +10,5 @@
     "skipLibCheck": true,
     "types": ["vitest/globals", "chrome", "vite/client"]
   },
-  "include": ["src", "site", "extension", "tests", "*.ts"]
+  "include": ["src", "site", "extension", "vscode-extension/src", "tests", "*.ts"]
 }

@@ -1,0 +1,59 @@
+{
+  "name": "show-your-debugging",
+  "displayName": "Show Your Debugging",
+  "description": "Record a hypothesis, test output, fix, and clue before asking for help.",
+  "version": "1.0.0",
+  "publisher": "param-factory",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": ["Education", "Other"],
+  "keywords": ["debugging", "learning", "practice", "receipt"],
+  "main": "./dist/extension.js",
+  "browser": "./dist/web-extension.js",
+  "activationEvents": [
+    "onView:showYourDebugging.practiceView",
+    "onCommand:showYourDebugging.openPractice",
+    "onCommand:showYourDebugging.showReceipts"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "showYourDebugging.openPractice",
+        "title": "Show Your Debugging: Start a Receipt"
+      },
+      {
+        "command": "showYourDebugging.showReceipts",
+        "title": "Show Your Debugging: Open Saved Receipts"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "showYourDebugging",
+          "title": "Show Your Debugging",
+          "icon": "media/trace.svg"
+        }
+      ]
+    },
+    "views": {
+      "showYourDebugging": [
+        {
+          "id": "showYourDebugging.practiceView",
+          "name": "Debugging receipt",
+          "type": "webview"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "showYourDebugging.showReceipts",
+          "when": "view == showYourDebugging.practiceView",
+          "group": "navigation"
+        }
+      ]
+    }
+  }
+}

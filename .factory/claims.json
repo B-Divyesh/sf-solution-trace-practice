@@ -15,17 +15,24 @@
   },
   {
     "id": "receipt-workflow",
-    "claim": "The extension records a hypothesis, test output, fix, and clue in a debugging receipt.",
-    "where": "landing, extension, README",
+    "claim": "The VS Code extension records a hypothesis, test output, fix, and clue in a debugging receipt.",
+    "where": "landing, VS Code extension, README",
     "test": "npm test -- --grep @claim:receipt-workflow",
-    "sandbox": "fresh Chromium extension profile; load the packaged MV3 extension, complete all four fields, save, and inspect the receipt"
+    "sandbox": "fresh VS Code user-data and extensions directories; activate the packaged extension, open its contributed view, save all four fields, and inspect local extension state"
   },
   {
     "id": "receipt-delete",
-    "claim": "The extension can delete all saved receipts after a specific confirmation.",
-    "where": "privacy page, extension receipt history",
+    "claim": "The VS Code extension can delete all saved receipts after a specific confirmation.",
+    "where": "privacy page, VS Code receipt view",
     "test": "npm test -- --grep @claim:receipt-delete",
-    "sandbox": "fresh Chromium extension profile; save a receipt, open history, accept the named delete-all confirmation, and assert the empty state and zero count"
+    "sandbox": "fresh VS Code profile; save a receipt to local extension state, clear it through the extension API used by the confirmed view action, and assert zero receipts"
+  },
+  {
+    "id": "browser-receipt-workflow",
+    "claim": "The separate Chrome extension records the same four receipt fields in a browser popup.",
+    "where": "landing browser-version section, README",
+    "test": "npm test -- --grep @claim:browser-receipt-workflow",
+    "sandbox": "fresh Chromium extension profile; load the packaged MV3 extension, complete all four fields, save, inspect, export, and delete the receipt"
   },
   {
     "id": "hypothesis-first",
@@ -36,10 +43,17 @@
   },
   {
     "id": "local-only",
-    "claim": "Your entries stay in your browser.",
-    "where": "landing facts, privacy page, extension footer, README",
+    "claim": "Website demo entries stay in the separate demo browser namespace.",
+    "where": "demo banner, privacy page, demo documentation",
     "test": "npm test -- --grep @claim:local-only",
     "sandbox": "fresh browser context at /?demo=1; complete a receipt while recording requests and inspect demo-only localStorage keys"
+  },
+  {
+    "id": "vscode-local-storage",
+    "claim": "VS Code receipts use local extension storage and are not sent over the network.",
+    "where": "landing facts, privacy page, VS Code extension, README",
+    "test": "npm test -- --grep @claim:vscode-local-storage",
+    "sandbox": "fresh VS Code profile; save a unique receipt, inspect global extension state, and scan the packaged extension for network clients or endpoints"
   },
   {
     "id": "offline-reload",
@@ -51,37 +65,44 @@
   {
     "id": "markdown-export",
     "claim": "A completed receipt exports as Markdown.",
-    "where": "demo and extension receipt action, README",
+    "where": "demo, VS Code and Chrome receipt actions, README",
     "test": "npm test -- --grep @claim:markdown-export",
-    "sandbox": "fresh browser context at /?demo=1; finish the seeded trace and assert the downloaded Markdown contains all four sections"
+    "sandbox": "fresh VS Code profile; save a receipt, export through the same file writer used by the view, and assert the Markdown contains all four sections; browser suites cover both web surfaces"
   },
   {
     "id": "free-download",
-    "claim": "The extension is free to download.",
+    "claim": "The VS Code and Chrome extensions are free to download.",
     "where": "landing facts, README",
     "test": "npm test -- --grep @claim:free-download",
-    "sandbox": "built site; request the public extension zip without login or payment and verify a valid ZIP signature"
+    "sandbox": "built site; request the public VSIX and Chrome ZIP without login or payment, then verify both ZIP signatures"
   },
   {
     "id": "storage-only-permission",
-    "claim": "The extension does not read open files or tabs, and it does not block coding assistants.",
-    "where": "landing limits, privacy page, README",
+    "claim": "The Chrome extension requests browser storage only and has no tab or file access.",
+    "where": "privacy page, README",
     "test": "npm test -- --grep @claim:storage-only-permission",
     "sandbox": "built extension; inspect the MV3 manifest and assert storage is the only requested permission"
   },
   {
     "id": "extension-privacy-boundary",
-    "claim": "The extension has no tab, history, clipboard, or host permission and sends no receipt content over the network.",
-    "where": "README introduction, privacy page",
+    "claim": "The Chrome extension has no tab, history, clipboard, or host permission and sends no receipt content over the network.",
+    "where": "README product boundaries, privacy page",
     "test": "npm test -- --grep @claim:extension-privacy-boundary",
     "sandbox": "fresh Chromium extension profile; assert all permission surfaces are storage-only, scan the packaged bundle for private-data APIs, complete a uniquely marked receipt while recording requests, and assert no HTTP request or receipt value leaves the extension"
   },
   {
+    "id": "vscode-privacy-boundary",
+    "claim": "The VS Code extension does not read workspace files, open editors, or clipboard contents.",
+    "where": "landing limits, privacy page, README",
+    "test": "npm test -- --grep @claim:vscode-privacy-boundary",
+    "sandbox": "built VSIX; inspect the bundled extension and assert it has no workspace-file, document, editor, clipboard-read, process-spawn, or network-read path"
+  },
+  {
     "id": "no-code-generation",
-    "claim": "The extension does not generate code or answers.",
+    "claim": "Neither extension generates code or answers.",
     "where": "landing limits, README",
     "test": "npm test -- --grep @claim:no-code-generation",
-    "sandbox": "built extension; assert it has no host permissions and its bundle has no model gateway or model endpoint"
+    "sandbox": "built VS Code and Chrome extensions; assert their bundles contain no model gateway, model SDK, or model endpoint"
   },
   {
     "id": "no-tracking",

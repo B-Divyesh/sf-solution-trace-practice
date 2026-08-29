@@ -55,15 +55,15 @@ function landingMarkup(): string {
       <div class="hero-copy">
         <p class="kicker">A debugging receipt for learners</p>
         <h1 tabindex="-1">Practice the bug before asking for help</h1>
-        <p class="hero-lead">For beginning developers using coding assistants who want to keep their own debugging habits.</p>
+        <p class="hero-lead">For beginning developers in VS Code who want to test their own ideas before asking a coding assistant.</p>
         <div class="hero-action">
           <a class="button primary" href="/?demo=1" data-route>Try it with sample data</a>
           <span>A filled cart-loop hypothesis opens. Nothing is saved to your receipts.</span>
         </div>
         <ul class="plain-facts" aria-label="Product facts">
-          <li><strong>Private.</strong> Your entries stay in your browser.</li>
+          <li><strong>Private.</strong> Receipts use VS Code's local extension storage.</li>
           <li><strong>Offline.</strong> It works after your first visit.</li>
-          <li><strong>Free.</strong> The extension costs nothing.</li>
+          <li><strong>Free.</strong> The VS Code extension costs nothing.</li>
         </ul>
       </div>
       <figure class="hero-art">
@@ -106,18 +106,26 @@ function landingMarkup(): string {
       </div>
       <ul class="limits-list">
         <li>It does not generate code or answers.</li>
-        <li>It does not read your open files.</li>
-        <li>It does not block your coding assistant.</li>
+        <li>It does not read workspace files, open editors, or clipboard contents.</li>
         <li>A receipt records process. It does not prove competence.</li>
       </ul>
-      <a class="button secondary" href="/downloads/show-your-debugging-chrome.zip" download>Download the extension</a>
+      <a class="button secondary" href="/downloads/show-your-debugging-vscode.vsix" download>Download for VS Code</a>
+    </section>
+
+    <section class="browser-version section-shell" aria-labelledby="browser-version-title">
+      <div>
+        <p class="kicker">Separate browser version</p>
+        <h2 id="browser-version-title">Use the Chrome toolbar version</h2>
+      </div>
+      <p>The Chrome extension records the same hypothesis, test output, fix, and clue in a browser popup.</p>
+      <a class="text-link" href="/downloads/show-your-debugging-chrome.zip" download>Download for Chrome <span aria-hidden="true">→</span></a>
     </section>`;
 }
 
 function renderLanding(): void {
   banner.replaceChildren();
   banner.className = '';
-  setMeta('Show Your Debugging — Practice before asking', 'Record a hypothesis, test result, fix, and clue before asking a coding assistant for the answer.', '/');
+  setMeta('Show Your Debugging — Record debugging practice', 'Record a hypothesis, test result, fix, and clue before asking a coding assistant for the answer.', '/');
   main.className = '';
   main.innerHTML = landingMarkup();
 }
@@ -155,7 +163,7 @@ function showDemoStatus(message: string, error = false): void {
 }
 
 function demoBannerMarkup(): string {
-  return `<div class="demo-banner-inner"><strong>Demo — sample data, nothing is saved to your receipts</strong><div><button id="reset-demo" type="button">Reset demo</button><a href="/downloads/show-your-debugging-chrome.zip" download id="start-real">Start for real</a></div></div>`;
+  return `<div class="demo-banner-inner"><strong>Demo — sample data, nothing is saved to your receipts</strong><div><button id="reset-demo" type="button">Reset demo</button><a href="/downloads/show-your-debugging-vscode.vsix" download id="start-real">Start for real</a></div></div>`;
 }
 
 function clearDemoData(): void {
@@ -288,7 +296,7 @@ function renderDemo(): void {
 }
 
 function legalMarkup(kind: 'privacy' | 'terms'): string {
-  if (kind === 'privacy') return `<article class="legal section-shell"><p class="kicker">Privacy details</p><h1 tabindex="-1">Your debugging notes stay in this browser</h1><p class="legal-lead">Show Your Debugging stores receipts in your browser. It uses no analytics or third-party runtime scripts.</p><h2>What the extension stores</h2><p>It stores the hypothesis, test output, fix, clue, and date that you enter. You can delete all receipts from the extension.</p><h2>What the extension can access</h2><p>The extension requests browser storage only. It cannot read open tabs, editor files, clipboard contents, or browsing history.</p><h2>Demo storage</h2><p>The website demo uses separate browser keys that start with <code>demo:</code>. Resetting or leaving the demo clears those keys.</p><h2>Network use</h2><p>The extension sends no receipt content over the network. The website loads its own static files from this domain.</p><h2>Contact</h2><p>Email <a href="mailto:privacy@sociobot.in">privacy@sociobot.in</a> with privacy questions.</p><p class="updated">Last updated: August 29, 2026.</p></article>`;
+  if (kind === 'privacy') return `<article class="legal section-shell"><p class="kicker">Privacy details</p><h1 tabindex="-1">Your debugging notes stay on your device</h1><p class="legal-lead">Show Your Debugging uses local extension storage. It uses no analytics or third-party runtime scripts.</p><h2>What the VS Code extension stores</h2><p>It stores the hypothesis, test output, fix, clue, and date that you enter in VS Code's local extension state. You can delete all receipts from the view.</p><h2>What the VS Code extension reads</h2><p>It does not read workspace files, open editors, clipboard contents, or browsing history. You choose what to paste.</p><h2>Chrome version access</h2><p>The separate Chrome extension requests browser storage only. It has no tab, history, clipboard, host, or content-script permission.</p><h2>Demo storage</h2><p>The website demo uses separate browser keys that start with <code>demo:</code>. Resetting or leaving the demo clears those keys.</p><h2>Network use</h2><p>Neither extension sends receipt content over the network. The website loads its own static files from this domain.</p><h2>Contact</h2><p>Email <a href="mailto:privacy@sociobot.in">privacy@sociobot.in</a> with privacy questions.</p><p class="updated">Last updated: August 29, 2026.</p></article>`;
   return `<article class="legal section-shell"><p class="kicker">Terms in plain words</p><h1 tabindex="-1">Use the practice for your own debugging</h1><p class="legal-lead">Show Your Debugging is free software for personal, classroom, and workplace practice.</p><h2>Your responsibility</h2><p>Paste only code or output you are allowed to store. Review exported receipts before you share them.</p><h2>Receipts are not grades</h2><p>A receipt shows the steps you recorded. It does not certify skill, authorship, or competence.</p><h2>No warranty</h2><p>The software is provided as-is under the MIT License. Keep another copy of receipts you need to retain.</p><h2>Changes</h2><p>We may update these terms when the product changes. The date below shows the current version.</p><h2>Contact</h2><p>Email <a href="mailto:hello@sociobot.in">hello@sociobot.in</a> with terms questions.</p><p class="updated">Last updated: August 29, 2026.</p></article>`;
 }
 

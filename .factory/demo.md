@@ -19,11 +19,11 @@ The demo stores data only in these localStorage keys:
 - `demo:draft`
 - `demo:receipts`
 
-The extension uses `chrome.storage.local` and never reads website localStorage. Demo code never reads or writes extension data.
+The VS Code extension uses VS Code's local extension state. The separate Chrome version uses `chrome.storage.local`. Neither extension reads website localStorage, and demo code never reads or writes extension data.
 
 ## Reset and exit
 
-`Reset demo` removes both demo keys and restores the shipped sample. `Start for real` removes both keys before downloading the extension zip. No account or network write is involved.
+`Reset demo` removes both demo keys and restores the shipped sample. `Start for real` removes both keys before downloading the VS Code VSIX. No account or network write is involved.
 
 ## Offline check
 

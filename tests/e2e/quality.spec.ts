@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 import { readFile, readdir } from 'node:fs/promises';
 
 const routes = [
-  { route: '/', title: 'Show Your Debugging — Practice before asking', description: 'Record a hypothesis, test result, fix, and clue before asking a coding assistant for the answer.', canonical: '/' },
+  { route: '/', title: 'Show Your Debugging — Record debugging practice', description: 'Record a hypothesis, test result, fix, and clue before asking a coding assistant for the answer.', canonical: '/' },
   { route: '/?demo=1', title: 'Demo — Show Your Debugging', description: 'Try a sample debugging receipt stored only in a separate browser demo space.', canonical: '/demo' },
   { route: '/demo', title: 'Demo — Show Your Debugging', description: 'Try a sample debugging receipt stored only in a separate browser demo space.', canonical: '/demo' },
   { route: '/privacy', title: 'Privacy — Show Your Debugging', description: 'How Show Your Debugging stores receipts locally and keeps them under your control.', canonical: '/privacy' },
@@ -87,11 +87,31 @@ test('the practice steps describe the next product action without promising an a
 
 test('the README leads with plain privacy outcomes', async () => {
   const readme = await readFile('README.md', 'utf8');
-  expect(readme).toContain('Show Your Debugging is a free Chrome extension for beginning developers.');
-  expect(readme).toContain('Receipts stay in this browser. The extension cannot read your tabs, editor files, or clipboard.');
+  expect(readme).toContain('Show Your Debugging is a free VS Code extension for beginning developers.');
+  expect(readme).toContain("Receipts use VS Code's local extension storage. The extension does not read workspace files, open editors, or clipboard contents.");
   expect(readme).not.toContain('Chrome MV3 extension');
   expect(readme).not.toContain('chrome.storage.local');
   expect(readme).not.toContain('host access');
+});
+
+test('the first screen and static document name debugging practice and VS Code', async ({ page }) => {
+  const source = await readFile('site/index.html', 'utf8');
+  expect(source).toContain('<title>Show Your Debugging — Record debugging practice</title>');
+  expect(source).toContain('<meta property="og:title" content="Show Your Debugging — Record debugging practice"');
+  expect(source).toContain('<meta name="twitter:title" content="Show Your Debugging — Record debugging practice"');
+  await page.goto('/');
+  await expect(page.getByText('For beginning developers in VS Code who want to test their own ideas before asking a coding assistant.')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Download for VS Code' })).toHaveAttribute('href', '/downloads/show-your-debugging-vscode.vsix');
+});
+
+test('Privacy remains directly reachable in the 390px header', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const privacy = page.locator('.site-header').getByRole('link', { name: 'Privacy' });
+  await expect(privacy).toBeVisible();
+  await expect(privacy).toHaveCSS('display', 'flex');
+  await privacy.focus();
+  await expect(privacy).toBeFocused();
 });
 
 test('every rendered 390px touch target is at least 44 by 44 CSS pixels', async ({ page }) => {
@@ -185,9 +205,11 @@ test('every listed claim has exactly one tagged observable test', async () => {
 });
 
 test('release output keeps the extension package and immutable asset policy', async ({ request }) => {
-  const packageResponse = await request.get('/downloads/show-your-debugging-chrome.zip');
-  expect(packageResponse.status()).toBe(200);
-  expect((await packageResponse.body()).subarray(0, 2).toString()).toBe('PK');
+  for (const path of ['/downloads/show-your-debugging-vscode.vsix', '/downloads/show-your-debugging-chrome.zip']) {
+    const packageResponse = await request.get(path);
+    expect(packageResponse.status(), path).toBe(200);
+    expect((await packageResponse.body()).subarray(0, 2).toString(), path).toBe('PK');
+  }
 
   const config = JSON.parse(await readFile('site/public/staticwebapp.config.json', 'utf8')) as {
     routes: Array<{ route: string; headers?: Record<string, string> }>;

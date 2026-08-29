@@ -8,6 +8,8 @@ node_modules/
 dist/
 .output/
 .wxt/
+.vscode-test/
+.vscode-test-web/
 site/public/downloads/
 .factory/evidence-repair/
 playwright-report/

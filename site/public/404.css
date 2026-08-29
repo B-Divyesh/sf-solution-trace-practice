@@ -24,10 +24,11 @@ main p { max-width: 55ch; }
 .build-id, .art-note { align-self: end; }
 .art-note { text-align: right; }
 @media (max-width: 560px) {
-  .site-header { min-height: 64px; padding-inline: 16px; }
-  .wordmark { max-width: 130px; font-size: 15px; line-height: 1.05; }
-  .site-header nav a:not(.nav-download):not([href="/?demo=1"]) { display: none; }
-  .nav-download { padding: 7px 9px; }
+  .site-header { min-height: 64px; gap: 8px; padding-inline: 16px; }
+  .wordmark { max-width: 100px; font-size: 13px; line-height: 1.05; }
+  .site-header nav { gap: 8px; font-size: .76rem; }
+  .site-header nav a[href="/#how-it-works"] { display: none; }
+  .nav-download { padding: 7px; }
   main { width: calc(100% - 32px); padding-block: 56px; }
   .stamp { float: none; margin: 0 0 32px; }
   .site-footer { grid-template-columns: 1fr; }

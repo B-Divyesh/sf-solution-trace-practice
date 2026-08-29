@@ -83,7 +83,7 @@ test('@claim:offline-reload reloads the demo without a network', async ({ page, 
   await context.setOffline(false);
 });
 
-test('@claim:markdown-export downloads all receipt sections', async ({ page }) => {
+test('the website demo downloads all receipt sections as Markdown', async ({ page }) => {
   await page.goto(demoUrl);
   await finishSample(page);
   const downloadPromise = page.waitForEvent('download');
@@ -100,11 +100,13 @@ test('@claim:markdown-export downloads all receipt sections', async ({ page }) =
 });
 
 test('@claim:free-download serves the packaged extension without a gate', async ({ request }) => {
-  const response = await request.get('/downloads/show-your-debugging-chrome.zip');
-  expect(response.status()).toBe(200);
-  const body = await response.body();
-  expect(body.subarray(0, 2).toString()).toBe('PK');
-  expect(body.byteLength).toBeGreaterThan(5_000);
+  for (const path of ['/downloads/show-your-debugging-vscode.vsix', '/downloads/show-your-debugging-chrome.zip']) {
+    const response = await request.get(path);
+    expect(response.status(), path).toBe(200);
+    const body = await response.body();
+    expect(body.subarray(0, 2).toString(), path).toBe('PK');
+    expect(body.byteLength, path).toBeGreaterThan(5_000);
+  }
 });
 
 test('@claim:storage-only-permission ships no tab, file, or blocking access', async () => {
@@ -119,8 +121,24 @@ test('@claim:no-code-generation has no model host or endpoint', async () => {
   const chunkNames = await readdir('dist/extension/chunks');
   const popupChunk = chunkNames.find((file) => file.startsWith('popup-'))!;
   const popupBundle = await readFile(`dist/extension/chunks/${popupChunk}`, 'utf8');
+  const vscodeBundle = await readFile('dist/vscode-extension/dist/extension.js', 'utf8');
   expect(manifest.host_permissions ?? []).toEqual([]);
   expect(popupBundle).not.toMatch(/api\.sociobot|openai|gpt-5/i);
+  expect(vscodeBundle).not.toMatch(/api\.sociobot|openai|gpt-5|responses\.create/i);
+});
+
+test('@claim:vscode-privacy-boundary the VS Code bundle has no workspace, editor, clipboard-read, process, or network access', async () => {
+  const manifest = JSON.parse(await readFile('vscode-extension/package.json', 'utf8')) as {
+    contributes?: { commands?: Array<{ command: string }>; views?: Record<string, Array<{ id: string }>> };
+  };
+  const bundle = await readFile('dist/vscode-extension/dist/extension.js', 'utf8');
+  expect(manifest.contributes?.commands?.map(({ command }) => command)).toEqual([
+    'showYourDebugging.openPractice',
+    'showYourDebugging.showReceipts'
+  ]);
+  expect(manifest.contributes?.views?.showYourDebugging?.[0]?.id).toBe('showYourDebugging.practiceView');
+  expect(bundle).not.toMatch(/workspace\.fs\.readFile|openTextDocument|activeTextEditor|visibleTextEditors|env\.clipboard\.readText|child_process|node:(?:http|https|net)|\bfetch\s*\(/i);
+  expect(bundle).toContain('globalState');
 });
 
 test('@claim:no-tracking loads no third-party runtime request or script', async ({ page }) => {
@@ -130,4 +148,10 @@ test('@claim:no-tracking loads no third-party runtime request or script', async 
   await page.goto(demoUrl);
   const scriptSources = await page.locator('script[src]').evaluateAll((scripts) => scripts.map((script) => (script as HTMLScriptElement).src));
   expect([...requests, ...scriptSources].every((url) => new URL(url).origin === 'http://127.0.0.1:4173')).toBe(true);
+  const extensionFiles = [
+    'dist/vscode-extension/dist/extension.js',
+    'dist/vscode-extension/dist/web-extension.js'
+  ];
+  const extensionBundles = (await Promise.all(extensionFiles.map((file) => readFile(file, 'utf8')))).join('\n');
+  expect(extensionBundles).not.toMatch(/google-analytics|googletagmanager|segment\.com|mixpanel|posthog|sentry|\bfetch\s*\(|node:(?:http|https|net)/i);
 });

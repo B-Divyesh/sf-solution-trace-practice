@@ -83,6 +83,9 @@ pre { max-width: 100%; margin: 0; padding: 12px; overflow: auto; color: var(--pa
 .limits-list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
 .limits-list li { padding-left: 28px; position: relative; }
 .limits-list li::before { content: "×"; position: absolute; left: 0; color: var(--coral-dark); font-weight: 900; }
+.browser-version { display: grid; grid-template-columns: .9fr 1fr auto; gap: 48px; align-items: center; padding-block: 72px; border-top: 2px dashed #b7aa91; }
+.browser-version h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); }
+.browser-version p { max-width: 48ch; }
 
 .demo-banner { position: sticky; z-index: 10; top: 0; color: var(--paper); background: var(--violet-dark); border-bottom: 4px solid var(--coral); }
 .demo-banner-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: min(1180px, calc(100% - 32px)); min-height: 52px; margin: auto; font-size: .88rem; }
@@ -149,7 +152,7 @@ pre { max-width: 100%; margin: 0; padding: 12px; overflow: auto; color: var(--pa
   .site-header nav a[href="/#how-it-works"] { display: none; }
   .hero { grid-template-columns: 1fr; min-height: auto; padding-block: 48px 80px; }
   .hero-art { width: min(92%, 620px); margin: 0 auto; }
-  .receipt-preview, .limits-section { grid-template-columns: 1fr; }
+  .receipt-preview, .limits-section, .browser-version { grid-template-columns: 1fr; }
   .step-list { grid-template-columns: 1fr; gap: 24px; }
   .demo-layout { grid-template-columns: 1fr; }
 }
@@ -157,10 +160,11 @@ pre { max-width: 100%; margin: 0; padding: 12px; overflow: auto; color: var(--pa
 @media (max-width: 560px) {
   body { font-size: 16px; }
   .section-shell { width: min(100% - 32px, 1180px); }
-  .site-header { min-height: 64px; padding-inline: 16px; }
-  .wordmark { max-width: 130px; font-size: 15px; line-height: 1.05; }
-  .site-header nav a:not(.nav-download):not([href="/?demo=1"]) { display: none; }
-  .nav-download { padding: 7px 9px; }
+  .site-header { min-height: 64px; gap: 8px; padding-inline: 16px; }
+  .wordmark { max-width: 100px; font-size: 13px; line-height: 1.05; }
+  .site-header nav { gap: 8px; font-size: .76rem; }
+  .site-header nav a[href="/#how-it-works"] { display: none; }
+  .nav-download { padding: 7px; }
   h1 { font-size: clamp(2.45rem, 13vw, 3.6rem); }
   .hero { gap: 52px; padding-top: 28px; }
   .hero-lead { margin-block: 16px; }
