@@ -41,7 +41,7 @@ button { min-height: 44px; }
 
 .brand { font-family: "Arial Black", "Arial Narrow", sans-serif; font-size: 14px; letter-spacing: -.02em; }
 .brand span { color: #6ed0b7; }
-.app-header .quiet-button { padding: 4px 10px; color: #fff7e8; border-color: #a99ae0; box-shadow: none; }
+.app-header .quiet-button { padding: 4px 10px; color: #fff7e8; background: #24152f; border-color: #a99ae0; box-shadow: none; }
 .app-header .quiet-button span { display: inline-grid; place-items: center; min-width: 22px; border-radius: 50%; color: #24152f; background: #fff7e8; }
 
 main { padding: 24px 24px 32px; }

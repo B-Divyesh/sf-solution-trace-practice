@@ -22,6 +22,8 @@ test('@claim:receipt-workflow @claim:receipt-delete the packaged extension compl
     const extensionId = new URL(worker.url()).host;
     const page = await context.newPage();
     await page.goto(`chrome-extension://${extensionId}/popup.html`);
+    await expect(page.getByRole('button', { name: 'Receipts 0' })).toHaveCSS('color', 'rgb(255, 247, 232)');
+    await expect(page.getByRole('button', { name: 'Receipts 0' })).toHaveCSS('background-color', 'rgb(36, 21, 47)');
     await page.getByLabel('My hypothesis').fill('The loop reads one item too far.');
     await page.getByRole('button', { name: 'Lock in my hypothesis' }).click();
     await page.getByLabel('Test output').fill('RangeError: item 3 is undefined');
